@@ -1437,3 +1437,360 @@ nav {
     margin: 3px 0;
   }
 }
+/* ==================== MOBILE RESPONSIVENESS ==================== */
+
+/* Base mobile styles */
+@media (max-width: 768px) {
+  /* General adjustments */
+  body {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  /* Header & Navigation */
+  header {
+    padding: 15px 0;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    text-align: center;
+    display: block;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 80vh;
+    background-attachment: scroll;
+  }
+
+  .hero-content {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .couple-names {
+    font-size: 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Countdown */
+  .countdown {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .countdown-item {
+    min-width: 70px;
+    padding: 15px;
+  }
+
+  .countdown-number {
+    font-size: 2rem;
+  }
+
+  /* Hero Features */
+  .hero-features {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .feature-card {
+    min-width: 100%;
+  }
+
+  /* Hero Buttons */
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* About Section */
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-image img {
+    height: 300px;
+  }
+
+  .couple-profiles {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Gallery Section */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .gallery-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  /* Event Details */
+  .events-timeline {
+    margin-bottom: 40px;
+  }
+
+  .event-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .venue-details {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  /* RSVP Form */
+  .rsvp-form {
+    padding: 20px;
+  }
+
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .attendance-options,
+  .events-options {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .social-links-footer {
+    justify-content: center;
+  }
+
+  /* Hide floating images on mobile */
+  .floating-image {
+    display: none !important;
+  }
+}
+
+/* Tablet styles (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-features {
+    flex-wrap: wrap;
+  }
+
+  .feature-card {
+    min-width: 45%;
+  }
+
+  /* Reduce floating image size on tablet */
+  .floating-image.left,
+  .floating-image.right {
+    display: none; /* Hide on tablet too or make smaller */
+  }
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .couple-names {
+    font-size: 2rem;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    padding: 10px;
+  }
+
+  .countdown-number {
+    font-size: 1.8rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .event-card {
+    padding: 15px;
+  }
+
+  .event-date {
+    min-width: 60px;
+  }
+
+  .date-day {
+    font-size: 2rem;
+  }
+}
+
+/* ==================== GALLERY MOBILE FIXES ==================== */
+@media (max-width: 768px) {
+  #gallery .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item {
+    height: 250px;
+  }
+
+  .image-container {
+    height: 250px;
+  }
+}
+
+/* ==================== TOUCH-FRIENDLY ELEMENTS ==================== */
+/* Make buttons easier to tap on mobile */
+.btn,
+.filter-btn,
+.nav-link {
+  min-height: 44px; /* Minimum touch target size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Improve form inputs for mobile */
+input,
+textarea,
+select {
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+  padding: 12px !important;
+}
+
+/* Prevent horizontal scrolling */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling for mobile */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve image loading on mobile */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==================== HAMBURGER MENU (OPTIONAL) ==================== */
+/* If you want a hamburger menu for mobile, add this: */
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--primary-color);
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+@media (max-width: 480px) {
+  .countdown {
+    gap: 5px;
+  }
+
+  .countdown-item {
+    min-width: 70px;
+    padding: 10px;
+  }
+
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+
+  .countdown-text {
+    font-size: 0.8rem;
+  }
+}
