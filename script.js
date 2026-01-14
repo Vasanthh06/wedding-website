@@ -416,3 +416,253 @@ function initMobileMenu() {
 document.addEventListener("DOMContentLoaded", function () {
   initMobileMenu();
 });
+// RSVP Form Enhancement
+document.addEventListener("DOMContentLoaded", function () {
+  // Form elements
+  const rsvpForm = document.querySelector(".rsvp-form");
+  const rsvpConfirmation = document.getElementById("rsvp-confirmation");
+  const celebrationContainer = document.getElementById("celebration-container");
+  const previewAttendance = document.querySelector(".preview-attendance");
+  const previewEvents = document.querySelector(".preview-events");
+  const previewGuests = document.querySelector(".preview-guests");
+
+  // Real-time preview updates
+  function updatePreview() {
+    // Update attendance
+    const selectedAttendance = document.querySelector(
+      'input[name="attendance"]:checked'
+    );
+    if (selectedAttendance) {
+      const statusMap = {
+        yes: "🎉 Excited to attend!",
+        maybe: "🤔 Considering options",
+        no: "😢 Unable to attend",
+      };
+      previewAttendance.textContent = statusMap[selectedAttendance.value];
+    }
+
+    // Update events
+    const selectedEvents = document.querySelectorAll(
+      'input[name="events"]:checked'
+    );
+    if (selectedEvents.length > 0) {
+      const eventNames = Array.from(selectedEvents).map((checkbox) => {
+        const eventMap = {
+          mehndi: "Mehndi",
+          sangeet: "Sangeet",
+          wedding: "Wedding",
+          reception: "Reception",
+        };
+        return eventMap[checkbox.value];
+      });
+      previewEvents.textContent = eventNames.join(", ");
+    } else {
+      previewEvents.textContent = "No events selected";
+    }
+
+    // Update guests
+    const guests = document.getElementById("rsvp-guests").value;
+    previewGuests.textContent = guests || "0";
+  }
+
+  // Add event listeners for real-time updates
+  document.querySelectorAll('input[name="attendance"]').forEach((radio) => {
+    radio.addEventListener("change", updatePreview);
+  });
+
+  document.querySelectorAll('input[name="events"]').forEach((checkbox) => {
+    checkbox.addEventListener("change", updatePreview);
+  });
+
+  document
+    .getElementById("rsvp-guests")
+    .addEventListener("input", updatePreview);
+
+  // Celebration quotes based on selections
+  const celebrationQuotes = [
+    "Your presence is the gift we cherish most! 🌸",
+    "Can't wait to create beautiful memories together! ✨",
+    "Thank you for sharing in our joy and celebration! 💝",
+    "Your blessings mean the world to us! 🙏",
+    "Together, let's make this day unforgettable! 🎊",
+    "Your love and support fill our hearts with happiness! ❤️",
+    "Excited to celebrate this new chapter with you! 🌟",
+    "Your company will make our special day even brighter! 🌈",
+  ];
+
+  const yesQuotes = [
+    "We're overjoyed that you can join us! 🥳",
+    "Can't wait to celebrate with you! 🎉",
+    "Your presence makes our day complete! 💖",
+  ];
+
+  const maybeQuotes = [
+    "Hope you can make it! We'd love to see you! 🤗",
+    "Looking forward to celebrating together if you can join! ✨",
+  ];
+
+  // Create celebration effects
+  function createCelebration() {
+    // Clear previous celebrations
+    celebrationContainer.innerHTML = "";
+
+    // Create hearts
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+        celebrationContainer.appendChild(heart);
+
+        // Remove heart after animation
+        setTimeout(() => heart.remove(), 3000);
+      }, i * 50);
+    }
+
+    // Create confetti
+    for (let i = 0; i < 100; i++) {
+      setTimeout(() => {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDelay = Math.random() * 1 + "s";
+        celebrationContainer.appendChild(confetti);
+
+        // Remove confetti after animation
+        setTimeout(() => confetti.remove(), 3000);
+      }, i * 30);
+    }
+  }
+
+  function getRandomColor() {
+    const colors = [
+      "#e91e63",
+      "#9c27b0",
+      "#3f51b5",
+      "#03a9f4",
+      "#009688",
+      "#8bc34a",
+      "#ffeb3b",
+      "#ff9800",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  // Get random quote
+  function getRandomQuote(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  // Enhanced form submission
+  document
+    .getElementById("submit-rsvp")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("rsvp-name").value;
+      const email = document.getElementById("rsvp-email").value;
+      const attendance = document.querySelector(
+        'input[name="attendance"]:checked'
+      );
+      const selectedEvents = document.querySelectorAll(
+        'input[name="events"]:checked'
+      );
+
+      // Validation
+      if (!name || !email || !attendance) {
+        alert(
+          "Please fill in required fields: Name, Email, and Attendance status."
+        );
+        return;
+      }
+
+      // Check if at least 2 events are selected when attending
+      if (attendance.value === "yes" && selectedEvents.length < 2) {
+        alert("Please select at least 2 events you plan to attend.");
+        return;
+      }
+
+      // Create celebration
+      createCelebration();
+
+      // Hide form, show confirmation
+      rsvpForm.style.display = "none";
+      rsvpConfirmation.style.display = "block";
+
+      // Update confirmation message
+      const confirmationMessage = document.getElementById(
+        "confirmation-message"
+      );
+      const confirmationDetails = document.getElementById(
+        "confirmation-details"
+      );
+      const confirmationQuote = document.getElementById("confirmation-quote");
+
+      // Set message based on attendance
+      let message = "";
+      let quote = "";
+
+      if (attendance.value === "yes") {
+        message = `Thank you, ${name}! We're absolutely thrilled that you'll be joining us!`;
+        quote = getRandomQuote(yesQuotes);
+      } else if (attendance.value === "maybe") {
+        message = `Thank you, ${name}! We hope you can make it and will keep you updated.`;
+        quote = getRandomQuote(maybeQuotes);
+      } else {
+        message = `Thank you, ${name}. We'll miss you but appreciate you letting us know.`;
+        quote =
+          "We'll keep you in our hearts even if you can't be there in person.";
+      }
+
+      confirmationMessage.textContent = message;
+
+      // Build details
+      let detailsHTML = `
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Attendance:</strong> ${
+        attendance.value === "yes"
+          ? "✅ Attending"
+          : attendance.value === "maybe"
+          ? "❓ Maybe"
+          : "❌ Not Attending"
+      }</p>
+    `;
+
+      if (selectedEvents.length > 0) {
+        const eventList = Array.from(selectedEvents)
+          .map((cb) => {
+            const eventNames = {
+              mehndi: "Mehndi Ceremony (Apr 26)",
+              sangeet: "Sangeet Night (Apr 26)",
+              wedding: "Wedding Ceremony (Apr 29)",
+              reception: "Reception (Apr 28)",
+            };
+            return `• ${eventNames[cb.value]}`;
+          })
+          .join("<br>");
+        detailsHTML += `<p><strong>Events attending:</strong><br>${eventList}</p>`;
+      }
+
+      confirmationDetails.innerHTML = detailsHTML;
+      confirmationQuote.innerHTML = `<p>"${quote}"</p>`;
+
+      // Scroll to confirmation
+      rsvpConfirmation.scrollIntoView({ behavior: "smooth" });
+    });
+
+  // Back to form button
+  document
+    .getElementById("back-to-form")
+    .addEventListener("click", function () {
+      rsvpConfirmation.style.display = "none";
+      rsvpForm.style.display = "block";
+      rsvpForm.scrollIntoView({ behavior: "smooth" });
+    });
+
+  // Initialize preview
+  updatePreview();
+});

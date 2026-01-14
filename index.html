@@ -376,117 +376,185 @@
     </div>
   </div>
 </section>
+<!-- RSVP Section -->
+<section id="rsvp" class="page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Connect With Us</h2>
+      <p>Please let us know if you can join our celebrations</p>
+    </div>
 
-    <!-- RSVP Section -->
-    <section id="rsvp" class="page">
-      <div class="container">
-        <div class="section-title">
-          <h2>Connect us</h2>
-          <p>Please let us know if you can join our celebrations</p>
-        </div>
-
+    <!-- Updated Form with YOUR Formspree Link -->
+    <form id="wedding-rsvp-form" action="https://formspree.io/f/maqqnwwg" method="POST">
+      <div class="rsvp-container">
+        <!-- Form on left -->
         <div class="rsvp-form">
-          <div class="form-group">
-            <input
-              type="text"
-              id="rsvp-name"
-              placeholder="Full Name *"
-              required
-            />
-            <input
-              type="email"
-              id="rsvp-email"
-              placeholder="Email Address *"
-              required
-            />
+          <!-- Hidden fields for Formspree -->
+          <input type="hidden" name="_subject" value="New Wedding RSVP Submission! 🎉">
+          <input type="hidden" name="_replyto" id="reply-email">
+          <input type="hidden" name="_cc" value="amarlakshmiwedding@gmail.com">
+          <input type="hidden" name="_format" value="plain">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" name="name" id="rsvp-name" placeholder="Full Name *" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" id="rsvp-email" placeholder="Email Address *" required />
+            </div>
           </div>
 
-          <div class="form-group">
-            <input
-              type="tel"
-              id="rsvp-phone"
-              placeholder="Phone Number *"
-              required
-            />
-            <input
-              type="number"
-              id="rsvp-guests"
-              placeholder="Number of Guests *"
-              min="1"
-              max="10"
-              required
-            />
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" name="phone" id="rsvp-phone" placeholder="Phone Number *" required />
+            </div>
+            <div class="form-group">
+              <input type="number" name="guests" id="rsvp-guests" placeholder="Number of Guests *" min="1" max="10" required />
+            </div>
           </div>
 
-          <div class="attendance-section">
-            <h4>Will you be attending?</h4>
-            <div class="attendance-options">
-              <label class="attendance-option">
-                <input type="radio" name="attendance" value="yes" checked />
-                <span>Yes, I'll be there with joy!</span>
+          <!-- Attendance Options -->
+          <div class="section-box">
+            <h4><i class="fas fa-calendar-check"></i> Will you be attending?</h4>
+            <div class="attendance-grid">
+              <label class="attendance-option yes-option">
+                <input type="radio" name="attendance" value="Yes, I'll be there with joy!" required />
+                <div class="option-content">
+                  <i class="fas fa-heart"></i>
+                  <span class="option-text">Yes, I'll be there with joy!</span>
+                </div>
               </label>
-              <label class="attendance-option">
-                <input type="radio" name="attendance" value="maybe" />
-                <span>Maybe, still checking</span>
+              
+              <label class="attendance-option maybe-option">
+                <input type="radio" name="attendance" value="Maybe, still checking" />
+                <div class="option-content">
+                  <i class="fas fa-question-circle"></i>
+                  <span class="option-text">Maybe, still checking</span>
+                </div>
               </label>
-              <label class="attendance-option">
-                <input type="radio" name="attendance" value="no" />
-                <span>Regretfully can't make it</span>
+              
+              <label class="attendance-option no-option">
+                <input type="radio" name="attendance" value="Regretfully can't make it" />
+                <div class="option-content">
+                  <i class="fas fa-sad-tear"></i>
+                  <span class="option-text">Regretfully can't make it</span>
+                </div>
               </label>
             </div>
           </div>
 
-          <div class="events-selection">
-            <h4>Which events will you attend?</h4>
-            <div class="events-options">
+          <!-- Events Selection -->
+          <div class="section-box">
+            <h4><i class="fas fa-glass-cheers"></i> Which events will you attend?</h4>
+            <div class="events-grid">
               <label class="event-option">
-                <input type="checkbox" name="events" value="mehndi" />
-                <span>Mehndi Ceremony (April 26)</span>
+                <input type="checkbox" name="event-mehndi" value="Mehndi Ceremony (April 26)" />
+                <div class="event-content">
+                  <div class="event-date">Apr 26</div>
+                  <span class="event-name">Mehndi Ceremony</span>
+                  <i class="fas fa-check-circle"></i>
+                </div>
               </label>
+              
               <label class="event-option">
-                <input type="checkbox" name="events" value="sangeet" />
-                <span>Sangeet Night (April 26)</span>
+                <input type="checkbox" name="event-sangeet" value="Sangeet Night (April 26)" />
+                <div class="event-content">
+                  <div class="event-date">Apr 26</div>
+                  <span class="event-name">Sangeet Night</span>
+                  <i class="fas fa-check-circle"></i>
+                </div>
               </label>
+              
               <label class="event-option">
-                <input type="checkbox" name="events" value="wedding" checked />
-                <span>Wedding Ceremony (April 29)</span>
+                <input type="checkbox" name="event-wedding" value="Wedding Ceremony (April 29)" checked />
+                <div class="event-content">
+                  <div class="event-date">Apr 29</div>
+                  <span class="event-name">Wedding Ceremony</span>
+                  <i class="fas fa-check-circle"></i>
+                </div>
               </label>
+              
               <label class="event-option">
-                <input
-                  type="checkbox"
-                  name="events"
-                  value="reception"
-                  checked
-                />
-                <span>Reception (April 28)</span>
+                <input type="checkbox" name="event-reception" value="Reception (April 28)" checked />
+                <div class="event-content">
+                  <div class="event-date">Apr 28</div>
+                  <span class="event-name">Reception</span>
+                  <i class="fas fa-check-circle"></i>
+                </div>
               </label>
             </div>
           </div>
 
-          <textarea
-            id="rsvp-message"
-            placeholder="Any dietary restrictions or special requests?"
-          ></textarea>
+          <!-- Message Input -->
+          <div class="message-box">
+            <h4><i class="fas fa-comment-dots"></i> Any dietary restrictions or special requests?</h4>
+            <textarea name="message" id="rsvp-message" placeholder="Please let us know about any dietary needs or special requirements..."></textarea>
+          </div>
 
-          <button id="submit-rsvp" class="btn">
-            <i class="fas fa-paper-plane"></i> Submit Response
+          <!-- Submit Button -->
+          <button type="submit" id="submit-rsvp" class="btn submit-btn">
+            <i class="fas fa-paper-plane"></i> Send Your Response
           </button>
         </div>
 
-        <div
-          class="rsvp-confirmation"
-          id="rsvp-confirmation"
-          style="display: none"
-        >
-          <i class="fas fa-check-circle"></i>
-          <h3>Thank You for Your RSVP!</h3>
-          <p>
-            We're excited to celebrate with you. You'll receive a confirmation
-            email shortly.
-          </p>
+        <!-- Preview on right -->
+        <div class="rsvp-preview">
+          <div class="preview-card">
+            <h3><i class="fas fa-gift"></i> Your Response</h3>
+            <div class="preview-content">
+              <div class="preview-item">
+                <strong>Status:</strong>
+                <span class="preview-attendance">Not selected</span>
+              </div>
+              <div class="preview-item">
+                <strong>Events:</strong>
+                <span class="preview-events">No events selected</span>
+              </div>
+              <div class="preview-item">
+                <strong>Guests:</strong>
+                <span class="preview-guests">0</span>
+              </div>
+            </div>
+            <div class="preview-note">
+              <i class="fas fa-info-circle"></i>
+              <p>Your response helps us plan better for our special day!</p>
+            </div>
+          </div>
+          
+          <div class="quote-box">
+            <i class="fas fa-quote-left"></i>
+            <p class="quote-text">"Your presence will add to the joy of our union."</p>
+            <i class="fas fa-quote-right"></i>
+          </div>
         </div>
       </div>
-    </section>
+    </form>
+
+    <!-- Celebration Animation Container -->
+    <div class="celebration-container" id="celebration-container"></div>
+
+    <!-- RSVP Confirmation -->
+    <div class="rsvp-confirmation" id="rsvp-confirmation" style="display: none">
+      <div class="confirmation-content">
+        <i class="fas fa-check-circle"></i>
+        <h3>Thank You for Your RSVP! 🎉</h3>
+        <p class="confirmation-message" id="confirmation-message">
+          We're excited to celebrate with you!
+        </p>
+        <div class="confirmation-details" id="confirmation-details"></div>
+        <div class="confirmation-quote" id="confirmation-quote"></div>
+        <p class="email-notice">
+          <i class="fas fa-envelope"></i> A confirmation email has been sent to you.
+        </p>
+        <button class="btn" id="back-to-form">
+          <i class="fas fa-edit"></i> Edit Response
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+    
+         
 
     <!-- Footer -->
     <footer>
@@ -521,7 +589,7 @@
             </a>
         </p>
         <p>
-            <a href="mailto:amar.lakshmi.wedding@gmail.com?subject=Wedding%20Greetings&body=Dear%20Amar%20%26%20Lakshmi%2C%0A%0A" class="contact-link">
+            <a href="mailto:amarlakshmiwedding@gmail.com?subject=Wedding%20Greetings&body=Dear%20Amar%20%26%20Lakshmi%2C%0A%0A" class="contact-link">
                 <i class="fas fa-envelope"></i> amarlakshmiwedding@gmail.com
             </a>
         </p>
