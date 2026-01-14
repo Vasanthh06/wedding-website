@@ -2633,3 +2633,15 @@ img {
 .fa.clickable-icon:hover {
   transform: scale(1.2);
 }
+/* Mobile Responsive Fix for Icons */
+@media (max-width: 768px) {
+  .event-icon-image {
+    width: 50px !important; /* Larger on mobile */
+    height: 50px !important;
+  }
+
+  .event-icon {
+    width: 60px; /* Give more space */
+    height: 60px;
+  }
+}
