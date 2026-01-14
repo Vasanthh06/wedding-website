@@ -666,3 +666,61 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize preview
   updatePreview();
 });
+// Function to show full image
+function showFullImage(imageSrc, caption) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const captionText = document.getElementById("imageCaption");
+
+  modal.style.display = "block";
+  modalImg.src = imageSrc;
+  captionText.innerHTML = caption;
+
+  // Close modal when clicking X
+  document.querySelector(".close-modal").onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Close modal when clicking outside image
+  modal.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // Close with Escape key
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+    }
+  });
+}
+// Function to show full image
+function showFullImage(imageSrc, caption) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const captionText = document.getElementById("imageCaption");
+
+  modal.style.display = "block";
+  modalImg.src = imageSrc;
+  captionText.innerHTML = caption;
+
+  // Close modal when clicking X
+  document.querySelector(".close-modal").onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Close modal when clicking outside image
+  modal.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // Close with Escape key
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+    }
+  });
+}
