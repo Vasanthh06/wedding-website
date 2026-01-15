@@ -891,3 +891,146 @@ creatorModal.addEventListener("click", (e) => {
     creatorModal.style.display = "none";
   }
 });
+// Creator Modal Functionality
+function initCreatorModal() {
+  const creatorLink = document.getElementById("creatorLink");
+  const creatorModal = document.getElementById("creatorModal");
+  const closeModal = document.getElementById("closeModal");
+  const animatedName = document.getElementById("animatedName");
+  const nameUnderline = document.getElementById("nameUnderline");
+
+  if (!creatorLink || !creatorModal) return;
+
+  // Open modal when creator name is clicked
+  creatorLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    openCreatorModal();
+  });
+
+  // Close modal when X is clicked
+  closeModal.addEventListener("click", closeCreatorModal);
+
+  // Close modal when clicking outside content
+  creatorModal.addEventListener("click", function (e) {
+    if (e.target === creatorModal) {
+      closeCreatorModal();
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && creatorModal.classList.contains("active")) {
+      closeCreatorModal();
+    }
+  });
+
+  function openCreatorModal() {
+    // Show modal
+    creatorModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    // Clear previous name
+    animatedName.innerHTML = "";
+
+    // Create name "im_Vasanthh" with individual letters
+    const name = "im_Vasanthh❤️";
+    const letters = name.split("");
+
+    // Add heart animations
+    createHeartAnimations();
+
+    // Animate letters coming from below
+    letters.forEach((letter, index) => {
+      const span = document.createElement("span");
+      span.className = "name-letter";
+      span.textContent = letter === "_" ? " " : letter;
+      span.style.color = getLetterColor(letter);
+      animatedName.appendChild(span);
+
+      // Animate each letter with delay
+      setTimeout(() => {
+        span.style.transition =
+          "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+
+        // Add bounce effect
+        setTimeout(() => {
+          span.style.transform = "translateY(-10px)";
+          setTimeout(() => {
+            span.style.transform = "translateY(0)";
+          }, 100);
+        }, 600);
+      }, index * 100); // Staggered delay
+    });
+
+    // Animate underline after all letters appear
+    setTimeout(() => {
+      nameUnderline.style.width = "80%";
+    }, letters.length * 100 + 300);
+  }
+
+  function closeCreatorModal() {
+    creatorModal.classList.remove("active");
+    document.body.style.overflow = "auto";
+
+    // Reset animations
+    nameUnderline.style.width = "0";
+
+    // Fade out letters
+    const letters = document.querySelectorAll(".name-letter");
+    letters.forEach((letter, index) => {
+      setTimeout(() => {
+        letter.style.opacity = "0";
+        letter.style.transform = "translateY(100px)";
+      }, index * 50);
+    });
+  }
+
+  function getLetterColor(letter) {
+    // Different colors for different parts
+    if (letter === "i" || letter === "m") return "#ff6b9d";
+    if (letter === "_") return "#8b4b6e";
+    if (["V", "a", "s", "t", "h", "n"].includes(letter)) return "#8b4b6e";
+    return "#ff6b9d";
+  }
+
+  function createHeartAnimations() {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart-animation";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.top = Math.random() * 100 + "%";
+
+        creatorModal.querySelector(".creator-modal-content").appendChild(heart);
+
+        // Remove after animation
+        setTimeout(() => {
+          if (heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+          }
+        }, 2000);
+      }, i * 200);
+    }
+  }
+}
+
+// Add this to your DOMContentLoaded function
+document.addEventListener("DOMContentLoaded", function () {
+  // ... your existing code ...
+
+  // Initialize creator modal
+  initCreatorModal();
+
+  // ... rest of your code ...
+});
+// Inside your initCreatorModal function, add this:
+console.log("Clickable image element:", clickableImage);
+
+clickableImage.addEventListener("click", function (e) {
+  console.log("Image clicked!", e);
+  e.stopPropagation();
+  openFullscreenImage();
+});

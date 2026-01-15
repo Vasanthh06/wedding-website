@@ -763,19 +763,50 @@ What started as a simple glance soon grew into a love meant to last forever. �
   <p>&copy; Megha & Amar — Forever Begins in 2026 💝✨</p>
 
   <p class="creator">
-    Created with❤️by
-    <a href="javascript:void(0)" id="creatorLink">Vasanthh</a>
-  </p>
+  Developed With❤️By 
+  <a href="javascript:void(0)" id="creatorLink">Vasanthh</a>
+</p>
 </div>
 
-<!-- IMAGE POPUP (MODAL) -->
+<!-- CREATOR MODAL -->
 <div class="creator-modal" id="creatorModal">
-  <span class="close-btn" id="closeModal">&times;</span>
-  <img src="images/Vasanthhh.jpg" alt="Vasanthh" />
+  <div class="creator-modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    
+    <!-- Clickable Image Container -->
+    <div class="creator-image-container" id="clickableImage">
+      <img src="images/Vasanthhh.jpg" alt="Vasanthh" class="creator-image" />
+      
+    </div>
+    
+    <!-- Name Animation Container -->
+    <div class="name-container">
+      <div class="animated-name" id="animatedName"></div>
+      <div class="name-underline" id="nameUnderline"></div>
+    </div>
+    
+    <div class="creator-info">
+      <strong><p>For Megha & Amar ❤️<br>May your love be divinely guided, eternally blessed, and forever growing🤍 </p>
+
+      </strong>
+    </div>
+  </div>
 </div>
+
+<!-- Fullscreen Image Modal -->
+<div class="fullscreen-image-modal" id="fullscreenImageModal">
+  <button class="close-fullscreen" id="closeFullscreen">&times;</button>
+  <div class="fullscreen-image-container">
+    <img src="images\Vasanthhh.jpg" alt="Fullscreen View" class="fullscreen-image" id="fullscreenImage" />
+  </div>
+  <div class="image-caption" id="imageCaption">Vasanthh - Website Creator</div>
+</div>
+
+</footer>
+
 
     
-    </footer>
+    
 
     
 
@@ -806,7 +837,7 @@ What started as a simple glance soon grew into a love meant to last forever. �
                     style="position:absolute; top:20px; right:20px;
                            background:white; border:none; width:50px; height:50px;
                            border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-            <img src="${imageSrc}" alt="${title}" 
+            <img src="images/Vasanthhh.jpg" alt="Vasanth" 
                  style="max-width:90%; max-height:90vh; border-radius:10px;">
           </div>
         `;
