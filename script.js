@@ -874,3 +874,35 @@ function openFullscreenSisterImage() {
   `;
   document.body.appendChild(img.firstElementChild);
 }
+// Creator Modal Functions
+function openCreatorModal() {
+  const modal = document.getElementById("creatorModal");
+  if (modal) {
+    modal.classList.add("active");
+  }
+}
+
+function closeCreatorModal() {
+  const modal = document.getElementById("creatorModal");
+  if (modal) {
+    modal.classList.remove("active");
+  }
+}
+
+// Add click event to creator icon
+document.addEventListener("DOMContentLoaded", function () {
+  const creatorIcon = document.getElementById("creatorIcon");
+  if (creatorIcon) {
+    creatorIcon.addEventListener("click", openCreatorModal);
+
+    // Close modal when clicking outside
+    const modal = document.getElementById("creatorModal");
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeCreatorModal();
+        }
+      });
+    }
+  }
+});
