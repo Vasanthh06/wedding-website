@@ -69,8 +69,16 @@ document.addEventListener("keydown", function (e) {
     closeImage();
   }
 });
-// Floating Images with Hearts
+
+// Floating Images with Hearts - ONLY FOR HOMEPAGE
 function initFloatingImages() {
+  // Check if we're on homepage (only run on homepage)
+  const isHomePage = document.querySelector(".events-container") !== null;
+  if (!isHomePage) {
+    console.log("Not homepage, skipping floating images");
+    return;
+  }
+
   // Initialize all floating images
   const images = [
     { container: ".couple-image-container", heartCount: 8 },
@@ -189,191 +197,145 @@ function initFloatingImages() {
     });
 }
 
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", function () {
-  initFloatingImages();
-});
+// SIMPLE FLOATING BRIDE/GROOM IMAGES (for sidebar)
+function initSidebarFloats() {
+  const floatingBride = document.querySelector(".floating-bride.right");
+  const floatingGroom = document.querySelector(".floating-groom.left");
 
-// Click to enlarge image
-coupleContainer.addEventListener("click", function () {
-  const modal = document.createElement("div");
-  modal.style.cssText = `
+  if (floatingBride) {
+    floatingBride.style.cursor = "pointer";
+    floatingBride.addEventListener("click", function (e) {
+      e.preventDefault();
+      openSimpleFullscreen("images/Lakshmii.JPG", "The Beautiful Bride 💐");
+    });
+  }
+
+  if (floatingGroom) {
+    floatingGroom.style.cursor = "pointer";
+    floatingGroom.addEventListener("click", function (e) {
+      e.preventDefault();
+      openSimpleFullscreen("images/eeee.JPG", "The Handsome Groom 🤵");
+    });
+  }
+
+  function openSimpleFullscreen(imageSrc, title) {
+    // Remove any existing fullscreen
+    const existing = document.querySelector(".simple-fullscreen");
+    if (existing) existing.remove();
+
+    // Create simple fullscreen div
+    const fullscreenDiv = document.createElement("div");
+    fullscreenDiv.className = "simple-fullscreen";
+    fullscreenDiv.style.cssText = `
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 10000;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
             display: flex;
-            justify-content: center;
             align-items: center;
-            cursor: pointer;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
         `;
 
-  const img = document.createElement("img");
-  img.src = coupleContainer.querySelector("img").src;
-  img.alt = "Amar & Lakshmi";
-  img.style.cssText = `
+    // Create image
+    const img = document.createElement("img");
+    img.src = imageSrc;
+    img.alt = title;
+    img.style.cssText = `
             max-width: 90%;
-            max-height: 90%;
+            max-height: 90vh;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            animation: zoomIn 0.4s ease;
         `;
 
-  modal.appendChild(img);
-  document.body.appendChild(modal);
+    // Create close button
+    const closeBtn = document.createElement("button");
+    closeBtn.innerHTML = "×";
+    closeBtn.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: black;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        `;
+    closeBtn.onmouseenter = function () {
+      this.style.background = "#d89cb4";
+    };
+    closeBtn.onmouseleave = function () {
+      this.style.background = "white";
+    };
 
-  // Close on click
-  modal.addEventListener("click", function () {
-    document.body.removeChild(modal);
-  });
+    // Close function
+    closeBtn.onclick = function () {
+      fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+      setTimeout(() => fullscreenDiv.remove(), 300);
+    };
 
-  // Close with ESC key
-  const closeModal = function (e) {
-    if (e.key === "Escape") {
-      document.body.removeChild(modal);
-      document.removeEventListener("keydown", closeModal);
-    }
-  };
-  document.addEventListener("keydown", closeModal);
-});
+    // Close on click outside image
+    fullscreenDiv.onclick = function (e) {
+      if (e.target === fullscreenDiv) {
+        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+        setTimeout(() => fullscreenDiv.remove(), 300);
+      }
+    };
 
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", function () {
-  initFloatingCouple();
-});
-// Floating Images Functions
-function initFloatingImages() {
-  const imageContainers = document.querySelectorAll(".image-container");
+    // Escape key to close
+    const keyHandler = function (e) {
+      if (e.key === "Escape") {
+        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+        setTimeout(() => fullscreenDiv.remove(), 300);
+        document.removeEventListener("keydown", keyHandler);
+      }
+    };
+    document.addEventListener("keydown", keyHandler);
 
-  imageContainers.forEach((container) => {
-    // Hover: Create hearts
-    container.addEventListener("mouseenter", function () {
-      createHearts(this);
-    });
-  });
+    // Add to page
+    fullscreenDiv.appendChild(closeBtn);
+    fullscreenDiv.appendChild(img);
+    document.body.appendChild(fullscreenDiv);
 
-  // Create floating hearts
-  function createHearts(container) {
-    const heartsContainer = container.querySelector(".hearts-container");
-    if (!heartsContainer) return;
-
-    // Clear existing hearts
-    heartsContainer.innerHTML = "";
-
-    // Create 3-5 hearts
-    const heartCount = Math.floor(Math.random() * 3) + 3;
-
-    for (let i = 0; i < heartCount; i++) {
-      setTimeout(() => {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.color = container.classList.contains("bride")
-          ? "#ffb6c1"
-          : "#ff6b8b";
-
-        // Random starting position
-        const startX = 50 + (Math.random() * 30 - 15);
-        const startY = 50 + (Math.random() * 30 - 15);
-
-        // Random movement
-        const tx = Math.random() * 40 - 20;
-        const ty = -(Math.random() * 30 + 20);
-
-        heart.style.left = startX + "px";
-        heart.style.top = startY + "px";
-        heart.style.setProperty("--tx", tx + "px");
-        heart.style.setProperty("--ty", ty + "px");
-
-        heartsContainer.appendChild(heart);
-
-        // Remove after animation
-        setTimeout(() => {
-          if (heart.parentNode === heartsContainer) {
-            heartsContainer.removeChild(heart);
-          }
-        }, 2000);
-      }, i * 150);
-    }
+    // Check if image loads
+    img.onerror = function () {
+      console.error("Image failed to load:", imageSrc);
+      img.alt = "Image failed to load. Path: " + imageSrc;
+    };
   }
+
+  // Add CSS animations
+  const style = document.createElement("style");
+  style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .floating-bride, .floating-groom {
+            cursor: pointer !important;
+            transition: transform 0.3s ease !important;
+        }
+    `;
+  document.head.appendChild(style);
 }
 
-// Open Fullscreen Image
-function openFullscreenImage(src, alt) {
-  console.log("Opening image:", src); // Debug log
-
-  const modal = document.getElementById("fullscreenModal");
-  const modalImage = document.getElementById("modalImage");
-
-  if (!modal || !modalImage) {
-    console.error("Modal elements not found!");
-    return;
-  }
-
-  // Set image source and alt
-  modalImage.src = src;
-  modalImage.alt = alt || "Wedding Photo";
-
-  // Show modal
-  modal.style.display = "flex";
-  document.body.style.overflow = "hidden"; // Prevent scrolling
-
-  console.log("Modal should be visible now");
-}
-
-// Close Fullscreen Image
-function closeFullscreenImage() {
-  const modal = document.getElementById("fullscreenModal");
-  if (modal) {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto"; // Restore scrolling
-  }
-}
-
-// Close modal with ESC key
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    closeFullscreenImage();
-  }
-});
-
-// Close modal when clicking outside image
-document.addEventListener("click", function (e) {
-  const modal = document.getElementById("fullscreenModal");
-  if (modal && modal.style.display === "flex") {
-    if (e.target === modal || e.target.classList.contains("fullscreen-modal")) {
-      closeFullscreenImage();
-    }
-  }
-});
-
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Initializing floating images...");
-  initFloatingImages();
-});
-// Hide floating images on Our Story page
-function hideFloatingImagesOnOurStory() {
-  const floatingImages = document.querySelectorAll(".floating-image");
-  const aboutPage = document.getElementById("about");
-
-  if (aboutPage && aboutPage.classList.contains("active")) {
-    // Hide floating images when on Our Story page
-    floatingImages.forEach((img) => {
-      img.style.opacity = "0";
-      img.style.pointerEvents = "none";
-      img.style.transition = "opacity 0.3s ease";
-    });
-  } else {
-    // Show floating images on other pages
-    floatingImages.forEach((img) => {
-      img.style.opacity = "1";
-      img.style.pointerEvents = "auto";
-    });
-  }
-}
 // Mobile menu toggle
 function initMobileMenu() {
   const mobileMenuBtn = document.createElement("button");
@@ -412,14 +374,11 @@ function initMobileMenu() {
   }
 }
 
-// Call this in your DOMContentLoaded
-document.addEventListener("DOMContentLoaded", function () {
-  initMobileMenu();
-});
 // RSVP Form Enhancement
-document.addEventListener("DOMContentLoaded", function () {
-  // Form elements
+function initRSVPForm() {
   const rsvpForm = document.querySelector(".rsvp-form");
+  if (!rsvpForm) return;
+
   const rsvpConfirmation = document.getElementById("rsvp-confirmation");
   const celebrationContainer = document.getElementById("celebration-container");
   const previewAttendance = document.querySelector(".preview-attendance");
@@ -478,18 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("rsvp-guests")
     .addEventListener("input", updatePreview);
 
-  // Celebration quotes based on selections
-  const celebrationQuotes = [
-    "Your presence is the gift we cherish most! 🌸",
-    "Can't wait to create beautiful memories together! ✨",
-    "Thank you for sharing in our joy and celebration! 💝",
-    "Your blessings mean the world to us! 🙏",
-    "Together, let's make this day unforgettable! 🎊",
-    "Your love and support fill our hearts with happiness! ❤️",
-    "Excited to celebrate this new chapter with you! 🌟",
-    "Your company will make our special day even brighter! 🌈",
-  ];
-
+  // Celebration quotes
   const yesQuotes = [
     "We're overjoyed that you can join us! 🥳",
     "Can't wait to celebrate with you! 🎉",
@@ -503,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Create celebration effects
   function createCelebration() {
-    // Clear previous celebrations
+    if (!celebrationContainer) return;
     celebrationContainer.innerHTML = "";
 
     // Create hearts
@@ -515,8 +463,6 @@ document.addEventListener("DOMContentLoaded", function () {
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDelay = Math.random() * 2 + "s";
         celebrationContainer.appendChild(heart);
-
-        // Remove heart after animation
         setTimeout(() => heart.remove(), 3000);
       }, i * 50);
     }
@@ -530,8 +476,6 @@ document.addEventListener("DOMContentLoaded", function () {
         confetti.style.left = Math.random() * 100 + "vw";
         confetti.style.animationDelay = Math.random() * 1 + "s";
         celebrationContainer.appendChild(confetti);
-
-        // Remove confetti after animation
         setTimeout(() => confetti.remove(), 3000);
       }, i * 30);
     }
@@ -665,336 +609,268 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize preview
   updatePreview();
-});
-// Floating Images Fullscreen Functionality
+}
+
+// Initialize everything when page loads
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM loaded - checking floating images...");
-
-  // Get floating elements
-  const floatingBride = document.querySelector(".floating-bride.right");
-  const floatingGroom = document.querySelector(".floating-groom.left");
-
-  console.log("Bride element found:", !!floatingBride);
-  console.log("Groom element found:", !!floatingGroom);
-
-  // SIMPLE CLICK FUNCTION - Just open image
-  if (floatingBride) {
-    console.log("Adding click to bride...");
-    floatingBride.style.cursor = "pointer";
-    floatingBride.addEventListener(
-      "click",
-      function (e) {
-        console.log("Bride clicked!");
-        e.preventDefault();
-        e.stopPropagation();
-        openSimpleFullscreen("images/Lakshmii.JPG", "The Beautiful Bride 💐");
-        return false;
-      },
-      true
-    ); // Use capture phase to ensure it runs
-
-    // Also add hover effect
-    floatingBride.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.05)";
-    });
-    floatingBride.addEventListener("mouseleave", function () {
-      this.style.transform = "scale(1)";
-    });
-  }
-
-  if (floatingGroom) {
-    console.log("Adding click to groom...");
-    floatingGroom.style.cursor = "pointer";
-    floatingGroom.addEventListener(
-      "click",
-      function (e) {
-        console.log("Groom clicked!");
-        e.preventDefault();
-        e.stopPropagation();
-        openSimpleFullscreen("images/eeee.JPG", "The Handsome Groom 🤵");
-        return false;
-      },
-      true
-    ); // Use capture phase
-
-    // Also add hover effect
-    floatingGroom.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.05)";
-    });
-    floatingGroom.addEventListener("mouseleave", function () {
-      this.style.transform = "scale(1)";
-    });
-  }
-
-  // SIMPLE FUNCTION TO OPEN IMAGE - NO COMPLEX MODAL
-  function openSimpleFullscreen(imageSrc, title) {
-    console.log("Opening:", imageSrc);
-
-    // Remove any existing fullscreen
-    const existing = document.querySelector(".simple-fullscreen");
-    if (existing) existing.remove();
-
-    // Create simple fullscreen div
-    const fullscreenDiv = document.createElement("div");
-    fullscreenDiv.className = "simple-fullscreen";
-    fullscreenDiv.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        `;
-
-    // Create image
-    const img = document.createElement("img");
-    img.src = imageSrc;
-    img.alt = title;
-    img.style.cssText = `
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
-            animation: zoomIn 0.4s ease;
-        `;
-
-    // Create close button
-    const closeBtn = document.createElement("button");
-    closeBtn.innerHTML = "×";
-    closeBtn.style.cssText = `
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: white;
-            color: black;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 30px;
-            cursor: pointer;
-            z-index: 10000;
-            transition: all 0.3s ease;
-        `;
-    closeBtn.onmouseenter = function () {
-      this.style.background = "#d89cb4";
-    };
-    closeBtn.onmouseleave = function () {
-      this.style.background = "white";
-    };
-
-    // Close function
-    closeBtn.onclick = function () {
-      fullscreenDiv.style.animation = "fadeOut 0.3s ease";
-      setTimeout(() => fullscreenDiv.remove(), 300);
-    };
-
-    // Close on click outside image
-    fullscreenDiv.onclick = function (e) {
-      if (e.target === fullscreenDiv) {
-        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
-        setTimeout(() => fullscreenDiv.remove(), 300);
-      }
-    };
-
-    // Escape key to close
-    const keyHandler = function (e) {
-      if (e.key === "Escape") {
-        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
-        setTimeout(() => fullscreenDiv.remove(), 300);
-        document.removeEventListener("keydown", keyHandler);
-      }
-    };
-    document.addEventListener("keydown", keyHandler);
-
-    // Add to page
-    fullscreenDiv.appendChild(closeBtn);
-    fullscreenDiv.appendChild(img);
-    document.body.appendChild(fullscreenDiv);
-
-    // Check if image loads
-    img.onload = function () {
-      console.log("Image loaded successfully!");
-    };
-    img.onerror = function () {
-      console.error("Image failed to load:", imageSrc);
-      img.alt = "Image failed to load. Path: " + imageSrc;
-    };
-  }
-
-  // Add CSS animations
-  const style = document.createElement("style");
-  style.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .floating-bride, .floating-groom {
-            cursor: pointer !important;
-            transition: transform 0.3s ease !important;
-        }
-    `;
-  document.head.appendChild(style);
-
-  console.log("Floating images setup complete!");
+  initFloatingImages();
+  initSidebarFloats();
+  initMobileMenu();
+  initRSVPForm();
 });
-// Mobile fix for floating bride/groom images
-function fixMobileFloatingImages() {
-  const floatingBride = document.querySelector(".floating-bride.right");
-  const floatingGroom = document.querySelector(".floating-groom.left");
-  const isMobile = window.innerWidth <= 768;
+// Fix Navigation Buttons
+function fixNavigation() {
+  console.log("Fixing navigation...");
 
-  console.log(
-    "Mobile check:",
-    isMobile,
-    "Bride:",
-    !!floatingBride,
-    "Groom:",
-    !!floatingGroom
-  );
+  // Fix Our Story button
+  const ourStoryBtn = document.querySelector('a[href="#about"]');
+  const aboutSection = document.getElementById("about");
 
-  if (isMobile) {
-    // Force show on mobile
-    if (floatingBride) {
-      floatingBride.style.display = "block";
-      floatingBride.style.visibility = "visible";
-      floatingBride.style.opacity = "1";
-      floatingBride.style.zIndex = "999";
-      floatingBride.style.position = "fixed";
-      floatingBride.style.bottom = "20px"; // Position at bottom on mobile
-      floatingBride.style.right = "20px";
-      floatingBride.style.top = "auto";
-      floatingBride.style.width = "80px";
-      floatingBride.style.height = "auto";
-    }
+  if (ourStoryBtn && aboutSection) {
+    ourStoryBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("Our Story clicked");
 
-    if (floatingGroom) {
-      floatingGroom.style.display = "block";
-      floatingGroom.style.visibility = "visible";
-      floatingGroom.style.opacity = "1";
-      floatingGroom.style.zIndex = "999";
-      floatingGroom.style.position = "fixed";
-      floatingGroom.style.bottom = "20px"; // Position at bottom on mobile
-      floatingGroom.style.left = "20px";
-      floatingGroom.style.top = "auto";
-      floatingGroom.style.width = "80px";
-      floatingGroom.style.height = "auto";
-    }
+      // First show the section if hidden
+      aboutSection.style.display = "block";
+      aboutSection.style.visibility = "visible";
+      aboutSection.style.opacity = "1";
+
+      // Then scroll to it
+      aboutSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // Also remove any active classes from other sections if needed
+      document.querySelectorAll(".page").forEach((page) => {
+        page.classList.remove("active");
+      });
+      aboutSection.classList.add("active");
+    });
   }
+
+  // Fix Connect Us button
+  const connectUsBtn = document.querySelector('a[href="#contact"]');
+  const contactSection = document.getElementById("contact");
+
+  if (connectUsBtn && contactSection) {
+    connectUsBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("Connect Us clicked");
+
+      // First show the section if hidden
+      contactSection.style.display = "block";
+      contactSection.style.visibility = "visible";
+      contactSection.style.opacity = "1";
+
+      // Then scroll to it
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // Also remove any active classes from other sections if needed
+      document.querySelectorAll(".page").forEach((page) => {
+        page.classList.remove("active");
+      });
+      contactSection.classList.add("active");
+    });
+  }
+
+  // Fix all nav links
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+          console.log(`Navigating to ${targetId}`);
+
+          // Show section
+          targetSection.style.display = "block";
+          targetSection.style.visibility = "visible";
+          targetSection.style.opacity = "1";
+
+          // Scroll to section
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // Update active state
+          document.querySelectorAll(".page").forEach((page) => {
+            page.classList.remove("active");
+          });
+          targetSection.classList.add("active");
+        }
+      }
+    });
+  });
 }
 
-// Run on load and resize
-fixMobileFloatingImages();
-window.addEventListener("resize", fixMobileFloatingImages);
-// ========== UNIVERSAL FLOATING IMAGES FUNCTIONS ==========
-
-// Initialize when page loads
+// Call this function after DOM loads
 document.addEventListener("DOMContentLoaded", function () {
-  initUniversalFloats();
+  // ... your existing code ...
+  fixNavigation(); // Add this line
+
+  // Also try to fix on page load
+  setTimeout(fixNavigation, 1000);
 });
 
-function initUniversalFloats() {
-  // Sisters float
-  const floatSisters = document.getElementById("floatSisters");
-  if (floatSisters) {
-    floatSisters.addEventListener("click", function () {
-      openUniversalModal("sisters");
-    });
-  }
+// Also fix on any dynamic content load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", fixNavigation);
+} else {
+  fixNavigation();
+}
+// Add this JavaScript to your script.js file or <script> tag
 
-  // Bride float
-  const floatBride = document.getElementById("floatBride");
-  if (floatBride) {
-    floatBride.addEventListener("click", function () {
-      openUniversalModal("bride");
-    });
-  }
+// ==================== SISTER MODAL FUNCTIONS ====================
 
-  // Groom float
-  const floatGroom = document.getElementById("floatGroom");
-  if (floatGroom) {
-    floatGroom.addEventListener("click", function () {
-      openUniversalModal("groom");
-    });
+// Open sister modal
+function openSisterModal() {
+  const modal = document.getElementById("sisterModal");
+  if (modal) {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
   }
 }
 
-function openUniversalModal(type) {
-  const modal = document.getElementById("universalModal");
-  const content = document.getElementById("universalModalContent");
-
-  if (!modal || !content) return;
-
-  let html = "";
-
-  if (type === "sisters") {
-    html = `
-      <div style="text-align:center; padding:20px;">
-        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #ff9eb5;">
-          <img src="images/Sisters.jpg" alt="Sisters" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <h3 style="color:#8b4b6e; margin-bottom:10px;">Our sister. Her wedding. Your presence 💕</h3>
-        <p style="color:#666; margin-bottom:15px;">We're excited to share this special moment with you!</p>
-        <div style="font-size:28px;">💖✨🎉</div>
-      </div>
-    `;
-  } else if (type === "bride") {
-    html = `
-      <div style="text-align:center; padding:20px;">
-        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #d89cb4;">
-          <img src="images/Lakshmii.JPG" alt="Bride" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <h3 style="color:#8b4b6e; margin-bottom:10px;">The Beautiful Bride 💐</h3>
-        <p style="color:#666; margin-bottom:15px;">Lakshmi - Radiant and full of grace</p>
-      </div>
-    `;
-  } else if (type === "groom") {
-    html = `
-      <div style="text-align:center; padding:20px;">
-        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #87ceeb;">
-          <img src="images/eeee.JPG" alt="Groom" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <h3 style="color:#8b4b6e; margin-bottom:10px;">The Handsome Groom 🤵</h3>
-        <p style="color:#666; margin-bottom:15px;">Amar - Dashing and charming</p>
-      </div>
-    `;
-  }
-
-  content.innerHTML = html;
-  modal.style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-function closeUniversalModal() {
-  const modal = document.getElementById("universalModal");
+// Close sister modal
+function closeSisterModal() {
+  const modal = document.getElementById("sisterModal");
   if (modal) {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
   }
 }
 
-// Close with Escape key
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    closeUniversalModal();
-  }
-});
+// ==================== EVENT MODAL FUNCTIONS ====================
 
-// Close when clicking backdrop
-document
-  .querySelector(".modal-backdrop")
-  ?.addEventListener("click", closeUniversalModal);
-// ========== END UNIVERSAL FLOATING IMAGES FUNCTIONS ==========
+// Open event modal
+function openEventModal(imageSrc, title, description) {
+  const modal = document.getElementById("eventModal");
+  const modalImage = document.getElementById("eventModalImage");
+  const modalTitle = document.getElementById("eventModalTitle");
+  const modalDescription = document.getElementById("eventModalDescription");
+
+  if (modal && modalImage) {
+    // Set modal content
+    modalImage.src = imageSrc;
+    modalImage.onload = function () {
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    };
+
+    // Set title and description if available
+    if (title) modalTitle.textContent = title;
+    if (description) modalDescription.textContent = description;
+  }
+}
+
+// Close event modal
+function closeEventModal() {
+  const modal = document.getElementById("eventModal");
+  if (modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+}
+
+// ==================== PAGE INITIALIZATION ====================
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Initializing wedding website...");
+
+  // 1. SETUP SISTER IMAGE CLICK
+  const sisterImage = document.querySelector(".sister-floating-image");
+  if (sisterImage) {
+    sisterImage.addEventListener("click", openSisterModal);
+  }
+
+  // 2. SETUP EVENT ICON CLICKS
+  const eventIcons = document.querySelectorAll(".event-icon-image");
+  eventIcons.forEach((icon) => {
+    icon.addEventListener("click", function () {
+      const imageSrc = this.src;
+      const eventCard = this.closest(".event-card");
+      const eventTitle = eventCard.querySelector("h3")?.textContent || "Event";
+      const eventDesc =
+        eventCard.querySelector(".event-description")?.textContent || "";
+
+      openEventModal(imageSrc, eventTitle, eventDesc);
+    });
+  });
+
+  // 3. SETUP MODAL CLOSE ON OUTSIDE CLICK
+  const sisterModal = document.getElementById("sisterModal");
+  const eventModal = document.getElementById("eventModal");
+
+  if (sisterModal) {
+    sisterModal.addEventListener("click", function (e) {
+      if (e.target.classList.contains("modal-overlay")) {
+        closeSisterModal();
+      }
+    });
+  }
+
+  if (eventModal) {
+    eventModal.addEventListener("click", function (e) {
+      if (e.target.classList.contains("modal-overlay")) {
+        closeEventModal();
+      }
+    });
+  }
+
+  // 4. REMOVE OLD OPEN SISTERS FUNCTION
+  // Delete the inline openSisters() function from your HTML
+  // since we're using the proper modal now
+
+  console.log("Website initialized successfully!");
+});
+function openFullscreenSisterImage() {
+  const img = document.createElement("div");
+  img.innerHTML = `
+    <div style="
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background: rgba(0,0,0,0.95); 
+      z-index: 10000;
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      padding: 20px;
+    ">
+      <button onclick="this.parentElement.remove()" 
+              style="
+                position: absolute; 
+                top: 20px; 
+                right: 20px;
+                background: white; 
+                border: none; 
+                width: 50px; 
+                height: 50px;
+                border-radius: 50%; 
+                font-size: 30px; 
+                cursor: pointer;
+                z-index: 10001;
+              ">×</button>
+      
+      <img src="images\\Sisters.jpg" alt="Sister" 
+           style="
+             max-width: 90%;
+             max-height: 90vh;
+             border-radius: 10px;
+             object-fit: contain;
+           ">
+    </div>
+  `;
+  document.body.appendChild(img.firstElementChild);
+}
