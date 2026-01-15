@@ -67,6 +67,12 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item img:hover {
+        transform: scale(1.05);
       }
 
       #imageModal {
@@ -86,6 +92,16 @@
         max-width: 90%;
         max-height: 90%;
         border-radius: 10px;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .close-btn {
@@ -97,6 +113,12 @@
         color: white;
         font-size: 40px;
         cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* Debug style to see hidden items */
+      .gallery-item[style*="none"] {
+        border: 2px solid red;
       }
     </style>
   </head>
@@ -115,7 +137,10 @@
       </button>
       <button class="filter-btn" onclick="filterGallery('engagement')">
         Engagement
-      
+      </button>
+      <button class="filter-btn" onclick="filterGallery('prewedding')">
+        Pre-Wedding
+      </button>
       <button class="filter-btn" onclick="filterGallery('family')">
         Family
       </button>
@@ -133,6 +158,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage1.JPG"
@@ -140,20 +166,23 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/Stage.JPG"
           alt="Engagement"
           onclick="showImage(this.src)"
         />
-        <div class="gallery-item" data-category="engagement">
+      </div>
+
+      <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage4.JPG"
           alt="Engagement"
           onclick="showImage(this.src)"
         />
       </div>
-      </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage2.JPG"
@@ -161,6 +190,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage.JPG"
@@ -168,6 +198,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage10.JPG"
@@ -175,6 +206,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage5.JPG"
@@ -182,7 +214,6 @@
           onclick="showImage(this.src)"
         />
       </div>
-      
 
       <div class="gallery-item" data-category="engagement">
         <img
@@ -191,7 +222,8 @@
           onclick="showImage(this.src)"
         />
       </div>
-<div class="gallery-item" data-category="engagement">
+
+      <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage8.JPG"
           alt="Ring"
@@ -206,6 +238,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage9.JPG"
@@ -213,14 +246,14 @@
           onclick="showImage(this.src)"
         />
       </div>
-<div class="gallery-item" data-category="engagement">
+
+      <div class="gallery-item" data-category="engagement">
         <img
           src="images/engage14.JPG"
           alt="Ring"
           onclick="showImage(this.src)"
         />
       </div>
-      
 
       <!-- Pre-Wedding Photos -->
       <div class="gallery-item" data-category="prewedding">
@@ -259,38 +292,43 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="family">
-        <img
-          src="images/fam.JPG"
-          alt="Family"
-          onclick="showImage(this.src)"
-        />
-        <div class="gallery-item" data-category="family">
+        <img src="images/fam.JPG" alt="Family" onclick="showImage(this.src)" />
+      </div>
+
+      <div class="gallery-item" data-category="family">
         <img
           src="images/cousins.JPG"
           alt="Family"
           onclick="showImage(this.src)"
         />
-        <div class="gallery-item" data-category="family">
+      </div>
+
+      <div class="gallery-item" data-category="family">
         <img
           src="images/fam10.JPG"
           alt="Family"
           onclick="showImage(this.src)"
         />
-        <div class="gallery-item" data-category="family">
+      </div>
+
+      <div class="gallery-item" data-category="family">
         <img
           src="images/fam11.JPG"
           alt="Family"
           onclick="showImage(this.src)"
         />
       </div>
-        <div class="gallery-item" data-category="family">
+
+      <div class="gallery-item" data-category="family">
         <img
           src="images/fourfam.JPG"
           alt="Family"
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="family">
         <img
           src="images/groomfamm.png"
@@ -298,6 +336,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="family">
         <img
           src="images/mamas.JPG"
@@ -305,6 +344,7 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="family">
         <img
           src="images/sonuandsanju.JPG"
@@ -312,24 +352,10 @@
           onclick="showImage(this.src)"
         />
       </div>
+
       <div class="gallery-item" data-category="family">
         <img
           src="images/thumbs.JPG"
-          alt="Family"
-          onclick="showImage(this.src)"
-        />
-      </div>
-      </div>
-      <div class="gallery-item" data-category="family">
-        <img
-          src="images/fourfam.JPG"
-          alt="Family"
-          onclick="showImage(this.src)"
-        />
-      </div>
-      <div class="gallery-item" data-category="family">
-        <img
-          src="images/family.JPG"
           alt="Family"
           onclick="showImage(this.src)"
         />
@@ -352,10 +378,6 @@
       </div>
 
       <div class="gallery-item" data-category="family">
-        <img src="images/fam.JPG" alt="Family" onclick="showImage(this.src)" />
-      </div>
-
-      <div class="gallery-item" data-category="family">
         <img
           src="images/broeye.JPG"
           alt="Brother"
@@ -367,27 +389,63 @@
       <div class="gallery-item" data-category="couple">
         <img src="images/hug.JPG" alt="Hug" onclick="showImage(this.src)" />
       </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/couple6.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/couple6.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/couple11.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/couple11.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/couple12.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/couple12.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/amarlakhi.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/amarlakhi.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
-<div class="gallery-item" data-category="couple">
-        <img src="images/couple2.JPG" alt="Hug" onclick="showImage(this.src)" />
-      </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/engagement.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/couple2.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
+
       <div class="gallery-item" data-category="couple">
-        <img src="images/couple7.JPG" alt="Hug" onclick="showImage(this.src)" />
+        <img
+          src="images/engagement.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
       </div>
+
+      <div class="gallery-item" data-category="couple">
+        <img
+          src="images/couple7.JPG"
+          alt="Couple"
+          onclick="showImage(this.src)"
+        />
+      </div>
+
       <div class="gallery-item" data-category="couple">
         <img src="images/Both.JPG" alt="Both" onclick="showImage(this.src)" />
       </div>
@@ -495,8 +553,18 @@
       window.onload = function () {
         console.log("Gallery loaded successfully!");
         console.log(
-          "Total images: " + document.querySelectorAll(".gallery-item").length
+          "Total gallery items: " +
+            document.querySelectorAll(".gallery-item").length
         );
+
+        // Log counts by category
+        const categories = ["engagement", "prewedding", "family", "couple"];
+        categories.forEach((category) => {
+          const count = document.querySelectorAll(
+            `.gallery-item[data-category="${category}"]`
+          ).length;
+          console.log(`${category}: ${count} images`);
+        });
 
         // Handle image errors
         document.querySelectorAll(".gallery-item img").forEach((img) => {
