@@ -933,7 +933,7 @@ function initCreatorModal() {
     animatedName.innerHTML = "";
 
     // Create name "im_Vasanthh" with individual letters
-    const name = "im_Vasanthh❤️";
+    const name = "im_Vasanthh";
     const letters = name.split("");
 
     // Add heart animations
@@ -989,9 +989,9 @@ function initCreatorModal() {
 
   function getLetterColor(letter) {
     // Different colors for different parts
-    if (letter === "i" || letter === "m") return "#ff6b9d";
+    if (letter === "i" || letter === "m" || letter === "s") return "#ff6b9d";
     if (letter === "_") return "#8b4b6e";
-    if (["V", "a", "s", "t", "h", "n"].includes(letter)) return "#8b4b6e";
+    if (["V", "a", "s", "t", "h"].includes(letter)) return "#8b4b6e";
     return "#ff6b9d";
   }
 
