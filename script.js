@@ -874,3 +874,20 @@ function openFullscreenSisterImage() {
   `;
   document.body.appendChild(img.firstElementChild);
 }
+const creatorLink = document.getElementById("creatorLink");
+const creatorModal = document.getElementById("creatorModal");
+const closeModal = document.getElementById("closeModal");
+
+creatorLink.addEventListener("click", () => {
+  creatorModal.style.display = "flex";
+});
+
+closeModal.addEventListener("click", () => {
+  creatorModal.style.display = "none";
+});
+
+creatorModal.addEventListener("click", (e) => {
+  if (e.target === creatorModal) {
+    creatorModal.style.display = "none";
+  }
+});

@@ -2608,3 +2608,74 @@ section#rsvp.active .rsvp-floating-image {
     }
   }
 }
+.creator {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
+
+.creator span,
+.creator strong {
+  color: #082f4b;
+  font-weight: 600;
+}
+.creator {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  letter-spacing: 0.4px;
+}
+
+.creator a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.creator a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+.creator {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.creator a {
+  color: #ffd700;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.creator a:hover {
+  text-shadow: 0 0 8px rgba(22, 223, 166, 0.8);
+}
+
+/* MODAL STYLES */
+.creator-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.creator-modal img {
+  max-width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
