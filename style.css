@@ -2365,245 +2365,246 @@ section#rsvp.active .rsvp-floating-image {
 
   /* ==================== SISTER FLOATING IMAGE (CONNECT PAGE ONLY) ==================== */
 
-/* Hide by default - only show on Connect page */
-.sister-floating-image {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
-  animation: sisterFloat 4s ease-in-out infinite;
-  filter: drop-shadow(0 5px 15px rgba(139, 75, 110, 0.4));
-  width: 70px;
-  height: 70px;
-}
-
-/* Show ONLY on Connect page */
-#connect.active ~ .sister-floating-image {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  z-index: 1000 !important;
-  pointer-events: auto !important;
-}
-
-.sister-float-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 3px solid #ffb6c1;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.sister-float-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #e91e63;
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  border: 2px solid white;
-  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
-  animation: badgePulse 2s infinite;
-  z-index: 1001;
-}
-
-.sister-floating-image:hover .sister-float-img {
-  transform: scale(1.15) rotate(10deg);
-  border-color: #e91e63;
-  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
-}
-
-@keyframes sisterFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  33% {
-    transform: translateY(-5px) rotate(3deg);
-  }
-  66% {
-    transform: translateY(5px) rotate(-3deg);
-  }
-}
-
-@keyframes badgePulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* ==================== SISTER MODAL ==================== */
-
-.sister-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.92);
-  z-index: 10000;
-  animation: fadeInModal 0.4s ease;
-}
-
-@keyframes fadeInModal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.sister-modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #fff5f9, #ffeef5);
-  border-radius: 20px;
-  width: 90%;
-  max-width: 500px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 30px 80px rgba(139, 75, 110, 0.4);
-  animation: slideUpModal 0.5s ease;
-  border: 3px solid #ffb6c1;
-}
-
-@keyframes slideUpModal {
-  from {
-    transform: translate(-50%, -40%);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-}
-
-.close-sister {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  color: #e91e63;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: var(--transition);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.close-sister:hover {
-  background: rgba(233, 30, 99, 0.1);
-  transform: rotate(90deg);
-}
-
-.sister-image-container {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 25px;
-  border-radius: 50%;
-  border: 5px solid #ffb6c1;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
-}
-
-.sister-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.sister-message h3 {
-  color: #8b4b6e;
-  font-family: "Great Vibes", cursive;
-  font-size: 32px;
-  margin-bottom: 15px;
-  line-height: 1.3;
-}
-
-.sister-message p {
-  color: #666;
-  font-size: 18px;
-  margin-bottom: 20px;
-  font-family: "Raleway", sans-serif;
-}
-
-.heart-emoji {
-  font-size: 28px;
-  letter-spacing: 10px;
-  margin-top: 15px;
-  animation: heartBeat 1.5s infinite;
-}
-
-@keyframes heartBeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* ==================== MOBILE RESPONSIVENESS ==================== */
-
-@media (max-width: 768px) {
+  /* Hide by default - only show on Connect page */
   .sister-floating-image {
-    top: 15px;
-    left: 15px; /* Changed to left side */
-    right: auto; /* Reset right positioning */
-    width: 60px;
-    height: 60px;
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    animation: sisterFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 5px 15px rgba(139, 75, 110, 0.4));
+    width: 70px;
+    height: 70px;
+  }
+
+  /* Show ONLY on Connect page */
+  #connect.active ~ .sister-floating-image {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
   }
 
   .sister-float-img {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #ffb6c1;
+    object-fit: cover;
+    transition: var(--transition);
   }
 
   .sister-float-badge {
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-    top: -5px;
-    right: -5px;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e91e63;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 2px solid white;
+    box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
+    animation: badgePulse 2s infinite;
+    z-index: 1001;
+  }
+
+  .sister-floating-image:hover .sister-float-img {
+    transform: scale(1.15) rotate(10deg);
+    border-color: #e91e63;
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+  }
+
+  @keyframes sisterFloat {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-5px) rotate(3deg);
+    }
+    66% {
+      transform: translateY(5px) rotate(-3deg);
+    }
+  }
+
+  @keyframes badgePulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* ==================== SISTER MODAL ==================== */
+
+  .sister-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    animation: fadeInModal 0.4s ease;
+  }
+
+  @keyframes fadeInModal {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .sister-modal-content {
-    width: 95%;
-    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #fff5f9, #ffeef5);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(139, 75, 110, 0.4);
+    animation: slideUpModal 0.5s ease;
+    border: 3px solid #ffb6c1;
+  }
+
+  @keyframes slideUpModal {
+    from {
+      transform: translate(-50%, -40%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  .close-sister {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #e91e63;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .close-sister:hover {
+    background: rgba(233, 30, 99, 0.1);
+    transform: rotate(90deg);
   }
 
   .sister-image-container {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    border: 5px solid #ffb6c1;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+  }
+
+  .sister-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .sister-message h3 {
-    font-size: 26px;
+    color: #8b4b6e;
+    font-family: "Great Vibes", cursive;
+    font-size: 32px;
+    margin-bottom: 15px;
+    line-height: 1.3;
   }
 
   .sister-message p {
-    font-size: 16px;
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: "Raleway", sans-serif;
+  }
+
+  .heart-emoji {
+    font-size: 28px;
+    letter-spacing: 10px;
+    margin-top: 15px;
+    animation: heartBeat 1.5s infinite;
+  }
+
+  @keyframes heartBeat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* ==================== MOBILE RESPONSIVENESS ==================== */
+
+  @media (max-width: 768px) {
+    .sister-floating-image {
+      top: 15px;
+      left: 15px; /* Changed to left side */
+      right: auto; /* Reset right positioning */
+      width: 60px;
+      height: 60px;
+    }
+
+    .sister-float-img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .sister-float-badge {
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
+      top: -5px;
+      right: -5px;
+    }
+
+    .sister-modal-content {
+      width: 95%;
+      padding: 20px;
+    }
+
+    .sister-image-container {
+      width: 120px;
+      height: 120px;
+    }
+
+    .sister-message h3 {
+      font-size: 26px;
+    }
+
+    .sister-message p {
+      font-size: 16px;
+    }
   }
 }
