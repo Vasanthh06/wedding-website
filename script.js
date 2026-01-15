@@ -666,61 +666,335 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize preview
   updatePreview();
 });
-// Function to show full image
-function showFullImage(imageSrc, caption) {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImage");
-  const captionText = document.getElementById("imageCaption");
+// Floating Images Fullscreen Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM loaded - checking floating images...");
 
-  modal.style.display = "block";
-  modalImg.src = imageSrc;
-  captionText.innerHTML = caption;
+  // Get floating elements
+  const floatingBride = document.querySelector(".floating-bride.right");
+  const floatingGroom = document.querySelector(".floating-groom.left");
 
-  // Close modal when clicking X
-  document.querySelector(".close-modal").onclick = function () {
-    modal.style.display = "none";
-  };
+  console.log("Bride element found:", !!floatingBride);
+  console.log("Groom element found:", !!floatingGroom);
 
-  // Close modal when clicking outside image
-  modal.onclick = function (event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
+  // SIMPLE CLICK FUNCTION - Just open image
+  if (floatingBride) {
+    console.log("Adding click to bride...");
+    floatingBride.style.cursor = "pointer";
+    floatingBride.addEventListener(
+      "click",
+      function (e) {
+        console.log("Bride clicked!");
+        e.preventDefault();
+        e.stopPropagation();
+        openSimpleFullscreen("images/Lakshmii.JPG", "The Beautiful Bride 💐");
+        return false;
+      },
+      true
+    ); // Use capture phase to ensure it runs
+
+    // Also add hover effect
+    floatingBride.addEventListener("mouseenter", function () {
+      this.style.transform = "scale(1.05)";
+    });
+    floatingBride.addEventListener("mouseleave", function () {
+      this.style.transform = "scale(1)";
+    });
+  }
+
+  if (floatingGroom) {
+    console.log("Adding click to groom...");
+    floatingGroom.style.cursor = "pointer";
+    floatingGroom.addEventListener(
+      "click",
+      function (e) {
+        console.log("Groom clicked!");
+        e.preventDefault();
+        e.stopPropagation();
+        openSimpleFullscreen("images/eeee.JPG", "The Handsome Groom 🤵");
+        return false;
+      },
+      true
+    ); // Use capture phase
+
+    // Also add hover effect
+    floatingGroom.addEventListener("mouseenter", function () {
+      this.style.transform = "scale(1.05)";
+    });
+    floatingGroom.addEventListener("mouseleave", function () {
+      this.style.transform = "scale(1)";
+    });
+  }
+
+  // SIMPLE FUNCTION TO OPEN IMAGE - NO COMPLEX MODAL
+  function openSimpleFullscreen(imageSrc, title) {
+    console.log("Opening:", imageSrc);
+
+    // Remove any existing fullscreen
+    const existing = document.querySelector(".simple-fullscreen");
+    if (existing) existing.remove();
+
+    // Create simple fullscreen div
+    const fullscreenDiv = document.createElement("div");
+    fullscreenDiv.className = "simple-fullscreen";
+    fullscreenDiv.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        `;
+
+    // Create image
+    const img = document.createElement("img");
+    img.src = imageSrc;
+    img.alt = title;
+    img.style.cssText = `
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            animation: zoomIn 0.4s ease;
+        `;
+
+    // Create close button
+    const closeBtn = document.createElement("button");
+    closeBtn.innerHTML = "×";
+    closeBtn.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: black;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        `;
+    closeBtn.onmouseenter = function () {
+      this.style.background = "#d89cb4";
+    };
+    closeBtn.onmouseleave = function () {
+      this.style.background = "white";
+    };
+
+    // Close function
+    closeBtn.onclick = function () {
+      fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+      setTimeout(() => fullscreenDiv.remove(), 300);
+    };
+
+    // Close on click outside image
+    fullscreenDiv.onclick = function (e) {
+      if (e.target === fullscreenDiv) {
+        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+        setTimeout(() => fullscreenDiv.remove(), 300);
+      }
+    };
+
+    // Escape key to close
+    const keyHandler = function (e) {
+      if (e.key === "Escape") {
+        fullscreenDiv.style.animation = "fadeOut 0.3s ease";
+        setTimeout(() => fullscreenDiv.remove(), 300);
+        document.removeEventListener("keydown", keyHandler);
+      }
+    };
+    document.addEventListener("keydown", keyHandler);
+
+    // Add to page
+    fullscreenDiv.appendChild(closeBtn);
+    fullscreenDiv.appendChild(img);
+    document.body.appendChild(fullscreenDiv);
+
+    // Check if image loads
+    img.onload = function () {
+      console.log("Image loaded successfully!");
+    };
+    img.onerror = function () {
+      console.error("Image failed to load:", imageSrc);
+      img.alt = "Image failed to load. Path: " + imageSrc;
+    };
+  }
+
+  // Add CSS animations
+  const style = document.createElement("style");
+  style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .floating-bride, .floating-groom {
+            cursor: pointer !important;
+            transition: transform 0.3s ease !important;
+        }
+    `;
+  document.head.appendChild(style);
+
+  console.log("Floating images setup complete!");
+});
+// Mobile fix for floating bride/groom images
+function fixMobileFloatingImages() {
+  const floatingBride = document.querySelector(".floating-bride.right");
+  const floatingGroom = document.querySelector(".floating-groom.left");
+  const isMobile = window.innerWidth <= 768;
+
+  console.log(
+    "Mobile check:",
+    isMobile,
+    "Bride:",
+    !!floatingBride,
+    "Groom:",
+    !!floatingGroom
+  );
+
+  if (isMobile) {
+    // Force show on mobile
+    if (floatingBride) {
+      floatingBride.style.display = "block";
+      floatingBride.style.visibility = "visible";
+      floatingBride.style.opacity = "1";
+      floatingBride.style.zIndex = "999";
+      floatingBride.style.position = "fixed";
+      floatingBride.style.bottom = "20px"; // Position at bottom on mobile
+      floatingBride.style.right = "20px";
+      floatingBride.style.top = "auto";
+      floatingBride.style.width = "80px";
+      floatingBride.style.height = "auto";
     }
-  };
 
-  // Close with Escape key
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && modal.style.display === "block") {
-      modal.style.display = "none";
+    if (floatingGroom) {
+      floatingGroom.style.display = "block";
+      floatingGroom.style.visibility = "visible";
+      floatingGroom.style.opacity = "1";
+      floatingGroom.style.zIndex = "999";
+      floatingGroom.style.position = "fixed";
+      floatingGroom.style.bottom = "20px"; // Position at bottom on mobile
+      floatingGroom.style.left = "20px";
+      floatingGroom.style.top = "auto";
+      floatingGroom.style.width = "80px";
+      floatingGroom.style.height = "auto";
     }
-  });
+  }
 }
-// Function to show full image
-function showFullImage(imageSrc, caption) {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImage");
-  const captionText = document.getElementById("imageCaption");
 
-  modal.style.display = "block";
-  modalImg.src = imageSrc;
-  captionText.innerHTML = caption;
+// Run on load and resize
+fixMobileFloatingImages();
+window.addEventListener("resize", fixMobileFloatingImages);
+// ========== UNIVERSAL FLOATING IMAGES FUNCTIONS ==========
 
-  // Close modal when clicking X
-  document.querySelector(".close-modal").onclick = function () {
-    modal.style.display = "none";
-  };
+// Initialize when page loads
+document.addEventListener("DOMContentLoaded", function () {
+  initUniversalFloats();
+});
 
-  // Close modal when clicking outside image
-  modal.onclick = function (event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
+function initUniversalFloats() {
+  // Sisters float
+  const floatSisters = document.getElementById("floatSisters");
+  if (floatSisters) {
+    floatSisters.addEventListener("click", function () {
+      openUniversalModal("sisters");
+    });
+  }
 
-  // Close with Escape key
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && modal.style.display === "block") {
-      modal.style.display = "none";
-    }
-  });
+  // Bride float
+  const floatBride = document.getElementById("floatBride");
+  if (floatBride) {
+    floatBride.addEventListener("click", function () {
+      openUniversalModal("bride");
+    });
+  }
+
+  // Groom float
+  const floatGroom = document.getElementById("floatGroom");
+  if (floatGroom) {
+    floatGroom.addEventListener("click", function () {
+      openUniversalModal("groom");
+    });
+  }
 }
+
+function openUniversalModal(type) {
+  const modal = document.getElementById("universalModal");
+  const content = document.getElementById("universalModalContent");
+
+  if (!modal || !content) return;
+
+  let html = "";
+
+  if (type === "sisters") {
+    html = `
+      <div style="text-align:center; padding:20px;">
+        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #ff9eb5;">
+          <img src="images/Sisters.jpg" alt="Sisters" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h3 style="color:#8b4b6e; margin-bottom:10px;">Our sister. Her wedding. Your presence 💕</h3>
+        <p style="color:#666; margin-bottom:15px;">We're excited to share this special moment with you!</p>
+        <div style="font-size:28px;">💖✨🎉</div>
+      </div>
+    `;
+  } else if (type === "bride") {
+    html = `
+      <div style="text-align:center; padding:20px;">
+        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #d89cb4;">
+          <img src="images/Lakshmii.JPG" alt="Bride" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h3 style="color:#8b4b6e; margin-bottom:10px;">The Beautiful Bride 💐</h3>
+        <p style="color:#666; margin-bottom:15px;">Lakshmi - Radiant and full of grace</p>
+      </div>
+    `;
+  } else if (type === "groom") {
+    html = `
+      <div style="text-align:center; padding:20px;">
+        <div style="width:200px; height:200px; margin:0 auto 20px; border-radius:50%; overflow:hidden; border:5px solid #87ceeb;">
+          <img src="images/eeee.JPG" alt="Groom" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h3 style="color:#8b4b6e; margin-bottom:10px;">The Handsome Groom 🤵</h3>
+        <p style="color:#666; margin-bottom:15px;">Amar - Dashing and charming</p>
+      </div>
+    `;
+  }
+
+  content.innerHTML = html;
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function closeUniversalModal() {
+  const modal = document.getElementById("universalModal");
+  if (modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+}
+
+// Close with Escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeUniversalModal();
+  }
+});
+
+// Close when clicking backdrop
+document
+  .querySelector(".modal-backdrop")
+  ?.addEventListener("click", closeUniversalModal);
+// ========== END UNIVERSAL FLOATING IMAGES FUNCTIONS ==========

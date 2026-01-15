@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Add these with your existing meta tags -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="true">
+<meta name="MobileOptimized" content="width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +27,7 @@
   </head>
   <body>
     <!-- Floating Bride Image on RIGHT -->
-    <div class="floating-bride right">
+    <div class="floating-bride right" onclick="showBrideImage()" style="cursor:pointer;">
       <div class="bride-image-container">
         <img src="images/Lakshmii.JPG" alt="Lakshmi" class="bride-image" />
         <div class="image-frame"></div>
@@ -30,7 +39,7 @@
     </div>
 
     <!-- Floating Groom Image on LEFT -->
-    <div class="floating-groom left">
+    <div class="floating-groom left" onclick="showGroomImage()" style="cursor:pointer;">
       <div class="groom-image-container">
         <img src="images/eeee.JPG" alt="Amar" class="groom-image" />
         <div class="image-frame"></div>
@@ -55,18 +64,53 @@
         </nav>
       </div>
     </header>
+    <script>
+function showBrideImage() {
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+                   background:rgba(0,0,0,0.95); z-index:9999;
+                   display:flex; align-items:center; justify-content:center;">
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="position:absolute; top:20px; right:20px;
+                           background:white; border:none; width:50px; height:50px;
+                           border-radius:50%; font-size:30px; cursor:pointer;">×</button>
+            <img src="images/Lakshmii.JPG" alt="Bride" 
+                 style="max-width:90%; max-height:90vh; border-radius:10px;">
+        </div>
+    `;
+    document.body.appendChild(div);
+}
+
+function showGroomImage() {
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+                   background:rgba(0,0,0,0.95); z-index:9999;
+                   display:flex; align-items:center; justify-content:center;">
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="position:absolute; top:20px; right:20px;
+                           background:white; border:none; width:50px; height:50px;
+                           border-radius:50%; font-size:30px; cursor:pointer;">×</button>
+            <img src="images/eeee.JPG" alt="Groom" 
+                 style="max-width:90%; max-height:90vh; border-radius:10px;">
+        </div>
+    `;
+    document.body.appendChild(div);
+}
+</script>
 
     <!-- Home Section -->
     <section id="home" class="page active">
       <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-          <div class="couple-names"> Amar & Lakshmi <br> Welcomes You🤗</div>
+          <div class="couple-names">Lakshmi &  Amar <br> Welcomes You🤗</div>
           <h1>We're Getting Married! 💍</h1>
           <p class="subtitle">Prescribed to each other, for life😉</p>
           <p class="hero-description">
-            Join us as we begin our journey together as Husband and Wife💖.<br />
-            April 29, 2026
+            Join us as we begin our journey together as Husband and Wife💖<br />
+            on April 29, 2026
           </p>
 
           <div class="countdown">
@@ -230,7 +274,7 @@
                 <div class="story-item">
                   <i class="fas fa-hiking"></i>
                   <span>March 2022</span>
-                  <p>First trip together to(YET TO BE PLANNED)</p>
+                  <p>First trip together  (YET TO BE PLANNED)</p>
                 </div>
                 <div class="story-item">
                   <i class="fas fa-ring"></i>
@@ -394,8 +438,8 @@
 <section id="rsvp" class="page">
   <div class="container">
     <div class="section-title">
-      <h2>Connect With Us</h2>
-      <p>Please let us know if you can join our celebrations</p>
+      <h2>Connect With Us🤍</h2>
+      <p>It would be our honor and happiness to have you with us on this special day🕊️</p>
     </div>
 
     <!-- Updated Form with YOUR Formspree Link -->
@@ -537,7 +581,7 @@
           
           <div class="quote-box">
             <i class="fas fa-quote-left"></i>
-            <p class="quote-text">"Your presence will add to the joy of our union."</p>
+            <p class="quote-text">Your presence will add meaning and joy to this beautiful beginning ✨</p>
             <i class="fas fa-quote-right"></i>
           </div>
         </div>
@@ -566,7 +610,7 @@
       </div>
     </div>
   </div>
-</section>
+  
     
          
 
@@ -594,7 +638,7 @@
     <div class="contact-info">
         <p>
             <a href="tel:+918147191426" class="contact-link">
-                <i class="fas fa-phone"></i> +91 xxxxxxxxxx (Amar)
+                <i class="fas fa-phone"></i> +91 8147191426 (Amar)
             </a>
         </p>
         <p>
@@ -623,7 +667,7 @@
         </div>
         <div class="copyright">
           <p>&copy; 2026 Amar & Lakshmi Wedding💝. All rights reserved.</p>
-          <p class="copyright-note">Made By Vasanthhh💙.</p>
+          <p class="copyright-note">Made By Vasanthhh💙</p>
         </div>
       </div>
     </footer>
@@ -641,6 +685,95 @@ document.addEventListener("DOMContentLoaded", function () {
     // Navigation
     const navLinks = document.querySelectorAll(".nav-link");
     const pages = document.querySelectorAll(".page");
+    // Add click event to floating bride image
+if (floatingBride) {
+    floatingBride.addEventListener('click', function() {
+        createHeartAnimation('bride');
+    });
+}
+
+// Add click event to floating groom image  
+if (floatingGroom) {
+    floatingGroom.addEventListener('click', function() {
+        createHeartAnimation('groom');
+    });
+}
+
+// Function to create heart animation
+function createHeartAnimation(type) {
+    const colors = type === 'bride' 
+        ? ['#ff69b4', '#ff1493', '#db7093']  // Pink shades for bride
+        : ['#4169e1', '#1e90ff', '#00bfff']; // Blue shades for groom
+    
+    const messages = type === 'bride'
+        ? ['Beautiful Bride! 💐', 'Lakshmi is radiant! ✨', 'The Bride shines! 🌸']
+        : ['Handsome Groom! 🤵', 'Amar looks dashing! 💫', 'The Groom glows! 🌟'];
+    
+    // Show random message
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    showMessage(randomMessage, type);
+    
+    // Create hearts
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            createHeart(colors, type);
+        }, i * 100);
+    }
+}
+
+// Function to create individual heart
+function createHeart(colors, type) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.innerHTML = '❤️';
+    
+    // Random position around the clicked image
+    const posX = type === 'bride' 
+        ? Math.random() * 100 + 70  // Right side for bride
+        : Math.random() * 30;       // Left side for groom
+    
+    heart.style.left = posX + 'vw';
+    heart.style.top = Math.random() * 80 + 10 + 'vh';
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+    heart.style.opacity = '0.8';
+    
+    // Animation
+    heart.style.animation = `floatHeart ${Math.random() * 2 + 2}s ease-in-out forwards`;
+    
+    document.body.appendChild(heart);
+    
+    // Remove heart after animation
+    setTimeout(() => {
+        if (heart.parentNode) {
+            heart.remove();
+        }
+    }, 3000);
+}
+
+// Function to show message
+function showMessage(message, type) {
+    // Remove existing message
+    const existingMsg = document.querySelector('.floating-message');
+    if (existingMsg) existingMsg.remove();
+    
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `floating-message ${type}-message`;
+    msgDiv.textContent = message;
+    
+    // Position based on which image was clicked
+    msgDiv.style.left = type === 'bride' ? '70%' : '30%';
+    msgDiv.style.top = '50%';
+    
+    document.body.appendChild(msgDiv);
+    
+    // Remove message after 2 seconds
+    setTimeout(() => {
+        if (msgDiv.parentNode) {
+            msgDiv.remove();
+        }
+    }, 2000);
+}
 
     function navigateToSection(targetId) {
         // Update active nav link
@@ -775,7 +908,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
     </script>
-    <!-- Image Lightbox Modal - Add this at the bottom before </body> -->
+   <!-- Sisters Floating Image (REPLACE EXISTING ONE) -->
+<!-- Sisters Floating Image (REPLACE EXISTING ONE) -->
+<!-- Only keep these 3 things before </body> -->
+
+<!-- 1. Existing Image Modal (keep as is) -->
 <div class="image-modal" id="imageModal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
@@ -783,5 +920,114 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="image-caption" id="imageCaption"></div>
   </div>
 </div>
-  </body>
+
+<!-- 2. Simple Sisters Float (ALWAYS VISIBLE) -->
+<div style="position:fixed; top: 150px;right:60px; z-index:1000; cursor:pointer;
+            animation:float 4s ease-in-out infinite;"
+     onclick="openSisters()">
+  <img src="images/Sisters.jpg" alt="Sisters" 
+       style="width:70px; height:70px; border-radius:50%; border:3px solid #ff9eb5;
+              object-fit:cover; box-shadow:0 5px 20px rgba(255,107,157,0.4);">
+  <div style="position:absolute; top:-8px; right:-8px; background:#ff3d7f; color:white;
+              width:30px; height:30px; border-radius:50%; display:flex; align-items:center;
+              justify-content:center; font-size:16px; border:2px solid white;">
+    👭
+  </div>
+</div>
+
+<!-- 3. Simple Script -->
+<script>
+function openSisters() {
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+                background:rgba(0,0,0,0.95); z-index:10000;
+                display:flex; align-items:center; justify-content:center;
+                padding:20px; animation:fadeIn 0.3s ease;">
+      <button onclick="this.parentElement.parentElement.remove()" 
+              style="position:absolute; top:20px; right:20px; background:white;
+                     border:none; width:50px; height:50px; border-radius:50%;
+                     font-size:30px; cursor:pointer; z-index:10001;">×</button>
+      
+      <div style="background:white; border-radius:20px; overflow:hidden;
+                  width:100%; max-width:800px; display:flex; max-height:80vh;">
+        
+        <div style="flex:1; padding:30px; background:#fff5f9; min-width:250px;">
+          <div style="font-size:40px; text-align:center;">👭</div>
+          <h3 style="color:#8b4b6e; text-align:center; font-size:28px; margin:20px 0;">
+            Our sister. Her wedding. Your presence 💕
+          </h3>
+          <p style="color:#666; text-align:center;">We're excited to celebrate with you!</p>
+          <div style="text-align:center; font-size:24px; margin-top:20px;">💖✨🎉</div>
+        </div>
+        
+        <div style="flex:1; padding:20px; background:#f8f8f8; display:flex; 
+                    align-items:center; justify-content:center;">
+          <img src="images/Sisters.jpg" alt="Sisters" 
+               style="width:100%; max-height:300px; object-fit:cover; border-radius:10px;">
+        </div>
+        
+      </div>
+    </div>
+    
+    <style>
+      @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+      @keyframes float {
+        0%,100% { transform:translateY(0); }
+        50% { transform:translateY(-10px); }
+      }
+    </style>
+  `;
+  document.body.appendChild(div);
+}
+</script>
+<!-- ========== UNIVERSAL FLOATING IMAGES ========== -->
+<!-- ADD THIS RIGHT BEFORE </body> -->
+
+<!-- Universal Floating Images Container -->
+<div class="universal-float-container">
+  
+  <!-- Sisters Image -->
+  <div class="universal-float float-sisters" id="floatSisters">
+    <div class="float-image-wrapper">
+      <img src="images/Sisters.jpg" alt="Sisters" class="float-img">
+    </div>
+    <div class="float-badge">👭</div>
+    <div class="float-label">Sisters</div>
+  </div>
+  
+  <!-- Bride Image -->
+  <div class="universal-float float-bride" id="floatBride">
+    <div class="float-image-wrapper">
+      <img src="images/Lakshmii.JPG" alt="Bride" class="float-img">
+    </div>
+    <div class="float-badge">💐</div>
+    <div class="float-label">Bride</div>
+  </div>
+  
+  <!-- Groom Image -->
+  <div class="universal-float float-groom" id="floatGroom">
+    <div class="float-image-wrapper">
+      <img src="images/eeee.JPG" alt="Groom" class="float-img">
+    </div>
+    <div class="float-badge">🤵</div>
+    <div class="float-label">Groom</div>
+  </div>
+  
+</div>
+
+<!-- Universal Modal -->
+<div class="universal-modal" id="universalModal">
+  <div class="modal-backdrop" onclick="closeUniversalModal()"></div>
+  <div class="modal-wrapper">
+    <button class="modal-close" onclick="closeUniversalModal()" aria-label="Close">×</button>
+    <div class="modal-content" id="universalModalContent">
+      <!-- Content will be inserted here -->
+    </div>
+  </div>
+</div>
+
+<!-- ========== END OF UNIVERSAL FLOATING IMAGES ========== -->
+
+</body>
 </html>
