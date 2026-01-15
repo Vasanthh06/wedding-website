@@ -2570,7 +2570,8 @@ section#rsvp.active .rsvp-floating-image {
 @media (max-width: 768px) {
   .sister-floating-image {
     top: 15px;
-    right: 15px;
+    left: 15px; /* Changed to left side */
+    right: auto; /* Reset right positioning */
     width: 60px;
     height: 60px;
   }
@@ -2605,4 +2606,4 @@ section#rsvp.active .rsvp-floating-image {
   .sister-message p {
     font-size: 16px;
   }
-};
+}
