@@ -209,20 +209,6 @@ function initWebsite() {
   const floatingBride = document.querySelector(".floating-bride.right");
   const floatingGroom = document.querySelector(".floating-groom.left");
 
-  if (floatingBride) {
-    floatingBride.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openFullscreenImage("images/engage5.JPG", "The Beautiful Bride 💐");
-    });
-  }
-
-  if (floatingGroom) {
-    floatingGroom.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openFullscreenImage("images/amaresh.JPG", "The Handsome Groom 🤵");
-    });
-  }
-
   // 4. ADD CLICK EVENTS TO PROFILE IMAGES
   document.querySelectorAll(".profile-small-img").forEach((img) => {
     img.addEventListener("click", function (e) {
@@ -664,7 +650,7 @@ function initCreatorModal() {
                 style="position:absolute; top:20px; right:20px;
                        background:white; border:none; width:50px; height:50px;
                        border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-        <img src="images/Vasanthhh.jpg" alt="Vasanthh" 
+        <img src="images/mevasanth.jpg" alt="Vasanthh" 
              style="max-width:90%; max-height:90vh; border-radius:10px;">
       </div>
     `;
