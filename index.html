@@ -24,22 +24,240 @@
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <!-- ADD THIS CSS TO HIDE FLOATING IMAGES -->
     <style>
-      /* Hide floating images by default - they will only be shown on Home page */
       .floating-bride,
       .floating-groom {
         display: none;
       }
-      /* Only show them when on Home page */
       body.show-floating-images .floating-bride,
       body.show-floating-images .floating-groom {
         display: block;
       }
+
+      /* Sister floating image styles */
+      .sister-floating-image {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 100;
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        transition: all 0.3s ease;
+        animation: floatSister 3s ease-in-out infinite;
+      }
+
+      .sister-floating-image:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+      }
+
+      .sister-float-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .sister-float-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff6b9d;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes floatSister {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Sister Modal */
+      .sister-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .sister-modal.active {
+        display: flex;
+      }
+
+      .sister-modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      .close-sister {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        color: #8b4b6e;
+      }
+
+      .sister-image-container {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border: 5px solid #ff6b9d;
+        cursor: pointer;
+      }
+
+      .sister-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .sister-message h3 {
+        color: #8b4b6e;
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+
+      .sister-message p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+
+      .heart-emoji {
+        font-size: 24px;
+        margin-top: 10px;
+      }
+
+      /* Event Modal */
+      .event-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .event-modal.active {
+        display: flex;
+      }
+
+      .event-modal-content {
+        background: white;
+        border-radius: 15px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      .close-event {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        color: #8b4b6e;
+        z-index: 1001;
+        background: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .event-modal-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .event-modal-info {
+        padding: 20px;
+      }
+
+      .event-modal-info h3 {
+        color: #8b4b6e;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .event-modal-info p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
     </style>
   </head>
   <body>
-    <!-- Floating Bride Image on RIGHT - WILL BE HIDDEN ON OTHER PAGES -->
+    <!-- Sister Floating Image -->
+    <div class="sister-floating-image" onclick="openSisterModal()">
+      <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
+      <div class="sister-float-badge">👭</div>
+    </div>
+
+    <!-- Floating Bride Image -->
     <div class="floating-bride right" style="cursor: pointer">
       <div class="bride-image-container">
         <img src="images/engage5.JPG" alt="Lakshmi" class="bride-image" />
@@ -49,11 +267,10 @@
       </div>
     </div>
 
-    <!-- Floating Groom Image on LEFT - WILL BE HIDDEN ON OTHER PAGES -->
+    <!-- Floating Groom Image -->
     <div class="floating-groom left" style="cursor: pointer">
       <div class="groom-image-container">
-        <img src="images/amaresh.JPG
-        " alt="Amar" class="groom-image" />
+        <img src="images/amaresh.JPG" alt="Amar" class="groom-image" />
         <div class="image-frame"></div>
         <div class="hearts-container"></div>
         <div class="groom-text">The Groom 🤵</div>
@@ -144,7 +361,7 @@
         </div>
       </div>
 
-      <!-- Enhanced Floating Elements for Wedding -->
+      <!-- Floating Elements -->
       <div class="floating-elements">
         <div class="floating-element element-1">💍</div>
         <div class="floating-element element-2">🌸</div>
@@ -159,7 +376,7 @@
       </div>
     </section>
 
-    <!-- About Section - Our Story -->
+    <!-- About Section -->
     <section id="about" class="page">
       <div class="container">
         <div class="section-title">
@@ -168,12 +385,13 @@
         </div>
         <div class="about-content">
           <div class="about-text">
-            <h3></h3>
             <p>
-              Our story began in May, two years ago, a moment quietly written by destiny.
-Amar was the one who first caught Megha’s eye 👀, and from that spark, a beautiful journey began.
-Megha, a brilliant doctor, filled our lives with her intelligence, kindness, and a smile that lit up the entire family 🧡.
-What started as a simple glance soon grew into a love meant to last forever. 💍✨
+              Our story began in May, two years ago, a moment quietly written by
+              destiny. Amar was the one who first caught Megha's eye 👀, and
+              from that spark, a beautiful journey began. Megha, a brilliant
+              doctor, filled our lives with her intelligence, kindness, and a
+              smile that lit up the entire family 🧡. What started as a simple
+              glance soon grew into a love meant to last forever. 💍✨
             </p>
 
             <p>YET TO BE ASKED FOR BRO....? HOW IT STARTED</p>
@@ -204,22 +422,45 @@ What started as a simple glance soon grew into a love meant to last forever. �
 
             <div class="couple-profiles">
               <div class="profile">
-                <h4>The Groom 👨‍⚕️ Dr.Amar</h4>
+                <div class="profile-header">
+                  <img
+                    src="images/amaresh.JPG"
+                    alt="Dr. Amar"
+                    class="profile-small-img"
+                    onclick="openFullscreenImage('images/amaresh.JPG', 'Our Super Groom 🤵')"
+                  />
+                  <h4>The Groom 👨‍⚕️ Dr.Amar</h4>
+                </div>
                 <p>
-                  A 32-year-old endocrinologist with a heart that delights in classical melodies, soulful cooking, and the quiet comfort of books📚
+                  A 32-year-old endocrinologist with a heart that delights in
+                  classical melodies, soulful cooking, and the quiet comfort of
+                  books📚
                 </p>
                 <p>
-                  Megha showed me that true love grows when two hearts choose to create perfection together, not search for it 🧡
+                  Megha showed me that true love grows when two hearts choose to
+                  create perfection together, not search for it 🧡
                 </p>
               </div>
+
               <div class="profile">
-                <h4>The Bride 👩‍⚕️ Dr.Megha</h4>
+                <div class="profile-header">
+                  <img
+                    src="images/engage5.JPG"
+                    alt="Dr. Megha"
+                    class="profile-small-img"
+                    onclick="openFullscreenImage('images/engage5.JPG', 'Our Super Bride 💐')"
+                  />
+                  <h4>The Bride 👩‍⚕️ Dr.Megha</h4>
+                </div>
                 <p>
-                  A 28-year-old pediatrician,healing little hearts by profession,treasures every moment spent with family😊
+                  A 28-year-old pediatrician,healing little hearts by
+                  profession,treasures every moment spent with family😊
                 </p>
                 <p>
-                  As a doctor, I’ve learned to stay strong through life’s storms, but Amar showed me that true love is the safe harbor where my heart can finally rest 
-                  and the sunshine that gently heals me on brighter days.💚
+                  As a doctor, I've learned to stay strong through life's
+                  storms, but Amar showed me that true love is the safe harbor
+                  where my heart can finally rest and the sunshine that gently
+                  heals me on brighter days.💚
                 </p>
               </div>
             </div>
@@ -228,9 +469,8 @@ What started as a simple glance soon grew into a love meant to last forever. �
           <div class="about-right-column">
             <div class="about-image">
               <img src="images/palmring.JPG" alt="Amar and Lakshmi" />
-              <div class="image-caption">
-                <p>From Stethoscopes 🩺 to Soulmates💝</p>
-              </div>
+              <br />
+              <p>&nbsp;&nbsp;&nbsp;From Stethoscopes 🩺 to Soulmates💝</p>
             </div>
 
             <!-- How We Met Story -->
@@ -277,10 +517,9 @@ What started as a simple glance soon grew into a love meant to last forever. �
           <p>Join With us for Endless Celebrations🎉</p>
         </div>
 
-        <!-- Updated events container with horizontal layout -->
         <div class="events-container">
           <div class="events-grid">
-            <!-- 1. MEHNDI CEREMONY -->
+            <!-- 1. BRIDE TO BE -->
             <div class="event-card">
               <div class="event-header">
                 <div class="event-date">
@@ -292,6 +531,7 @@ What started as a simple glance soon grew into a love meant to last forever. �
                     src="images/nagu.JPG"
                     alt="Mehndi"
                     class="event-icon-image clickable-icon"
+                    onclick="openEventModal('images/nagu.JPG', 'Bride To Be', 'Every smile today carries a dream of forever🤍')"
                   />
                 </div>
               </div>
@@ -304,14 +544,12 @@ What started as a simple glance soon grew into a love meant to last forever. �
                   <strong>Megha's Lovely Home🏠Mudgal</strong>
                 </p>
                 <div class="event-description">
-                  <p>
-                    Every smile today carries a dream of forever🤍
-                  </p>
+                  <p>Every smile today carries a dream of forever🤍</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2. MEHANDII-->
+            <!-- 2. MEHANDI -->
             <div class="event-card">
               <div class="event-header">
                 <div class="event-date">
@@ -323,6 +561,7 @@ What started as a simple glance soon grew into a love meant to last forever. �
                     src="images/mehndi-icon.jpg"
                     alt="Sangeet"
                     class="event-icon-image clickable-icon"
+                    onclick="openEventModal('images/mehndi-icon.jpg', 'Mehndi Ceremony', 'Hands painted with love, heart glowing with dreams, Let Mehndi marks the beginning of forever🌿')"
                   />
                 </div>
               </div>
@@ -335,13 +574,15 @@ What started as a simple glance soon grew into a love meant to last forever. �
                   <strong>Megha's Lovely Home🏡Mudgal</strong>
                 </p>
                 <div class="event-description">
-                  <p>Hands painted with love, heart glowing with dreams,
-                  Let Mehndi marks the beginning of forever🌿</p>
+                  <p>
+                    Hands painted with love, heart glowing with dreams, Let
+                    Mehndi marks the beginning of forever🌿
+                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- 3. WEDDING CEREMONY (MAIN EVENT) -->
+            <!-- 3. WEDDING CEREMONY -->
             <div class="event-card highlight">
               <div class="event-header">
                 <div class="event-date">
@@ -353,20 +594,21 @@ What started as a simple glance soon grew into a love meant to last forever. �
                     src="images/wedding-icon.JPG"
                     alt="Wedding"
                     class="event-icon-image clickable-icon"
+                    onclick="openEventModal('images/wedding-icon.JPG', 'Muhurtha📿', 'In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛')"
                   />
                 </div>
               </div>
               <div class="event-content">
                 <h3>Muhurtha📿</h3>
                 <p class="event-time">3:00 AM onwards</p>
-
                 <p class="event-location">
                   <i class="fas fa-map-marker-alt"></i>
                   <strong>Amareshwara Temple🛕</strong>
                 </p>
                 <div class="event-description">
                   <p>
-                   In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛
+                    In this Moment, A divine thread that seals love, commitment,
+                    and a lifetime of blessings💛
                   </p>
                 </div>
               </div>
@@ -384,6 +626,7 @@ What started as a simple glance soon grew into a love meant to last forever. �
                     src="images/reception-icon.JPG"
                     alt="Reception"
                     class="event-icon-image clickable-icon"
+                    onclick="openEventModal('images/reception-icon.JPG', 'Reception', 'A Day of love, laughter, and happily ever after Welcome to our reception🌸')"
                   />
                 </div>
               </div>
@@ -397,7 +640,8 @@ What started as a simple glance soon grew into a love meant to last forever. �
                 </p>
                 <div class="event-description">
                   <p>
-                    A Day of love, laughter, and happily ever after Welcome to our reception🌸
+                    A Day of love, laughter, and happily ever after Welcome to
+                    our reception🌸
                   </p>
                 </div>
               </div>
@@ -422,7 +666,7 @@ What started as a simple glance soon grew into a love meant to last forever. �
             <ul>
               <li>Local guest houses (0-2km away)</li>
               <li>Nearby hotels (2-3km away)</li>
-              <li>Heritage stays (3-5km away)</li>
+              <li>Will Be Updated Soon (2-3km away)</li>
             </ul>
             <p class="accommodation-note">
               Details will be shared with RSVP confirmation
@@ -443,16 +687,13 @@ What started as a simple glance soon grew into a love meant to last forever. �
           </p>
         </div>
 
-        <!-- Updated Form with YOUR Formspree Link -->
         <form
           id="wedding-rsvp-form"
           action="https://formspree.io/f/maqqnwwg"
           method="POST"
         >
           <div class="rsvp-container">
-            <!-- Form on left -->
             <div class="rsvp-form">
-              <!-- Hidden fields for Formspree -->
               <input
                 type="hidden"
                 name="_subject"
@@ -706,9 +947,46 @@ What started as a simple glance soon grew into a love meant to last forever. �
       </div>
     </section>
 
+    <!-- Sister Modal -->
+    <div id="sisterModal" class="sister-modal">
+      <div class="sister-modal-content">
+        <span class="close-sister" onclick="closeSisterModal()">&times;</span>
+        <div
+          class="sister-image-container"
+          onclick="openFullscreenSisterImage()"
+        >
+          <img src="images/Sisters.jpg" alt="Sister" id="sisterModalImage" />
+        </div>
+        <div class="sister-message">
+          <h3 id="sisterModalTitle">ನಮ್ಮ ಅಕ್ಕನ ಮದುವೆ❤️</h3>
+          <p id="sisterModalText">
+            With love in our hearts and joy in our souls, we invite you to our
+            sister's wedding 💍✨
+          </p>
+          <div class="heart-emoji">❤️❤️❤️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="event-modal">
+      <div class="event-modal-content">
+        <span class="close-event" onclick="closeEventModal()">&times;</span>
+        <img
+          src=""
+          alt="Event Image"
+          class="event-modal-image"
+          id="eventModalImage"
+        />
+        <div class="event-modal-info">
+          <h3 id="eventModalTitle"></h3>
+          <p id="eventModalDescription"></p>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer>
-    
       <div class="footer-content">
         <div class="footer-section">
           <h3>Megha ♥ Amar</h3>
@@ -758,312 +1036,58 @@ What started as a simple glance soon grew into a love meant to last forever. �
           </div>
         </div>
       </div>
-      <!-- ADD COPYRIGHT HERE INSIDE FOOTER -->
-       <div class="copyright">
-  <p>&copy; Megha & Amar — Forever Begins in 2026 💝✨</p>
 
-  <p class="creator">
-  Developed With❤️By 
-  <a href="javascript:void(0)" id="creatorLink">Vasanthh</a>
-</p>
-</div>
+      <div class="copyright">
+        <p>&copy; Megha & Amar's — Forever Begins in 2026 💝✨</p>
+        <p class="creator">
+          Developed With❤️By
+          <a href="javascript:void(0)" id="creatorLink">Vasanthh</a>
+        </p>
+      </div>
 
-<!-- CREATOR MODAL -->
-<div class="creator-modal" id="creatorModal">
-  <div class="creator-modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    
-    <!-- Clickable Image Container -->
-    <div class="creator-image-container" id="clickableImage">
-      <img src="images/Vasanthhh.jpg" alt="Vasanthh" class="creator-image" />
-      
-    </div>
-    
-    <!-- Name Animation Container -->
-    <div class="name-container">
-      <div class="animated-name" id="animatedName"></div>
-      <div class="name-underline" id="nameUnderline"></div>
-    </div>
-    
-    <div class="creator-info">
-      <strong><p>For Megha & Amar ❤️<br>May your love be divinely guided, eternally blessed, and forever growing🤍 </p>
-
-      </strong>
-    </div>
-  </div>
-</div>
-
-<!-- Fullscreen Image Modal -->
-<div class="fullscreen-image-modal" id="fullscreenImageModal">
-  <button class="close-fullscreen" id="closeFullscreen">&times;</button>
-  <div class="fullscreen-image-container">
-    <img src="images\Vasanthhh.jpg" alt="Fullscreen View" class="fullscreen-image" id="fullscreenImage" />
-  </div>
-  <div class="image-caption" id="imageCaption">Vasanthh - Website Creator</div>
-</div>
-
-</footer>
-
-
-    
-    
-
-    
-
-    <!-- MAIN SCRIPT THAT CONTROLS EVERYTHING -->
-    <script>
-      // Show floating images ONLY on Home page
-      function updateFloatingImagesVisibility() {
-        const homePage = document.getElementById("home");
-        const isOnHomePage = homePage && homePage.classList.contains("active");
-
-        if (isOnHomePage) {
-          document.body.classList.add("show-floating-images");
-          console.log("Showing floating images (on Home page)");
-        } else {
-          document.body.classList.remove("show-floating-images");
-          console.log("Hiding floating images (not on Home page)");
-        }
-      }
-
-      // Simple function to open fullscreen image
-      function openFullscreenImage(imageSrc, title) {
-        const modal = document.createElement("div");
-        modal.innerHTML = `
-          <div style="position:fixed; top:0; left:0; width:100%; height:100%;
-                     background:rgba(0,0,0,0.95); z-index:10000;
-                     display:flex; align-items:center; justify-content:center;">
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="position:absolute; top:20px; right:20px;
-                           background:white; border:none; width:50px; height:50px;
-                           border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-            <img src="images/Vasanthhh.jpg" alt="Vasanth" 
-                 style="max-width:90%; max-height:90vh; border-radius:10px;">
+      <!-- CREATOR MODAL -->
+      <div class="creator-modal" id="creatorModal">
+        <div class="creator-modal-content">
+          <span class="close-btn" id="closeModal">&times;</span>
+          <div class="creator-image-container" id="clickableImage">
+            <img
+              src="images/Vasanthhh.jpg"
+              alt="Vasanthh"
+              class="creator-image"
+            />
           </div>
-        `;
-        document.body.appendChild(modal);
-      }
-
-      // Fix navigation when page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        console.log("Initializing wedding website...");
-
-        // 1. FIX NAVIGATION
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            const href = this.getAttribute("href");
-
-            // Only handle internal links (starting with #)
-            if (href.startsWith("#")) {
-              e.preventDefault();
-              const targetId = href.substring(1);
-              const targetElement = document.getElementById(targetId);
-
-              if (targetElement) {
-                console.log("Navigating to:", targetId);
-
-                // Remove active class from all links
-                navLinks.forEach((l) => l.classList.remove("active"));
-                // Add active to clicked link
-                this.classList.add("active");
-
-                // Remove active class from all pages
-                document.querySelectorAll(".page").forEach((page) => {
-                  page.classList.remove("active");
-                });
-                // Add active to target page
-                targetElement.classList.add("active");
-
-                // Update floating images visibility
-                updateFloatingImagesVisibility();
-
-                // Smooth scroll to section
-                targetElement.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
-              }
-            }
-            // External links (like gallery.html) will work normally
-          });
-        });
-
-        // 2. FIX HERO BUTTONS
-        document.querySelectorAll(".hero-btn").forEach((btn) => {
-          btn.addEventListener("click", function () {
-            const target = this.getAttribute("data-target");
-            if (target && target.startsWith("#")) {
-              const targetId = target.substring(1);
-              const targetElement = document.getElementById(targetId);
-
-              if (targetElement) {
-                // Remove active class from all links
-                navLinks.forEach((l) => l.classList.remove("active"));
-                // Add active to corresponding nav link
-                const correspondingLink = document.querySelector(
-                  `a[href="${target}"]`
-                );
-                if (correspondingLink) {
-                  correspondingLink.classList.add("active");
-                }
-
-                // Remove active class from all pages
-                document.querySelectorAll(".page").forEach((page) => {
-                  page.classList.remove("active");
-                });
-                // Add active to target page
-                targetElement.classList.add("active");
-
-                // Update floating images visibility
-                updateFloatingImagesVisibility();
-
-                // Smooth scroll to section
-                targetElement.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
-              }
-            }
-          });
-        });
-
-        // 3. ADD CLICK EVENTS TO FLOATING IMAGES (ONLY ON HOME PAGE)
-        const floatingBride = document.querySelector(".floating-bride.right");
-        const floatingGroom = document.querySelector(".floating-groom.left");
-
-        if (floatingBride) {
-          floatingBride.addEventListener("click", function (e) {
-            e.stopPropagation();
-            openFullscreenImage(
-              "images/engage5.JPG",
-              "The Beautiful Bride 💐"
-            );
-          });
-        }
-
-        if (floatingGroom) {
-          floatingGroom.addEventListener("click", function (e) {
-            e.stopPropagation();
-            openFullscreenImage("images/ameresh.JPG", "The Handsome Groom 🤵");
-          });
-        }
-
-        // 4. INITIAL VISIBILITY CHECK
-        updateFloatingImagesVisibility();
-
-        console.log("Website initialized successfully!");
-      });
-
-      // Simple function for Sisters image
-      function openSisters() {
-        const div = document.createElement("div");
-        div.innerHTML = `
-          <div style="position:fixed; top:0; left:0; width:100%; height:100%;
-                      background:rgba(0,0,0,0.95); z-index:10000;
-                      display:flex; align-items:center; justify-content:center;
-                      padding:20px;">
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="position:absolute; top:20px; right:20px;
-                           background:white; border:none; width:50px; height:50px;
-                           border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-            
-            <div style="background:white; border-radius:20px; overflow:hidden;
-                        width:100%; max-width:800px; max-height:80vh;">
-              
-              <div style="padding:30px; background:#fff5f9; text-align:center;">
-                <div style="font-size:40px;">👭</div>
-                <h3 style="color:#8b4b6e; font-size:28px; margin:20px 0;">
-                  Our Sister. Her wedding. Your presence 💕
-                </h3>
-                <p style="color:#666;">We're excited to celebrate with you!</p>
-                <div style="font-size:24px; margin-top:20px;">💖✨🎉</div>
-              </div>
-              
-              <div style="padding:20px; background:#f8f8f8; text-align:center;">
-                <img src="images/Sisters.jpg" alt="Sisters" 
-                     style="width:100%; max-height:300px; object-fit:cover; border-radius:10px;">
-              </div>
-              
-            </div>
+          <div class="name-container">
+            <div class="animated-name" id="animatedName"></div>
+            <div class="name-underline" id="nameUnderline"></div>
           </div>
-        `;
-        document.body.appendChild(div);
-      }
-    </script>
-
-    <script src="script.js"></script>
-    <!-- Sister Modal -->
-    <div id="sisterModal" class="sister-modal">
-      <div class="modal-overlay" onclick="closeSisterModal()"></div>
-      <div class="sister-modal-content">
-        <span class="close-sister" onclick="closeSisterModal()">&times;</span>
-
-        <div
-          class="sister-image-container"
-          onclick="openFullscreenSisterImage()"
-        >
-          <img src="images\Sisters.jpg" alt="Sister" id="sisterModalImage" />
-        </div>
-
-        <div class="sister-message">
-          <h3 id="sisterModalTitle">ನಮ್ಮ ಅಕ್ಕನ ಮದುವೆ❤️</h3>
-          <p id="sisterModalText">
-            With love in our hearts and joy in our souls, we invite you to our
-            sister’s wedding 💍✨
-          </p>
-          <div class="heart-emoji">❤️❤️❤️</div>
+          <div class="creator-info">
+            <strong>
+              <p>
+                For Megha & Amar ❤️<br />May your love be divinely guided,
+                eternally blessed, and forever growing🤍
+              </p>
+            </strong>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Event Image Modal -->
-    <div id="eventModal" class="fullscreen-modal">
-      <div class="modal-overlay" onclick="closeEventModal()"></div>
-      <div class="modal-container">
-        <span class="close-fullscreen" onclick="closeEventModal()"
-          >&times;</span
-        >
-        <div class="modal-image-container">
+
+      <!-- Fullscreen Image Modal -->
+      <div class="fullscreen-image-modal" id="fullscreenImageModal">
+        <button class="close-fullscreen" id="closeFullscreen">&times;</button>
+        <div class="fullscreen-image-container">
           <img
-            src="images\Sisters.jpg"
-            alt="Event Image"
-            id="eventModalImage"
+            src="images\Vasanthhh.jpg"
+            alt="Fullscreen View"
+            class="fullscreen-image"
+            id="fullscreenImage"
           />
         </div>
-        <div class="image-info">
-          <h3 id="eventModalTitle"></h3>
-          <p id="eventModalDescription"></p>
+        <div class="image-caption" id="imageCaption">
+          Vasanthh - Website Creator
         </div>
       </div>
-    </div>
-    <!-- Sister Floating Image (CSS controlled) -->
-    <div class="sister-floating-image">
-      <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
-      <div class="sister-float-badge">👭</div>
-    </div>
+    </footer>
 
-    <!-- Sister Modal -->
-    <div id="sisterModal" class="sister-modal">
-      <div class="modal-overlay" onclick="closeSisterModal()"></div>
-      <div class="sister-modal-content">
-        <span class="close-sister" onclick="closeSisterModal()">&times;</span>
-
-        <div class="sister-image-container">
-          <img src="images/Sisters.jpg" alt="Sister" id="sisterModalImage" />
-        </div>
-
-        <div class="sister-message">
-          <h3 id="sisterModalTitle">Our Loving Sister ❤️</h3>
-          <p id="sisterModalText">
-            We're excited to celebrate this special day with you! Your presence
-            means the world to us.
-          </p>
-          <div class="heart-emoji">❤️❤️❤️</div>
-        </div>
-      </div>
-    </div>
-    
-    </div>
+    <script src="script.js"></script>
   </body>
 </html>
