@@ -267,7 +267,7 @@
         <img src="images/Feel.JPG" alt="Sunset" onclick="showImage(this.src)" />
       </div>
 
-      <div class="gallery-item" data-category="prewedding">
+      <div class="gallery-item" data-category="engagement">
         <img
           src="images/Gejje.JPG"
           alt="Traditional"
@@ -289,7 +289,7 @@
         <div class="gallery-item" data-category="family">
         <img
           src="images/broeye.JPG"
-          alt="Brother"
+          alt="Bride Family"
           onclick="showImage(this.src)"
         />
       </div>
@@ -305,7 +305,7 @@
        <div class="gallery-item" data-category="family">
             <img
           src="images/ajja.JPG"
-          alt="Siblings"
+          alt="Ajja"
           onclick="showImage(this.src)"
         />
       </div>
@@ -556,7 +556,7 @@
         );
 
         // Log counts by category
-        const categories = ["engagement", "prewedding", "family", "couple"];
+        const categories = ["engagement", "All Images", "family", "couple"];
         categories.forEach((category) => {
           const count = document.querySelectorAll(
             `.gallery-item[data-category="${category}"]`
