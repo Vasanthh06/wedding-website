@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -238,60 +238,6 @@
         line-height: 1.5;
       }
 
-      @keyframes modalFadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Sister Floating Image -->
-    <div class="sister-floating-image" onclick="openSisterModal()">
-      <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
-      <div class="sister-float-badge">👭</div>
-    </div>
-
-    <!-- Floating Bride Image -->
-    <div class="floating-bride right" style="cursor: pointer">
-      <div class="bride-image-container">
-        <img src="images/meghaaaa.JPG" alt="Bride" class="bride-image" />
-        <div class="image-frame"></div>
-        <div class="hearts-container"></div>
-        <div class="bride-text">The Bride 💐</div>
-      </div>
-    </div>
-
-    <!-- Floating Groom Image -->
-    <div class="floating-groom left" style="cursor: pointer">
-      <div class="groom-image-container">
-        <img src="images/amaresh.JPG" alt="Amar" class="groom-image" />
-        <div class="image-frame"></div>
-        <div class="hearts-container"></div>
-        <div class="groom-text">The Groom 🤵</div>
-      </div>
-    </div>
-
-    <!-- Fullscreen Image Modal -->
-    <div id="fullscreenModal" class="fullscreen-modal">
-      <div class="modal-overlay" onclick="closeFullscreenModal()"></div>
-      <div class="modal-content">
-        <span class="close-modal" onclick="closeFullscreenModal()"
-          >&times;</span
-        >
-        <div class="modal-image-container">
-          <img src="" alt="" id="fullscreenModalImage" />
-        </div>
-        <div class="modal-caption" id="modalCaption"></div>
-      </div>
-    </div>
-
-    <style>
       /* Fullscreen Modal Styles */
       .fullscreen-modal {
         display: none;
@@ -376,6 +322,17 @@
         animation: fadeInUp 0.5s ease;
       }
 
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -387,57 +344,47 @@
         }
       }
     </style>
+  </head>
+  <body>
+    <!-- Sister Floating Image -->
+    <div class="sister-floating-image" onclick="openSisterModal()">
+      <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
+      <div class="sister-float-badge">👭</div>
+    </div>
 
-    <script>
-      // Fullscreen Modal Functions
-      function openFullscreenModal(imageSrc, caption) {
-        const modal = document.getElementById("fullscreenModal");
-        const modalImage = document.getElementById("fullscreenModalImage");
-        const modalCaption = document.getElementById("modalCaption");
+    <!-- Floating Bride Image -->
+    <div class="floating-bride right" style="cursor: pointer">
+      <div class="bride-image-container">
+        <img src="images/meghaaaa.JPG" alt="Bride" class="bride-image" />
+        <div class="image-frame"></div>
+        <div class="hearts-container"></div>
+        <div class="bride-text">The Bride 💐</div>
+      </div>
+    </div>
 
-        if (modal && modalImage && modalCaption) {
-          modalImage.src = imageSrc;
-          modalCaption.textContent = caption;
-          modal.classList.add("active");
-          document.body.style.overflow = "hidden";
-        }
-      }
+    <!-- Floating Groom Image -->
+    <div class="floating-groom left" style="cursor: pointer">
+      <div class="groom-image-container">
+        <img src="images/amaresh.JPG" alt="Amar" class="groom-image" />
+        <div class="image-frame"></div>
+        <div class="hearts-container"></div>
+        <div class="groom-text">The Groom 🤵</div>
+      </div>
+    </div>
 
-      function closeFullscreenModal() {
-        const modal = document.getElementById("fullscreenModal");
-        if (modal) {
-          modal.classList.remove("active");
-          document.body.style.overflow = "auto";
-        }
-      }
-
-      // Close modal with Escape key
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          closeFullscreenModal();
-        }
-      });
-
-      // Update your existing click handlers for bride and groom images
-      document.addEventListener("DOMContentLoaded", function () {
-        const floatingBride = document.querySelector(".floating-bride.right");
-        const floatingGroom = document.querySelector(".floating-groom.left");
-
-        if (floatingBride) {
-          floatingBride.addEventListener("click", function (e) {
-            e.stopPropagation();
-            openFullscreenModal("images/meghaaaa.JPG", "Super Bride 💐✨");
-          });
-        }
-
-        if (floatingGroom) {
-          floatingGroom.addEventListener("click", function (e) {
-            e.stopPropagation();
-            openFullscreenModal("images/amaresh.JPG", "Super Groom 🤵✨");
-          });
-        }
-      });
-    </script>
+    <!-- Fullscreen Image Modal -->
+    <div id="fullscreenModal" class="fullscreen-modal">
+      <div class="modal-overlay" onclick="closeFullscreenModal()"></div>
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeFullscreenModal()"
+          >&times;</span
+        >
+        <div class="modal-image-container">
+          <img src="" alt="" id="fullscreenModalImage" />
+        </div>
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
 
     <!-- Header -->
     <header>
@@ -508,34 +455,23 @@
             </div>
           </div>
 
-          <div class="hero-buttons">
-            <button class="btn hero-btn" data-target="#details">
-              Event Details
-            </button>
-            <button class="btn hero-btn" data-target="#rsvp">Connect</button>
-            <button
-              class="btn hero-btn"
-              onclick="window.location.href='gallery.html'"
-            >
-              View Photos
-            </button>
-          </div>
-        </div>
-      </div>
-
+         <div class="hero-buttons">
+  <button class="btn hero-btn" data-target="#details">
+    Event Details
+  </button>
+  <button class="btn hero-btn" data-target="#about">
+    Our Story
+  </button>
+  <button class="btn hero-btn" data-target="#rsvp">Connect</button>
+  <button
+    class="btn hero-btn"
+    onclick="window.location.href = 'gallery.html'"
+  >
+    View Photos
+  </button>
+</div>
       <!-- Floating Elements -->
-      <div class="floating-elements">
-        <div class="floating-element element-1">💍</div>
-        <div class="floating-element element-2">🌸</div>
-        <div class="floating-element element-3">✨</div>
-        <div class="floating-element element-4">💑</div>
-        <div class="floating-element element-5">🥂</div>
-        <div class="floating-element element-6">🎉</div>
-        <div class="floating-element element-7">💫</div>
-        <div class="floating-element element-8">❤️</div>
-        <div class="floating-element element-9">🎵</div>
-        <div class="floating-element element-10">🎊</div>
-      </div>
+      
     </section>
 
     <!-- About Section -->
@@ -556,7 +492,7 @@
               glance soon grew into a love meant to last forever. 💍✨
             </p>
 
-            <p>YET TO BE ASKED FOR BRO....? HOW IT STARTED</p>
+            <p>HOW IT STARTED. YET TO BE ASKED....?</p>
 
             <div class="about-details">
               <div class="detail-item">
@@ -589,7 +525,12 @@
                     src="images/amaresh.JPG"
                     alt="Dr. Amar"
                     class="profile-small-img"
-                    onclick="openFullscreenImage('images/amaresh.JPG', 'Our Super Groom 🤵')"
+                    onclick="
+                      openFullscreenImage(
+                        'images/amaresh.JPG',
+                        'Our Super Groom 🤵',
+                      )
+                    "
                   />
                   <h4>The Groom 👨‍⚕️ Dr.Amar</h4>
                 </div>
@@ -610,7 +551,12 @@
                     src="images/meghaaaa.JPG"
                     alt="Dr. Megha"
                     class="profile-small-img"
-                    onclick="openFullscreenImage('images/meghaaaa.JPG', 'Our Super Bride 💐')"
+                    onclick="
+                      openFullscreenImage(
+                        'images/meghaaaa.JPG',
+                        'Our Super Bride 💐',
+                      )
+                    "
                   />
                   <h4>The Bride 👩‍⚕️ Dr.Megha</h4>
                 </div>
@@ -629,11 +575,16 @@
           </div>
 
           <div class="about-right-column">
-            <div class="about-image">
-              <img src="images/palmring.JPG" alt="Amar and Lakshmi" />
-              <br />
-              <p>&nbsp;&nbsp;&nbsp;From Stethoscopes 🩺 to Soulmates💝</p>
-            </div>
+  <div class="about-image">
+    <img 
+      src="images/palmring.JPG" 
+      alt="Amar and Lakshmi" 
+      onclick="openFullscreenImage('images/palmring.JPG', 'From Stethoscopes 🩺 to Soulmates💝')"
+      style="cursor: pointer;"
+    />
+    
+    <p>&nbsp;&nbsp;&nbsp;From Stethoscopes 🩺 to Soulmates💝</p>
+  </div>
 
             <!-- How We Met Story -->
             <div class="story-section">
@@ -693,7 +644,13 @@
                     src="images/nagu.JPG"
                     alt="Mehndi"
                     class="event-icon-image clickable-icon"
-                    onclick="openEventModal('images/nagu.JPG', 'Bride To Be', 'Every smile today carries a dream of forever🤍')"
+                    onclick="
+                      openEventModal(
+                        'images/nagu.JPG',
+                        'Bride To Be',
+                        'Every smile today carries a dream of forever🤍',
+                      )
+                    "
                   />
                 </div>
               </div>
@@ -723,7 +680,13 @@
                     src="images/mehndi-icon.jpg"
                     alt="Sangeet"
                     class="event-icon-image clickable-icon"
-                    onclick="openEventModal('images/mehndi-icon.jpg', 'Mehndi Ceremony', 'Hands painted with love, heart glowing with dreams, Let Mehndi marks the beginning of forever🌿')"
+                    onclick="
+                      openEventModal(
+                        'images/mehndi-icon.jpg',
+                        'Mehndi Ceremony',
+                        'Hands painted with love, heart glowing with dreams, Let Mehndi marks the beginning of forever🌿',
+                      )
+                    "
                   />
                 </div>
               </div>
@@ -756,7 +719,13 @@
                     src="images/wedding-icon.JPG"
                     alt="Wedding"
                     class="event-icon-image clickable-icon"
-                    onclick="openEventModal('images/wedding-icon.JPG', 'Muhurtha📿', 'In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛')"
+                    onclick="
+                      openEventModal(
+                        'images/wedding-icon.JPG',
+                        'Muhurtha📿',
+                        'In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛',
+                      )
+                    "
                   />
                 </div>
               </div>
@@ -788,7 +757,13 @@
                     src="images/reception-icon.JPG"
                     alt="Reception"
                     class="event-icon-image clickable-icon"
-                    onclick="openEventModal('images/reception-icon.JPG', 'Reception', 'A Day of love, laughter, and happily ever after, Welcome to our reception🌸')"
+                    onclick="
+                      openEventModal(
+                        'images/reception-icon.JPG',
+                        'Reception',
+                        'A Day of love, laughter, and happily ever after, Welcome to our reception🌸',
+                      )
+                    "
                   />
                 </div>
               </div>
@@ -831,7 +806,7 @@
               <li>Will Be Updated Soon (2-3km away)</li>
             </ul>
             <p class="accommodation-note">
-              Details will be shared with RSVP confirmation
+              Details will be shared with Email confirmation
             </p>
           </div>
         </div>

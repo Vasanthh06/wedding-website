@@ -6,7 +6,7 @@ function updateCountdown() {
 
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
   );
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -21,22 +21,33 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+// ==================== FULLSCREEN MODAL FUNCTIONS ====================
+
+// Fullscreen Modal Functions
+function openFullscreenModal(imageSrc, caption) {
+  const modal = document.getElementById("fullscreenModal");
+  const modalImage = document.getElementById("fullscreenModalImage");
+  const modalCaption = document.getElementById("modalCaption");
+
+  if (modal && modalImage && modalCaption) {
+    modalImage.src = imageSrc;
+    modalCaption.textContent = caption;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+}
+
+function closeFullscreenModal() {
+  const modal = document.getElementById("fullscreenModal");
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+}
+
 // Simple function to open fullscreen image
 function openFullscreenImage(imageSrc, title) {
-  const modal = document.createElement("div");
-  modal.innerHTML = `
-    <div style="position:fixed; top:0; left:0; width:100%; height:100%;
-               background:rgba(0,0,0,0.95); z-index:10000;
-               display:flex; align-items:center; justify-content:center;">
-      <button onclick="this.parentElement.parentElement.remove()" 
-              style="position:absolute; top:20px; right:20px;
-                     background:white; border:none; width:50px; height:50px;
-                     border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-      <img src="${imageSrc}" alt="${title}" 
-           style="max-width:90%; max-height:90vh; border-radius:10px;">
-    </div>
-  `;
-  document.body.appendChild(modal);
+  openFullscreenModal(imageSrc, title);
 }
 
 // ==================== SISTER MODAL FUNCTIONS ====================
@@ -61,20 +72,7 @@ function closeSisterModal() {
 
 // Open fullscreen sister image
 function openFullscreenSisterImage() {
-  const modal = document.createElement("div");
-  modal.innerHTML = `
-    <div style="position:fixed; top:0; left:0; width:100%; height:100%;
-               background:rgba(0,0,0,0.95); z-index:10000;
-               display:flex; align-items:center; justify-content:center;">
-      <button onclick="this.parentElement.parentElement.remove()" 
-              style="position:absolute; top:20px; right:20px;
-                     background:white; border:none; width:50px; height:50px;
-                     border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-      <img src="images/Sisters.jpg" alt="Sister" 
-           style="max-width:90%; max-height:90vh; border-radius:10px;">
-    </div>
-  `;
-  document.body.appendChild(modal);
+  openFullscreenModal("images/Sisters.jpg", "Sisters 👭");
 }
 
 // ==================== EVENT MODAL FUNCTIONS ====================
@@ -179,7 +177,7 @@ function initWebsite() {
           navLinks.forEach((l) => l.classList.remove("active"));
           // Add active to corresponding nav link
           const correspondingLink = document.querySelector(
-            `a[href="${target}"]`
+            `a[href="${target}"]`,
           );
           if (correspondingLink) {
             correspondingLink.classList.add("active");
@@ -209,13 +207,27 @@ function initWebsite() {
   const floatingBride = document.querySelector(".floating-bride.right");
   const floatingGroom = document.querySelector(".floating-groom.left");
 
+  if (floatingBride) {
+    floatingBride.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openFullscreenModal("images/meghaaaa.JPG", "Super Bride 💐✨");
+    });
+  }
+
+  if (floatingGroom) {
+    floatingGroom.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openFullscreenModal("images/amaresh.JPG", "Super Groom 🤵✨");
+    });
+  }
+
   // 4. ADD CLICK EVENTS TO PROFILE IMAGES
   document.querySelectorAll(".profile-small-img").forEach((img) => {
     img.addEventListener("click", function (e) {
       e.stopPropagation();
       const src = this.getAttribute("src");
       const alt = this.getAttribute("alt");
-      openFullscreenImage(src, alt);
+      openFullscreenModal(src, alt);
     });
   });
 
@@ -240,6 +252,16 @@ function initWebsite() {
     ) {
       closeEventModal();
     }
+
+    // Close fullscreen modal when clicking outside
+    const fullscreenModal = document.getElementById("fullscreenModal");
+    if (
+      fullscreenModal &&
+      fullscreenModal.classList.contains("active") &&
+      e.target.classList.contains("modal-overlay")
+    ) {
+      closeFullscreenModal();
+    }
   });
 
   // 6. CLOSE MODALS WITH ESCAPE KEY
@@ -247,6 +269,7 @@ function initWebsite() {
     if (e.key === "Escape") {
       closeSisterModal();
       closeEventModal();
+      closeFullscreenModal();
     }
   });
 
@@ -318,7 +341,7 @@ function initRSVPForm() {
   function updatePreview() {
     // Update attendance
     const selectedAttendance = document.querySelector(
-      'input[name="attendance"]:checked'
+      'input[name="attendance"]:checked',
     );
     if (selectedAttendance) {
       const statusMap = {
@@ -332,7 +355,7 @@ function initRSVPForm() {
 
     // Update events
     const selectedEvents = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
+      'input[type="checkbox"]:checked',
     );
     if (selectedEvents.length > 0) {
       const eventNames = Array.from(selectedEvents).map((checkbox) => {
@@ -434,16 +457,16 @@ function initRSVPForm() {
       const name = document.getElementById("rsvp-name").value;
       const email = document.getElementById("rsvp-email").value;
       const attendance = document.querySelector(
-        'input[name="attendance"]:checked'
+        'input[name="attendance"]:checked',
       );
       const selectedEvents = document.querySelectorAll(
-        'input[type="checkbox"]:checked'
+        'input[type="checkbox"]:checked',
       );
 
       // Validation
       if (!name || !email || !attendance) {
         alert(
-          "Please fill in required fields: Name, Email, and Attendance status."
+          "Please fill in required fields: Name, Email, and Attendance status.",
         );
         return;
       }
@@ -466,10 +489,10 @@ function initRSVPForm() {
 
       // Update confirmation message
       const confirmationMessage = document.getElementById(
-        "confirmation-message"
+        "confirmation-message",
       );
       const confirmationDetails = document.getElementById(
-        "confirmation-details"
+        "confirmation-details",
       );
       const confirmationQuote = document.getElementById("confirmation-quote");
 
@@ -499,8 +522,8 @@ function initRSVPForm() {
         attendance.value === "Yes, I'll be there with joy!"
           ? "✅ Attending"
           : attendance.value === "Maybe, still checking"
-          ? "❓ Maybe"
-          : "❌ Not Attending"
+            ? "❓ Maybe"
+            : "❌ Not Attending"
       }</p>
     `;
 
@@ -618,9 +641,12 @@ function initCreatorModal() {
     });
 
     // Animate underline after all letters appear
-    setTimeout(() => {
-      nameUnderline.style.width = "80%";
-    }, letters.length * 100 + 300);
+    setTimeout(
+      () => {
+        nameUnderline.style.width = "80%";
+      },
+      letters.length * 100 + 300,
+    );
   }
 
   function closeCreatorModal() {
@@ -641,20 +667,7 @@ function initCreatorModal() {
   }
 
   function openFullscreenCreatorImage() {
-    const modal = document.createElement("div");
-    modal.innerHTML = `
-      <div style="position:fixed; top:0; left:0; width:100%; height:100%;
-                 background:rgba(0,0,0,0.95); z-index:10000;
-                 display:flex; align-items:center; justify-content:center;">
-        <button onclick="this.parentElement.parentElement.remove()" 
-                style="position:absolute; top:20px; right:20px;
-                       background:white; border:none; width:50px; height:50px;
-                       border-radius:50%; font-size:30px; cursor:pointer;">×</button>
-        <img src="images/mevasanth.jpg" alt="Vasanthh" 
-             style="max-width:90%; max-height:90vh; border-radius:10px;">
-      </div>
-    `;
-    document.body.appendChild(modal);
+    openFullscreenModal("images/mevasanth.jpg", "Vasanthh - Website Creator");
   }
 
   function getLetterColor(letter) {
@@ -688,22 +701,3 @@ function initCreatorModal() {
 
 // Initialize website when DOM is loaded
 document.addEventListener("DOMContentLoaded", initWebsite);
-function openEventModal(imageSrc, title, description) {
-  const modal = document.getElementById("eventModal");
-  const modalImage = document.getElementById("eventModalImage");
-  const modalTitle = document.getElementById("eventModalTitle");
-  const modalDescription = document.getElementById("eventModalDescription");
-
-  if (modal && modalImage) {
-    // Set modal content
-    modalImage.src = imageSrc;
-    modalImage.onload = function () {
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    };
-
-    // Set title and description
-    if (modalTitle) modalTitle.textContent = title;
-    if (modalDescription) modalDescription.textContent = description;
-  }
-}
