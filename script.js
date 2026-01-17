@@ -21,33 +21,22 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ==================== FULLSCREEN MODAL FUNCTIONS ====================
-
-// Fullscreen Modal Functions
-function openFullscreenModal(imageSrc, caption) {
-  const modal = document.getElementById("fullscreenModal");
-  const modalImage = document.getElementById("fullscreenModalImage");
-  const modalCaption = document.getElementById("modalCaption");
-
-  if (modal && modalImage && modalCaption) {
-    modalImage.src = imageSrc;
-    modalCaption.textContent = caption;
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-}
-
-function closeFullscreenModal() {
-  const modal = document.getElementById("fullscreenModal");
-  if (modal) {
-    modal.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-}
-
 // Simple function to open fullscreen image
 function openFullscreenImage(imageSrc, title) {
-  openFullscreenModal(imageSrc, title);
+  const modal = document.createElement("div");
+  modal.innerHTML = `
+    <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+               background:rgba(0,0,0,0.95); z-index:10000;
+               display:flex; align-items:center; justify-content:center;">
+      <button onclick="this.parentElement.parentElement.remove()" 
+              style="position:absolute; top:20px; right:20px;
+                     background:white; border:none; width:50px; height:50px;
+                     border-radius:50%; font-size:30px; cursor:pointer;">×</button>
+      <img src="${imageSrc}" alt="${title}" 
+           style="max-width:90%; max-height:90vh; border-radius:10px;">
+    </div>
+  `;
+  document.body.appendChild(modal);
 }
 
 // ==================== SISTER MODAL FUNCTIONS ====================
@@ -72,7 +61,20 @@ function closeSisterModal() {
 
 // Open fullscreen sister image
 function openFullscreenSisterImage() {
-  openFullscreenModal("images/Sisters.jpg", "Sisters 👭");
+  const modal = document.createElement("div");
+  modal.innerHTML = `
+    <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+               background:rgba(0,0,0,0.95); z-index:10000;
+               display:flex; align-items:center; justify-content:center;">
+      <button onclick="this.parentElement.parentElement.remove()" 
+              style="position:absolute; top:20px; right:20px;
+                     background:white; border:none; width:50px; height:50px;
+                     border-radius:50%; font-size:30px; cursor:pointer;">×</button>
+      <img src="images/Sisters.jpg" alt="Sister" 
+           style="max-width:90%; max-height:90vh; border-radius:10px;">
+    </div>
+  `;
+  document.body.appendChild(modal);
 }
 
 // ==================== EVENT MODAL FUNCTIONS ====================
@@ -207,27 +209,13 @@ function initWebsite() {
   const floatingBride = document.querySelector(".floating-bride.right");
   const floatingGroom = document.querySelector(".floating-groom.left");
 
-  if (floatingBride) {
-    floatingBride.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openFullscreenModal("images/meghaaaa.JPG", "Super Bride 💐✨");
-    });
-  }
-
-  if (floatingGroom) {
-    floatingGroom.addEventListener("click", function (e) {
-      e.stopPropagation();
-      openFullscreenModal("images/amaresh.JPG", "Super Groom 🤵✨");
-    });
-  }
-
   // 4. ADD CLICK EVENTS TO PROFILE IMAGES
   document.querySelectorAll(".profile-small-img").forEach((img) => {
     img.addEventListener("click", function (e) {
       e.stopPropagation();
       const src = this.getAttribute("src");
       const alt = this.getAttribute("alt");
-      openFullscreenModal(src, alt);
+      openFullscreenImage(src, alt);
     });
   });
 
@@ -252,16 +240,6 @@ function initWebsite() {
     ) {
       closeEventModal();
     }
-
-    // Close fullscreen modal when clicking outside
-    const fullscreenModal = document.getElementById("fullscreenModal");
-    if (
-      fullscreenModal &&
-      fullscreenModal.classList.contains("active") &&
-      e.target.classList.contains("modal-overlay")
-    ) {
-      closeFullscreenModal();
-    }
   });
 
   // 6. CLOSE MODALS WITH ESCAPE KEY
@@ -269,7 +247,6 @@ function initWebsite() {
     if (e.key === "Escape") {
       closeSisterModal();
       closeEventModal();
-      closeFullscreenModal();
     }
   });
 
@@ -667,7 +644,20 @@ function initCreatorModal() {
   }
 
   function openFullscreenCreatorImage() {
-    openFullscreenModal("images/mevasanth.jpg", "Vasanthh - Website Creator");
+    const modal = document.createElement("div");
+    modal.innerHTML = `
+      <div style="position:fixed; top:0; left:0; width:100%; height:100%;
+                 background:rgba(0,0,0,0.95); z-index:10000;
+                 display:flex; align-items:center; justify-content:center;">
+        <button onclick="this.parentElement.parentElement.remove()" 
+                style="position:absolute; top:20px; right:20px;
+                       background:white; border:none; width:50px; height:50px;
+                       border-radius:50%; font-size:30px; cursor:pointer;">×</button>
+        <img src="images/mevasanth.jpg" alt="Vasanthh" 
+             style="max-width:90%; max-height:90vh; border-radius:10px;">
+      </div>
+    `;
+    document.body.appendChild(modal);
   }
 
   function getLetterColor(letter) {
@@ -701,3 +691,22 @@ function initCreatorModal() {
 
 // Initialize website when DOM is loaded
 document.addEventListener("DOMContentLoaded", initWebsite);
+function openEventModal(imageSrc, title, description) {
+  const modal = document.getElementById("eventModal");
+  const modalImage = document.getElementById("eventModalImage");
+  const modalTitle = document.getElementById("eventModalTitle");
+  const modalDescription = document.getElementById("eventModalDescription");
+
+  if (modal && modalImage) {
+    // Set modal content
+    modalImage.src = imageSrc;
+    modalImage.onload = function () {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    };
+
+    // Set title and description
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDescription) modalDescription.textContent = description;
+  }
+}
