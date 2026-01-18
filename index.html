@@ -7,8 +7,11 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <!-- IMPORTANT: Change the viewport to allow zooming for accessibility -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+    />
+
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Megha & Amar's Wedding 💍🎉</title>
     <link rel="icon" href="img5.ico" type="image/ico" />
@@ -22,1317 +25,42 @@
       rel="stylesheet"
     />
     <!-- iOS Safari specific tags -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="theme-color" content="#c9a96e" />
     <link rel="apple-touch-icon" href="img5.ico" />
-    
+
     <!-- ADD THESE IMPORTANT META TAGS -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="Join us in celebrating the wedding of Megha & Amar">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="Join us in celebrating the wedding of Megha & Amar"
+    />
   </head>
-  <body> <!-- CHANGED FROM "<>" TO "<body>" -->
-  <!-- Sister Floating Image - Always visible -->
-  <div class="sister-floating-image" onclick="openSisterModal()">
-    <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
-    
-  </div>
-
-  <!-- Floating Bride Image -->
-  <div
-    class="floating-bride right"
-    onclick="openFullscreenModal('images/meghaaaa.JPG', 'Super Bride 💐')"
-  >
-    <div class="bride-image-container">
-      <img src="images/meghaaaa.JPG" alt="Bride" class="bride-image" />
-      <div class="image-frame"></div>
-      <div class="hearts-container"></div>
-      <div class="bride-text">The Bride 💐</div>
-    </div>
-  </div>
-
-  <!-- Floating Groom Image -->
-  <div
-    class="floating-groom left"
-    onclick="
-      openFullscreenModal('images/amaresh.JPG', 'The Handsome Groom 🤵✨')
-    "
-  >
-    <div class="groom-image-container">
-      <img src="images/amaresh.JPG" alt="Amar" class="groom-image" />
-      <div class="image-frame"></div>
-      <div class="hearts-container"></div>
-      <div class="groom-text">The Groom 🤵</div>
-    </div>
-  </div>
-
-  <!-- Fullscreen Image Modal -->
-  <div id="fullscreenModal" class="fullscreen-modal">
-    <div class="modal-overlay" onclick="closeFullscreenModal()"></div>
-    <div class="modal-content">
-      <button
-        class="close-modal"
-        onclick="closeFullscreenModal()"
-        aria-label="Close modal"
-      >
-        &times;
-      </button>
-      <div class="modal-image-container">
-        <img src="" alt="" id="fullscreenModalImage" />
-      </div>
-      <div class="modal-caption" id="modalCaption"></div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#home" class="logo">Megha ♥ Amar</a>
-        <ul class="nav-links">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">Our Story</a></li>
-          <li><a href="#gallery" class="nav-link">Gallery</a></li>
-          <li><a href="#details" class="nav-link">Event Details</a></li>
-          <li><a href="#rsvp" class="nav-link">Connect Us</a></li>
-        </ul>
-        <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Home Section -->
-  <section id="home" class="page active">
-    <div class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <div class="couple-names">Megha & Amar <br />Welcomes You🤗</div>
-        <h1>We're Getting Married! 💍</h1>
-        <p class="subtitle">Prescribed to each other, for life😉</p>
-        <p class="hero-description">
-          Join us as we begin our journey together as Husband and Wife💖<br />
-          on April 29, 2026
-        </p>
-
-        <div class="countdown">
-          <div class="countdown-item">
-            <div class="countdown-number" id="days">00</div>
-            <div class="countdown-text">Days</div>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-number" id="hours">00</div>
-            <div class="countdown-text">Hours</div>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-number" id="minutes">00</div>
-            <div class="countdown-text">Minutes</div>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-number" id="seconds">00</div>
-            <div class="countdown-text">Seconds</div>
-          </div>
-        </div>
-
-        <div class="hero-features">
-          <div class="feature-card">
-            <i class="fas fa-ring"></i>
-            <h3>Wedding Ceremony</h3>
-            <p>Traditional Hindu wedding with Vedic rituals</p>
-          </div>
-          <div class="feature-card">
-            <i class="fas fa-calendar-alt"></i>
-            <h3>Save the Date</h3>
-            <p>April 29, 2026 • 10:00 AM onwards</p>
-          </div>
-          <div class="feature-card">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>Venue</h3>
-            <p>Amareshwara Temple</p>
-          </div>
-        </div>
-
-        <div class="hero-buttons">
-          <button class="btn hero-btn" data-target="#details">
-            Event Details
-          </button>
-          <button class="btn hero-btn" data-target="#about">Our Story</button>
-          <button class="btn hero-btn" data-target="#rsvp">Connect</button>
-          <button class="btn hero-btn" data-target="#gallery">
-            View Photos
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="page">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our Love Story💖</h2>
-        <p>How we met and fell in love</p>
-      </div>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            Our story began in May, two years ago, a moment quietly written by
-            destiny. Amar was the one who first caught Megha's eye 👀, and from
-            that spark, a beautiful journey began. Megha, a brilliant doctor,
-            filled our lives with her intelligence, kindness, and a smile that
-            lit up the entire family 🧡. What started as a simple glance soon
-            grew into a love meant to last forever. 💍✨
-          </p>
-
-          <p>HOW IT STARTED. YET TO BE ASKED....?</p>
-
-          <div class="about-details">
-            <div class="detail-item">
-              <i class="fas fa-heart"></i>
-              <div>
-                <strong>First Date: 25 May 2023💗𐙚</strong>
-                <span>-</span>
-              </div>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-ring"></i>
-              <div>
-                <strong>Proposal</strong>
-                <span>May,2025 Mudgal</span>
-              </div>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-calendar-check"></i>
-              <div>
-                <strong>Wedding Date</strong>
-                <span>April 29 2026 - An Auspicious day</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="couple-profiles">
-            <div class="profile">
-              <div class="profile-header">
-                <img
-                  src="images/amaresh.JPG"
-                  alt="Dr. Amar"
-                  class="profile-small-img"
-                  onclick="
-                    openFullscreenModal('images/amaresh.JPG', 'The Groom 🤵')
-                  "
-                />
-                <h4>Groom 👨‍⚕️ Dr.Amar</h4>
-              </div>
-              <p>
-                A 32-year-old endocrinologist with a heart that delights in
-                classical melodies, soulful cooking, and the quiet comfort of
-                books📚
-              </p>
-              <p>
-                Megha showed me that true love grows when two hearts choose to
-                create perfection together, not search for it 🧡
-              </p>
-            </div>
-
-            <div class="profile">
-              <div class="profile-header">
-                <img
-                  src="images/meghaaaa.JPG"
-                  alt="Dr. Megha"
-                  class="profile-small-img"
-                  onclick="
-                    openFullscreenModal('images/meghaaaa.JPG', 'The Bride 💐')
-                  "
-                />
-                <h4>Bride 👩‍⚕️ Dr.Megha</h4>
-              </div>
-              <p>
-                A 28-year-old pediatrician,healing little hearts by
-                profession,treasures every moment spent with family😊
-              </p>
-              <p>
-                As a doctor, I've learned to stay strong through life's storms,
-                but Amar showed me that true love is the safe harbor where my
-                heart can finally rest and the sunshine that gently heals me on
-                brighter days.💚
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-right-column">
-          <div class="about-image">
-            <img
-              src="images/palmring.JPG"
-              alt="Amar and Lakshmi"
-              onclick="
-                openFullscreenModal(
-                  'images/palmring.JPG',
-                  'From Stethoscopes 🩺 to Soulmates💝',
-                )
-              "
-            />
-            <p>&nbsp;&nbsp;&nbsp;From Stethoscopes 🩺 to Soulmates💝</p>
-          </div>
-
-          <!-- How We Met Story -->
-          <div class="story-section">
-            <h4>How We Met</h4>
-            <div class="story-timeline">
-              <div class="story-item">
-                <i class="fas fa-diya-lamp"></i>
-                <span>2023</span>
-                <p>Met at a ritual Meet</p>
-              </div>
-              <div class="story-item">
-                <i class="fas fa-coffee"></i>
-                <span>2023</span>
-                <p>First date</p>
-              </div>
-              <div class="story-item">
-                <i class="fas fa-hiking"></i>
-                <span>March 2022</span>
-                <p>First trip together (YET TO BE PLANNED)</p>
-              </div>
-              <div class="story-item">
-                <i class="fas fa-ring"></i>
-                <span>2023</span>
-                <p>Amar proposed at sunset</p>
-              </div>
-              <div class="story-item">
-                <i class="fas fa-hands-praying"></i>
-                <span>APRIL 29</span>
-                <p>Our wedding day!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="page">
-    <div class="container">
-      <div class="section-title">
-        <h2>ShriShiv Gallery 💍</h2>
-        <p>
-          Combining Shri (another name/for Lakshmi) and Shiv (from
-          Shiva/Amareeshwara)
-        </p>
-      </div>
-
-      <div class="gallery-controls">
-        <button class="filter-btn active" data-filter="all">All Photos</button>
-        <button class="filter-btn" data-filter="engagement">
-          Engagement💍
-        </button>
-        <button class="filter-btn" data-filter="family">Family 👨‍👩‍👧‍👦</button>
-        <button class="filter-btn" data-filter="couple">Couple💕</button>
-      </div>
-
-      <div class="gallery-grid">
-        <!-- Engagement Photos -->
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/eeee.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Our Engagement💍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage1.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Special Moment❤️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/Stage.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Officially Us🙌🏻</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage4.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Lost In Happiness🧡</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage2.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Together Forever♾️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage.JPG" alt="Engagement" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Happy Us🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage10.JPG" alt="Happy Me" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Amar 🤵‍♂️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage5.JPG" alt="Lost in Love" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Megha 👰‍♀️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/palmring.JPG" alt="Ring" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Promise Ring💍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage8.JPG" alt="Ring" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Forever Bond ♾️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/showingring.JPG" alt="Ring" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>A circle of love, sealed for eternity ✨💍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage9.JPG" alt="Whoo" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Us Moment❤️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/engage14.JPG" alt="Celebrations🎉" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Memories💕</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/Feel.JPG" alt="Sunset" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Beautiful Sunset🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/Gejje.JPG" alt="Gejje🤍" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>With every Gejje chime, a sacred journey begins 🌸✨</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/Hudi.JPG" alt="With the sacred Hudi, a lifetime promise is sealed 🤍✨" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Sacred Hudi 🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="engagement">
-          <div class="image-container">
-            <img src="images/drmegha.JPG" alt="A New beginning✨ " loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Dr. Megha </p>
-          </div>
-        </div>
-
-        <!-- Family Photos -->
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/broeye.JPG" alt="Bride's Family 🧡" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Family — where every story begins💚</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/family.JPG" alt="Family" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Love lives here 🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/ajja.JPG" alt="Sacred Blessings✨" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Ajja🌸</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/groomfam.JPG" alt="The family that raised the groom, with love and pride ✨" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Groom's Family🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/fam10.JPG" alt="A frame filled with blessings, love, and legacy 💖" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Blessed Roots 🌿</p>
-          </div>
-        </div>
- <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/fam11.JPG" alt="This is not just a picture, it's our home 🤍✨" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>one Family 👨‍👩‍👧‍👦</p>
-          </div>
-          </div>
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/fourfam.JPG" alt="My first home, my forever strength 🤍" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Forever Family 🌸</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/cousins.JPG" alt="When cousins unite, chaos is guaranteed 💥" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p> Cousins Reunion 😎 </p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/mamas.JPG" alt="A group of mischievous Mama's😜" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Mama's💖</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/sonuandsanju.JPG" alt="Three women, one endless love 💕" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Sonu & Sanju🌸</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="family">
-          <div class="image-container">
-            <img src="images/thumbs.JPG" alt="Approval committee Says:👍 APPROVED 😂" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Thumbs Up👍</p>
-          </div>
-        </div>
-
-       
-        </div>
-
-        <!-- Couple Photos -->
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/Couple.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Happy Couple💖</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/amarlakhi.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Amar & Lakshmi🌸</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/laugh.JPG" alt="Laugh" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Laughing Together✨</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/whooo.JPG" alt="Family" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Whooo🌼</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/couple11.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Together♾️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/couple12.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Happy Moment's🤍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/hug.JPG" alt="Hug" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Warm Hug💞</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/couple2.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Couple Goals❤️</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/engagement.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Hands in Together💍</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/couple7.JPG" alt="Couple" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Proposal💐</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-category="couple">
-          <div class="image-container">
-            <img src="images/Both.JPG" alt="Both" loading="lazy" />
-          </div>
-          <div class="gallery-overlay">
-            <p>Both of Us💖</p>
-          </div>
-        </div>
-
-        <!-- Note: Removed duplicates and fixed incorrect categories -->
-      </div>
-
-      <div class="gallery-instructions">
-        <i class="fas fa-mouse-pointer"></i>
-        Click on any photo to view in fullscreen
-      </div>
-    </div>
-  </section>
-
-  <!-- Event Details Section -->
-  <section id="details" class="page">
-    <div class="container">
-      <div class="section-title">
-        <h2>Here The Wedding Events List✨</h2>
-        <p>Join With us for Endless Celebrations🎉</p>
-      </div>
-
-      <div class="events-container">
-        <div class="events-grid">
-          <!-- 1. BRIDE TO BE -->
-          <div class="event-card">
-            <div class="event-header">
-              <div class="event-date">
-                <div class="date-day">24</div>
-                <div class="date-month">Apr</div>
-              </div>
-              <div class="event-icon">
-                <img
-                  src="images/nagu.JPG"
-                  alt="Mehndi"
-                  class="event-icon-image clickable-icon"
-                  onclick="
-                    openEventModal(
-                      'images/nagu.JPG',
-                      'Bride To Be',
-                      'Every smile today carries a dream of forever🤍',
-                    )
-                  "
-                />
-              </div>
-            </div>
-            <div class="event-content">
-              <h3>Bride To Be</h3>
-              <p class="event-time">From 7:00PM - Midnight</p>
-              <br />
-              <p class="event-location">
-                <i class="fas fa-map-marker-alt"></i>
-                <strong>Megha's Lovely Home🏠Mudgal</strong>
-              </p>
-              <div class="event-description">
-                <p>Every smile today carries a dream of forever🤍</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. MEHANDI -->
-          <div class="event-card">
-            <div class="event-header">
-              <div class="event-date">
-                <div class="date-day">25</div>
-                <div class="date-month">Apr</div>
-              </div>
-              <div class="event-icon">
-                <img
-                  src="images/mehndi-icon.jpg"
-                  alt="Sangeet"
-                  class="event-icon-image clickable-icon"
-                  onclick="
-                    openEventModal(
-                      'images/mehndi-icon.jpg',
-                      'Mehndi Ceremony',
-                      'Hands painted with love, heart glowing with dreams, Let Mehndi marks the beginning of forever🌿',
-                    )
-                  "
-                />
-              </div>
-            </div>
-            <div class="event-content">
-              <h3>Mehndi Ceremony</h3>
-              <p class="event-time">10:00 AM - 2:30 PM</p>
-              <br />
-              <p class="event-location">
-                <i class="fas fa-map-marker-alt"></i>&nbsp;
-                <strong>Megha's Lovely Home🏡Mudgal</strong>
-              </p>
-              <div class="event-description">
-                <p>
-                  Hands painted with love, heart glowing with dreams, Let Mehndi
-                  marks the beginning of forever🌿
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. WEDDING CEREMONY -->
-          <div class="event-card highlight">
-            <div class="event-header">
-              <div class="event-date">
-                <div class="date-day">29</div>
-                <div class="date-month">Apr</div>
-              </div>
-              <div class="event-icon">
-                <img
-                  src="images/wedding-icon.JPG"
-                  alt="Wedding"
-                  class="event-icon-image clickable-icon"
-                  onclick="
-                    openEventModal(
-                      'images/wedding-icon.JPG',
-                      'Muhurtha📿',
-                      'In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛',
-                    )
-                  "
-                />
-              </div>
-            </div>
-            <div class="event-content">
-              <h3>Muhurtha📿</h3>
-              <p class="event-time">3:00 AM onwards</p>
-              <p class="event-location">
-                <i class="fas fa-map-marker-alt"></i>
-                <strong>Amareshwara Temple🛕</strong>
-              </p>
-              <div class="event-description">
-                <p>
-                  In this Moment, A divine thread that seals love, commitment,
-                  and a lifetime of blessings💚
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. RECEPTION -->
-          <div class="event-card">
-            <div class="event-header">
-              <div class="event-date">
-                <div class="date-day">29</div>
-                <div class="date-month">Apr</div>
-              </div>
-              <div class="event-icon">
-                <img
-                  src="images/reception-icon.JPG"
-                  alt="Reception"
-                  class="event-icon-image clickable-icon"
-                  onclick="
-                    openEventModal(
-                      'images/reception-icon.JPG',
-                      'Reception',
-                      'A Day of love, laughter, and happily ever after, Welcome to our reception🌸',
-                    )
-                  "
-                />
-              </div>
-            </div>
-            <div class="event-content">
-              <h3>Reception</h3>
-              <p class="event-time">10:00 AM - 4:00 PM</p>
-              <br />
-              <p class="event-location">
-                <i class="fas fa-map-marker-alt"></i>
-                <strong>Devadurga🕍</strong>
-              </p>
-              <div class="event-description">
-                <p>
-                  A Day of love, laughter, and happily ever after💛 <br />
-                  Welcome to our reception🌸
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="venue-details">
-        <div class="venue-map">
-          <h3>Venue Location</h3>
-          <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt"></i>
-            <p><strong>Amareshwara Temple🛕</strong></p>
-            <p class="venue-address">Traditional venue for sacred ceremonies</p>
-          </div>
-        </div>
-        <div class="accommodation">
-          <h3>Accommodation</h3>
-          <p>Suggested stays near the venues</p>
-          <ul>
-            <li>Local guest houses (0-2km away)</li>
-            <li>Nearby hotels (2-3km away)</li>
-            <li>Will Be Updated Soon (2-3km away)</li>
-          </ul>
-          <p class="accommodation-note">
-            Details will be shared with Email confirmation
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RSVP Section -->
-  <section id="rsvp" class="page">
-    <div class="container">
-      <div class="section-title">
-        <h2>Connect With Us🤍</h2>
-        <p>
-          It would be our honor and happiness to have you with us on this
-          special day🕊️
-        </p>
-      </div>
-
-      <form
-        id="wedding-rsvp-form"
-        action="https://formspree.io/f/maqqnwwg"
-        method="POST"
-      >
-        <div class="rsvp-container">
-          <div class="rsvp-form">
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Wedding Response Submission! 🎉"
-            />
-            <input type="hidden" name="_replyto" id="reply-email" />
-            <input
-              type="hidden"
-              name="_cc"
-              value="amarlakshmiwedding@gmail.com"
-            />
-            <input type="hidden" name="_format" value="plain" />
-
-            <div class="form-row">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  id="rsvp-name"
-                  placeholder="Full Name *"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  name="email"
-                  id="rsvp-email"
-                  placeholder="Email Address *"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <input
-                  type="tel"
-                  name="phone"
-                  id="rsvp-phone"
-                  placeholder="Phone Number *"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="number"
-                  name="guests"
-                  id="rsvp-guests"
-                  placeholder="Number of Guests *"
-                  min="1"
-                  max="10"
-                  required
-                />
-              </div>
-            </div>
-
-            <!-- Attendance Options -->
-            <div class="section-box">
-              <h4>
-                <i class="fas fa-calendar-check"></i> Will you be attending?
-              </h4>
-              <div class="attendance-grid">
-                <label class="attendance-option yes-option">
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="Yes, I'll be there with joy!"
-                    required
-                  />
-                  <div class="option-content">
-                    <i class="fas fa-heart"></i>
-                    <span class="option-text"
-                      >Yes, I'll be there with joy!</span
-                    >
-                  </div>
-                </label>
-
-                <label class="attendance-option maybe-option">
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="Maybe, still checking"
-                  />
-                  <div class="option-content">
-                    <i class="fas fa-question-circle"></i>
-                    <span class="option-text">Maybe, still checking</span>
-                  </div>
-                </label>
-
-                <label class="attendance-option no-option">
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="Regretfully can't make it"
-                  />
-                  <div class="option-content">
-                    <i class="fas fa-sad-tear"></i>
-                    <span class="option-text"
-                      >Regretfully can't make it, Sorry.!</span
-                    >
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Events Selection -->
-            <div class="section-box">
-              <h4>
-                <i class="fas fa-glass-cheers"></i> Which events will you
-                attend?
-              </h4>
-              <div class="events-grid">
-                <label class="event-option">
-                  <input
-                    type="checkbox"
-                    name="event-mehandi"
-                    value="Mehandi Ceremony (April 28)"
-                  />
-                  <div class="event-content">
-                    <div class="event-date">Apr 25</div>
-                    <span class="event-name">Mehendi Ceremony</span>
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                </label>
-
-                <label class="event-option">
-                  <input
-                    type="checkbox"
-                    name="event-sangeet"
-                    value="Sangeet Night (April 26)"
-                  />
-                  <div class="event-content">
-                    <div class="event-date">Apr 25</div>
-                    <span class="event-name">Sangeet Night</span>
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                </label>
-
-                <label class="event-option">
-                  <input
-                    type="checkbox"
-                    name="event-wedding"
-                    value="Wedding Ceremony (April 29)"
-                    checked
-                  />
-                  <div class="event-content">
-                    <div class="event-date">Apr 29</div>
-                    <span class="event-name">Wedding Ceremony</span>
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                </label>
-
-                <label class="event-option">
-                  <input
-                    type="checkbox"
-                    name="event-reception"
-                    value="Reception (April 28)"
-                    checked
-                  />
-                  <div class="event-content">
-                    <div class="event-date">Apr 29</div>
-                    <span class="event-name">Reception</span>
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Message Input -->
-            <div class="message-box">
-              <h4>
-                <i class="fas fa-comment-dots"></i> Any Dietary restrictions or
-                Special requests!
-              </h4>
-              <textarea
-                name="message"
-                id="rsvp-message"
-                placeholder="Please let us know about any dietary needs or special requirements..."
-              ></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" id="submit-rsvp" class="btn submit-btn">
-              <i class="fas fa-paper-plane"></i> Send Your Response
-            </button>
-          </div>
-
-          <!-- Preview on right -->
-          <div class="rsvp-preview">
-            <div class="preview-card">
-              <h3><i class="fas fa-gift"></i> Your Response</h3>
-              <div class="preview-content">
-                <div class="preview-item">
-                  <strong>Status:</strong>
-                  <span class="preview-attendance">Not selected</span>
-                </div>
-                <div class="preview-item">
-                  <strong>Events:</strong>
-                  <span class="preview-events">No events selected</span>
-                </div>
-                <div class="preview-item">
-                  <strong>Guests:</strong>
-                  <span class="preview-guests">0</span>
-                </div>
-              </div>
-              <div class="preview-note">
-                <i class="fas fa-info-circle"></i>
-                <p>Your response helps us plan better for our special day!</p>
-              </div>
-            </div>
-
-            <div class="quote-box">
-              <i class="fas fa-quote-left"></i>
-              <p class="quote-text">
-                Your presence will add meaning and joy to this beautiful
-                beginning ✨
-              </p>
-              <i class="fas fa-quote-right"></i>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <!-- Celebration Animation Container -->
-      <div class="celebration-container" id="celebration-container"></div>
-
-      <!-- RSVP Confirmation -->
-      <div
-        class="rsvp-confirmation"
-        id="rsvp-confirmation"
-        style="display: none"
-      >
-        <div class="confirmation-content">
-          <i class="fas fa-check-circle"></i>
-          <h3>Thank You for Your Response! 🎉</h3>
-          <p class="confirmation-message" id="confirmation-message">
-            We're excited to celebrate with you!
-          </p>
-          <div class="confirmation-details" id="confirmation-details"></div>
-          <div class="confirmation-quote" id="confirmation-quote"></div>
-          <p class="email-notice">
-            <i class="fas fa-envelope"></i> A confirmation email has been sent
-            to you.
-          </p>
-          <button type="button" class="btn" id="back-to-form">
-            <i class="fas fa-edit"></i> Edit Response
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sister Modal -->
-  <div id="sisterModal" class="sister-modal">
-    <div class="sister-modal-content">
-      <button
-        class="close-sister"
-        onclick="closeSisterModal()"
-        aria-label="Close sister modal"
-      >
-        &times;
-      </button>
-      <div
-        class="sister-image-container"
-        onclick="
-          openFullscreenModal('images/Sisters.jpg', 'Weeeeeeeeeeeee 👭❤️')
-        "
-      >
-        <img src="images/Sisters.jpg" alt="Sister" id="sisterModalImage" />
-      </div>
-      <div class="sister-message">
-        <h3 id="sisterModalTitle">ನಮ್ಮ ಅಕ್ಕನ ಮದುವೆ❤️</h3>
-        <p id="sisterModalText">
-          With love in our hearts and joy in our souls, we invite you to our
-          sister's wedding 💍✨
-        </p>
-        <div class="heart-emoji">❤️❤️❤️</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Event Modal -->
-  <div id="eventModal" class="event-modal">
-    <div class="event-modal-content">
-      <button
-        class="close-event"
-        onclick="closeEventModal()"
-        aria-label="Close event modal"
-      >
-        &times;
-      </button>
-      <div class="event-modal-image-container">
-        <img
-          src=""
-          alt="Event Image"
-          class="event-modal-image"
-          id="eventModalImage"
-        />
-      </div>
-      <div class="event-modal-info">
-        <h3 id="eventModalTitle"></h3>
-        <p id="eventModalDescription"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h1>Megha ♥ Amar</h1>
-        <p>Writing our own forever Love Prescription's❤️</p>
-        <p class="wedding-date">On April 29, 2026</p>
-      </div>
-      <div class="footer-section">
-        <h4>Contact Us</h4>
-        <div class="contact-info">
-          <p>
-            <a href="tel:+918147191426" class="contact-link">
-              <i class="fas fa-phone"></i> +91 8147191426 (Amar)
-            </a>
-          </p>
-          <p>
-            <a href="tel:+919945315661" class="contact-link">
-              <i class="fas fa-phone"></i> +91 9945315661 (Megha)
-            </a>
-          </p>
-          <p>
-            <a
-              href="mailto:amarlakshmiwedding@gmail.com?subject=Wedding%20Greetings&body=Dear%20Amar%20%26%20Lakshmi%2C%0A%0A"
-              class="contact-link"
-            >
-              <i class="fas fa-envelope"></i> amarlakshmiwedding@gmail.com
-            </a>
-          </p>
-          <p>
-            <a
-              href="https://wa.me/918147191426?text=Hello%20Amar%20%26%20Lakshmi%2C%20Congratulations%20on%20your%20wedding%21"
-              class="contact-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-whatsapp"></i> WhatsApp Amar
-            </a>
-          </p>
-          <p>
-            <a
-              href="https://wa.me/919945315661?text=Hello%20Amar%20%26%20Lakshmi%2C%20Congratulations%20on%20your%20wedding%21"
-              class="contact-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-whatsapp"></i> WhatsApp Megha
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="copyright">
-      <p>&copy; Megha & Amar's — Forever Begins in 2026 💝✨</p>
-      <p class="creator">
-        Developed With❤️By
-        <button id="creatorLink" class="creator-button">Vasanthh</button>
-      </p>
-    </div>
-
-    <!-- CREATOR MODAL -->
-    <div class="creator-modal" id="creatorModal">
-      <div class="creator-modal-content">
-        <button
-          class="close-btn"
-          id="closeModal"
-          aria-label="Close creator modal"
-        >
-          &times;
-        </button>
-        <div class="creator-image-container" id="clickableImage">
-          <img
-            src="images/mevasanth.jpg"
-            alt="Vasanthh"
-            class="creator-image"
-          />
-        </div>
-        <div class="name-container">
-          <div class="animated-name" id="animatedName"></div>
-          <div class="name-underline" id="nameUnderline"></div>
-        </div>
-        <div class="creator-info">
-          <strong>
-            <p>
-              For Megha & Amar ❤️<br />May your love be divinely guided,
-              eternally blessed, and forever growing🤍
-            </p>
-          </strong>
-        </div>
-        <div class="creator-buttons">
-          <button
-            onclick="
-              openFullscreenModal(
-                'images/mevasanth.jpg',
-                'Vasanthh - The Developer',
-              )
-            "
-            class="btn creator-btn"
-          >
-            <i class="fas fa-expand"></i> View Full Image
-          </button>
-          <button onclick="closeCreatorModal()" class="btn creator-btn">
-            <i class="fas fa-times"></i> Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
   <body>
-    <!-- Floating images at the top of body -->
+    <!-- CHANGED FROM "<>" TO "<body>" -->
+    <!-- Sister Floating Image - Always visible -->
+    <div class="sister-floating-image" onclick="openSisterModal()">
+      <img src="images/Sisters.jpg" alt="Sisters" class="sister-float-img" />
+    </div>
+
+    <!-- Floating Bride Image -->
     <div
       class="floating-bride right"
       onclick="openFullscreenModal('images/meghaaaa.JPG', 'Super Bride 💐')"
     >
       <div class="bride-image-container">
         <img src="images/meghaaaa.JPG" alt="Bride" class="bride-image" />
+        <div class="image-frame"></div>
+        <div class="hearts-container"></div>
         <div class="bride-text">The Bride 💐</div>
       </div>
     </div>
 
+    <!-- Floating Groom Image -->
     <div
       class="floating-groom left"
       onclick="
@@ -1341,15 +69,21 @@
     >
       <div class="groom-image-container">
         <img src="images/amaresh.JPG" alt="Amar" class="groom-image" />
+        <div class="image-frame"></div>
+        <div class="hearts-container"></div>
         <div class="groom-text">The Groom 🤵</div>
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Fullscreen Image Modal -->
     <div id="fullscreenModal" class="fullscreen-modal">
       <div class="modal-overlay" onclick="closeFullscreenModal()"></div>
       <div class="modal-content">
-        <button class="close-modal" onclick="closeFullscreenModal()">
+        <button
+          class="close-modal"
+          onclick="closeFullscreenModal()"
+          aria-label="Close modal"
+        >
           &times;
         </button>
         <div class="modal-image-container">
@@ -1359,67 +93,1389 @@
       </div>
     </div>
 
-    <!-- Rest of your website content -->
-     <script>
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
-  const navLinksItems = document.querySelectorAll('.nav-link');
-  const body = document.body;
-  
-  if (!mobileMenuBtn || !navLinks) return;
-  
-  // Toggle menu function
-  function toggleMenu() {
-    const isActive = navLinks.classList.toggle('active');
-    mobileMenuBtn.innerHTML = isActive ? '✕' : '☰';
-    mobileMenuBtn.setAttribute('aria-expanded', isActive);
-    mobileMenuBtn.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
-    body.style.overflow = isActive ? 'hidden' : '';
-  }
-  
-  // Close menu function
-  function closeMenu() {
-    navLinks.classList.remove('active');
-    mobileMenuBtn.innerHTML = '☰';
-    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-    body.style.overflow = '';
-  }
-  
-  // Menu button click
-  mobileMenuBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    toggleMenu();
-  });
-  
-  // Close menu on link click
-  navLinksItems.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-  
-  // Close menu on outside click
-  document.addEventListener('click', function(e) {
-    if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-  
-  // Close menu on escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-  
-  // Close menu on resize
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-});
-</script>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#home" class="logo">Megha ♥ Amar</a>
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">Our Story</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#details" class="nav-link">Event Details</a></li>
+            <li><a href="#rsvp" class="nav-link">Connect Us</a></li>
+          </ul>
+          <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="couple-names">Megha & Amar <br />Welcomes You🤗</div>
+          <h1>We're Getting Married! 💍</h1>
+          <p class="subtitle">
+            Where healing hands found a home in each other 🩺❤️
+          </p>
+          <p class="hero-description">
+            Join us as we begin our journey together as Husband and Wife💗<br />
+            on April 29, 2026
+          </p>
+
+          <div class="countdown">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">00</div>
+              <div class="countdown-text">Days</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">00</div>
+              <div class="countdown-text">Hours</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">00</div>
+              <div class="countdown-text">Minutes</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">00</div>
+              <div class="countdown-text">Seconds</div>
+            </div>
+          </div>
+
+          <div class="hero-features">
+            <div class="feature-card">
+              <i class="fas fa-ring"></i>
+              <h3>Wedding Ceremony</h3>
+              <p>Traditional Hindu wedding with Vedic rituals</p>
+            </div>
+            <div class="feature-card">
+              <i class="fas fa-calendar-alt"></i>
+              <h3>Save the Date</h3>
+              <p>April 29, 2026 • 10:00 AM onwards</p>
+            </div>
+            <div class="feature-card">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Venue</h3>
+              <p>Amareshwara Temple</p>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn hero-btn" data-target="#details">
+              Event Details
+            </button>
+            <button class="btn hero-btn" data-target="#about">Our Story</button>
+            <button class="btn hero-btn" data-target="#rsvp">Connect</button>
+            <button class="btn hero-btn" data-target="#gallery">
+              View Photos
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="page">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Love Story💖</h2>
+          <p>How we met and fell in love</p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Our story began in May, two years ago, a moment quietly written by
+              destiny. Amar was the one who first caught Megha's eye 👀, and
+              from that spark, a beautiful journey began. Megha, a brilliant
+              doctor, filled our lives with her intelligence, kindness, and a
+              smile that lit up the entire family 🧡. What started as a simple
+              glance soon grew into a love meant to last forever. 💍✨
+            </p>
+
+            <p>HOW IT STARTED. YET TO BE ASKED....?</p>
+
+            <div class="about-details">
+              <div class="detail-item">
+                <i class="fas fa-heart"></i>
+                <div>
+                  <strong>First Date: 25 May 2023💗𐙚</strong>
+                  <span>-</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-ring"></i>
+                <div>
+                  <strong>Proposal</strong>
+                  <span>May,2025 Mudgal</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-calendar-check"></i>
+                <div>
+                  <strong>Wedding Date</strong>
+                  <span>April 29 2026 - An Auspicious day</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="couple-profiles">
+              <div class="profile">
+                <div class="profile-header">
+                  <img
+                    src="images/amaresh.JPG"
+                    alt="Dr. Amar"
+                    class="profile-small-img"
+                    onclick="
+                      openFullscreenModal('images/amaresh.JPG', 'The Groom 🤵')
+                    "
+                  />
+                  <h4>Groom 👨‍⚕️ Dr.Amar</h4>
+                </div>
+                <p>
+                  A 32-year-old endocrinologist with a heart that delights in
+                  classical melodies, soulful cooking, and the quiet comfort of
+                  books📚
+                </p>
+                <p>
+                  Megha showed me that true love grows when two hearts choose to
+                  create perfection together, not search for it 🧡
+                </p>
+              </div>
+
+              <div class="profile">
+                <div class="profile-header">
+                  <img
+                    src="images/meghaaaa.JPG"
+                    alt="Dr. Megha"
+                    class="profile-small-img"
+                    onclick="
+                      openFullscreenModal('images/meghaaaa.JPG', 'The Bride 💐')
+                    "
+                  />
+                  <h4>Bride 👩‍⚕️ Dr.Megha</h4>
+                </div>
+                <p>
+                  A 28-year-old pediatrician,healing little hearts by
+                  profession,treasures every moment spent with family😊
+                </p>
+                <p>
+                  As a doctor, I've learned to stay strong through life's
+                  storms, but Amar showed me that true love is the safe harbor
+                  where my heart can finally rest and the sunshine that gently
+                  heals me on brighter days.💚
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-right-column">
+            <div class="about-image">
+              <img
+                src="images/palmring.JPG"
+                alt="Amar and Lakshmi"
+                onclick="
+                  openFullscreenModal(
+                    'images/palmring.JPG',
+                    'From Stethoscopes 🩺 to Soulmates💝',
+                  )
+                "
+              />
+              <p>&nbsp;&nbsp;&nbsp;From Stethoscopes 🩺 to Soulmates💝</p>
+            </div>
+
+            <!-- How We Met Story -->
+            <div class="story-section">
+              <h4>How We Met</h4>
+              <div class="story-timeline">
+                <div class="story-item">
+                  <i class="fas fa-diya-lamp"></i>
+                  <span>2023</span>
+                  <p>Met at a ritual Meet</p>
+                </div>
+                <div class="story-item">
+                  <i class="fas fa-coffee"></i>
+                  <span>2023</span>
+                  <p>First date</p>
+                </div>
+                <div class="story-item">
+                  <i class="fas fa-hiking"></i>
+                  <span>March 2022</span>
+                  <p>First trip together (YET TO BE PLANNED)</p>
+                </div>
+                <div class="story-item">
+                  <i class="fas fa-ring"></i>
+                  <span>2023</span>
+                  <p>Amar proposed at sunset</p>
+                </div>
+                <div class="story-item">
+                  <i class="fas fa-hands-praying"></i>
+                  <span>APRIL 29</span>
+                  <p>Our wedding day!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="page">
+      <div class="container">
+        <div class="section-title">
+          <h2>ShriShiv Gallery 💍</h2>
+          <p>
+            Combining Shri (another name/for Lakshmi) and Shiv (from
+            Shiva/Amareeshwara)
+          </p>
+        </div>
+
+        <div class="gallery-controls">
+          <button class="filter-btn active" data-filter="all">
+            All Photos
+          </button>
+          <button class="filter-btn" data-filter="engagement">
+            Engagement💍
+          </button>
+          <button class="filter-btn" data-filter="family">Family 👨‍👩‍👧‍👦</button>
+          <button class="filter-btn" data-filter="couple">Couple💕</button>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- Engagement Photos -->
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/eeee.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Our Engagement💍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage1.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Special Moment❤️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/Stage.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Officially Us🙌🏻</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage4.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Lost In Happiness🧡</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage2.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Together Forever♾️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage.JPG" alt="Engagement" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Happy Us🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage10.JPG" alt="Happy Me" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Amar 🤵‍♂️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage5.JPG" alt="Lost in Love" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Megha 👰‍♀️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/palmring.JPG" alt="Ring" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Promise Ring💍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage8.JPG" alt="Ring" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Forever Bond ♾️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/showingring.JPG" alt="Ring" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>A circle of love, sealed for eternity ✨💍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/engage9.JPG" alt="Whoo" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Us Moment❤️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img
+                src="images/engage14.JPG"
+                alt="Celebrations🎉"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Memories💕</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/Feel.JPG" alt="Sunset" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Beautiful Sunset🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img src="images/Gejje.JPG" alt="Gejje🤍" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>With every Gejje chime, a sacred journey begins 🌸✨</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img
+                src="images/Hudi.JPG"
+                alt="With the sacred Hudi, a lifetime promise is sealed 🤍✨"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Sacred Hudi 🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="engagement">
+            <div class="image-container">
+              <img
+                src="images/drmegha.JPG"
+                alt="A New beginning✨ "
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Dr. Megha</p>
+            </div>
+          </div>
+
+          <!-- Family Photos -->
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/broeye.JPG"
+                alt="Bride's Family 🧡"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Family — where every story begins💚</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img src="images/family.JPG" alt="Family" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Love lives here 🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/ajja.JPG"
+                alt="Sacred Blessings✨"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Ajja🌸</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/groomfam.JPG"
+                alt="The family that raised the groom, with love and pride ✨"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Groom's Family🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/fam10.JPG"
+                alt="A frame filled with blessings, love, and legacy 💖"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Blessed Roots 🌿</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/fam11.JPG"
+                alt="This is not just a picture, it's our home 🤍✨"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>one Family 👨‍👩‍👧‍👦</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/fourfam.JPG"
+                alt="My first home, my forever strength 🤍"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Forever Family 🌸</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/cousins.JPG"
+                alt="When cousins unite, chaos is guaranteed 💥"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Cousins Reunion 😎</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/mamas.JPG"
+                alt="A group of mischievous Mama's😜"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Mama's💖</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/sonuandsanju.JPG"
+                alt="Three women, one endless love 💕"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Sonu & Sanju🌸</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="family">
+            <div class="image-container">
+              <img
+                src="images/thumbs.JPG"
+                alt="Approval committee Says:👍 APPROVED 😂"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-overlay">
+              <p>Thumbs Up👍</p>
+            </div>
+          </div>
+
+          <!-- Couple Photos -->
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/Couple.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Happy Couple💖</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/amarlakhi.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Amar & Lakshmi🌸</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/laugh.JPG" alt="Laugh" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Laughing Together✨</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/whooo.JPG" alt="Family" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Whooo🌼</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/couple11.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Together♾️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/couple12.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Happy Moment's🤍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/hug.JPG" alt="Hug" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Warm Hug💞</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/couple2.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Couple Goals❤️</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/engagement.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Hands in Together💍</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/couple7.JPG" alt="Couple" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Proposal💐</p>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-category="couple">
+            <div class="image-container">
+              <img src="images/Both.JPG" alt="Both" loading="lazy" />
+            </div>
+            <div class="gallery-overlay">
+              <p>Both of Us💖</p>
+            </div>
+          </div>
+
+          <!-- Note: Removed duplicates and fixed incorrect categories -->
+        </div>
+
+        <div class="gallery-instructions">
+          <i class="fas fa-mouse-pointer"></i>
+          Click on any photo to view in fullscreen
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="page">
+      <div class="container">
+        <div class="section-title">
+          <h2>Here The Wedding Events List✨</h2>
+          <p>Join With us for Endless Celebrations🎉</p>
+        </div>
+
+        <div class="events-container">
+          <div class="events-grid">
+            <!-- 1. BRIDE TO BE -->
+            <div class="event-card">
+              <div class="event-header">
+                <div class="event-date">
+                  <div class="date-day">24</div>
+                  <div class="date-month">Apr</div>
+                </div>
+                <div class="event-icon">
+                  <img
+                    src="images/nagu.JPG"
+                    alt="Mehndi"
+                    class="event-icon-image clickable-icon"
+                    onclick="
+                      openEventModal(
+                        'images/nagu.JPG',
+                        'Bride To Be',
+                        'Every smile today carries a dream of forever🤍',
+                      )
+                    "
+                  />
+                </div>
+              </div>
+              <div class="event-content">
+                <h3>Bride To Be</h3>
+                <p class="event-time">From 7:00PM - Midnight</p>
+                <br />
+                <p class="event-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <strong>Megha's Lovely Home🏠Mudgal</strong>
+                </p>
+                <div class="event-description">
+                  <p>Every smile today carries a dream of forever🤍</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. MEHANDI -->
+            <div class="event-card">
+              <div class="event-header">
+                <div class="event-date">
+                  <div class="date-day">25</div>
+                  <div class="date-month">Apr</div>
+                </div>
+                <div class="event-icon">
+                  <img
+                    src="images/mehndi-icon.jpg"
+                    alt="Sangeet"
+                    class="event-icon-image clickable-icon"
+                    onclick="
+                      openEventModal(
+                        'images/mehndi-icon.jpg',
+                        'Mehndi Ceremony',
+                        'Hands painted with love, heart glowing with dreams, Let Mehndi marks the beginning of forever🌿',
+                      )
+                    "
+                  />
+                </div>
+              </div>
+              <div class="event-content">
+                <h3>Mehndi Ceremony</h3>
+                <p class="event-time">10:00 AM - 2:30 PM</p>
+                <br />
+                <p class="event-location">
+                  <i class="fas fa-map-marker-alt"></i>&nbsp;
+                  <strong>Megha's Lovely Home🏡Mudgal</strong>
+                </p>
+                <div class="event-description">
+                  <p>
+                    Hands painted with love, heart glowing with dreams, Let
+                    Mehndi marks the beginning of forever🌿
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. WEDDING CEREMONY -->
+            <div class="event-card highlight">
+              <div class="event-header">
+                <div class="event-date">
+                  <div class="date-day">29</div>
+                  <div class="date-month">Apr</div>
+                </div>
+                <div class="event-icon">
+                  <img
+                    src="images/wedding-icon.JPG"
+                    alt="Wedding"
+                    class="event-icon-image clickable-icon"
+                    onclick="
+                      openEventModal(
+                        'images/wedding-icon.JPG',
+                        'Muhurtha📿',
+                        'In this Moment, A divine thread that seals love, commitment, and a lifetime of blessings💛',
+                      )
+                    "
+                  />
+                </div>
+              </div>
+              <div class="event-content">
+                <h3>Muhurtha📿</h3>
+                <p class="event-time">3:00 AM onwards</p>
+                <p class="event-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <strong>Amareshwara Temple🛕</strong>
+                </p>
+                <div class="event-description">
+                  <p>
+                    In this Moment, A divine thread that seals love, commitment,
+                    and a lifetime of blessings💚
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. RECEPTION -->
+            <div class="event-card">
+              <div class="event-header">
+                <div class="event-date">
+                  <div class="date-day">29</div>
+                  <div class="date-month">Apr</div>
+                </div>
+                <div class="event-icon">
+                  <img
+                    src="images/reception-icon.JPG"
+                    alt="Reception"
+                    class="event-icon-image clickable-icon"
+                    onclick="
+                      openEventModal(
+                        'images/reception-icon.JPG',
+                        'Reception',
+                        'A Day of love, laughter, and happily ever after, Welcome to our reception🌸',
+                      )
+                    "
+                  />
+                </div>
+              </div>
+              <div class="event-content">
+                <h3>Reception</h3>
+                <p class="event-time">10:00 AM - 4:00 PM</p>
+                <br />
+                <p class="event-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <strong>Devadurga🕍</strong>
+                </p>
+                <div class="event-description">
+                  <p>
+                    A Day of love, laughter, and happily ever after💛 <br />
+                    Welcome to our reception🌸
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="venue-details">
+          <div class="venue-map">
+            <h3>Venue Location</h3>
+            <div class="map-placeholder">
+              <i class="fas fa-map-marked-alt"></i>
+              <p><strong>Amareshwara Temple🛕</strong></p>
+              <p class="venue-address">
+                Traditional venue for sacred ceremonies
+              </p>
+            </div>
+          </div>
+          <div class="accommodation">
+            <h3>Accommodation</h3>
+            <p>Suggested stays near the venues</p>
+            <ul>
+              <li>Local guest houses (0-2km away)</li>
+              <li>Nearby hotels (2-3km away)</li>
+              <li>Will Be Updated Soon (2-3km away)</li>
+            </ul>
+            <p class="accommodation-note">
+              Details will be shared with Email confirmation
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="page">
+      <div class="container">
+        <div class="section-title">
+          <h2>Connect With Us🤍</h2>
+          <p>
+            It would be our honor and happiness to have you with us on this
+            special day🕊️
+          </p>
+        </div>
+
+        <form
+          id="wedding-rsvp-form"
+          action="https://formspree.io/f/maqqnwwg"
+          method="POST"
+        >
+          <div class="rsvp-container">
+            <div class="rsvp-form">
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Wedding Response Submission! 🎉"
+              />
+              <input type="hidden" name="_replyto" id="reply-email" />
+              <input
+                type="hidden"
+                name="_cc"
+                value="amarlakshmiwedding@gmail.com"
+              />
+              <input type="hidden" name="_format" value="plain" />
+
+              <div class="form-row">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    id="rsvp-name"
+                    placeholder="Full Name *"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    id="rsvp-email"
+                    placeholder="Email Address *"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="rsvp-phone"
+                    placeholder="Phone Number *"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    name="guests"
+                    id="rsvp-guests"
+                    placeholder="Number of Guests *"
+                    min="1"
+                    max="10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Attendance Options -->
+              <div class="section-box">
+                <h4>
+                  <i class="fas fa-calendar-check"></i> Will you be attending?
+                </h4>
+                <div class="attendance-grid">
+                  <label class="attendance-option yes-option">
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value="Yes, I'll be there with joy!"
+                      required
+                    />
+                    <div class="option-content">
+                      <i class="fas fa-heart"></i>
+                      <span class="option-text"
+                        >Yes, I'll be there with joy!</span
+                      >
+                    </div>
+                  </label>
+
+                  <label class="attendance-option maybe-option">
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value="Maybe, still checking"
+                    />
+                    <div class="option-content">
+                      <i class="fas fa-question-circle"></i>
+                      <span class="option-text">Maybe, still checking</span>
+                    </div>
+                  </label>
+
+                  <label class="attendance-option no-option">
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value="Regretfully can't make it"
+                    />
+                    <div class="option-content">
+                      <i class="fas fa-sad-tear"></i>
+                      <span class="option-text"
+                        >Regretfully can't make it, Sorry.!</span
+                      >
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Events Selection -->
+              <div class="section-box">
+                <h4>
+                  <i class="fas fa-glass-cheers"></i> Which events will you
+                  attend?
+                </h4>
+                <div class="events-grid">
+                  <label class="event-option">
+                    <input
+                      type="checkbox"
+                      name="event-mehandi"
+                      value="Mehandi Ceremony (April 28)"
+                    />
+                    <div class="event-content">
+                      <div class="event-date">Apr 25</div>
+                      <span class="event-name">Mehendi Ceremony</span>
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </label>
+
+                  <label class="event-option">
+                    <input
+                      type="checkbox"
+                      name="event-sangeet"
+                      value="Sangeet Night (April 26)"
+                    />
+                    <div class="event-content">
+                      <div class="event-date">Apr 25</div>
+                      <span class="event-name">Sangeet Night</span>
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </label>
+
+                  <label class="event-option">
+                    <input
+                      type="checkbox"
+                      name="event-wedding"
+                      value="Wedding Ceremony (April 29)"
+                      checked
+                    />
+                    <div class="event-content">
+                      <div class="event-date">Apr 29</div>
+                      <span class="event-name">Wedding Ceremony</span>
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </label>
+
+                  <label class="event-option">
+                    <input
+                      type="checkbox"
+                      name="event-reception"
+                      value="Reception (April 28)"
+                      checked
+                    />
+                    <div class="event-content">
+                      <div class="event-date">Apr 29</div>
+                      <span class="event-name">Reception</span>
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Message Input -->
+              <div class="message-box">
+                <h4>
+                  <i class="fas fa-comment-dots"></i> Any Dietary restrictions
+                  or Special requests!
+                </h4>
+                <textarea
+                  name="message"
+                  id="rsvp-message"
+                  placeholder="Please let us know about any dietary needs or special requirements..."
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="submit-rsvp" class="btn submit-btn">
+                <i class="fas fa-paper-plane"></i> Send Your Response
+              </button>
+            </div>
+
+            <!-- Preview on right -->
+            <div class="rsvp-preview">
+              <div class="preview-card">
+                <h3><i class="fas fa-gift"></i> Your Response</h3>
+                <div class="preview-content">
+                  <div class="preview-item">
+                    <strong>Status:</strong>
+                    <span class="preview-attendance">Not selected</span>
+                  </div>
+                  <div class="preview-item">
+                    <strong>Events:</strong>
+                    <span class="preview-events">No events selected</span>
+                  </div>
+                  <div class="preview-item">
+                    <strong>Guests:</strong>
+                    <span class="preview-guests">0</span>
+                  </div>
+                </div>
+                <div class="preview-note">
+                  <i class="fas fa-info-circle"></i>
+                  <p>Your response helps us plan better for our special day!</p>
+                </div>
+              </div>
+
+              <div class="quote-box">
+                <i class="fas fa-quote-left"></i>
+                <p class="quote-text">
+                  Your presence will add meaning and joy to this beautiful
+                  beginning ✨
+                </p>
+                <i class="fas fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Celebration Animation Container -->
+        <div class="celebration-container" id="celebration-container"></div>
+
+        <!-- RSVP Confirmation -->
+        <div
+          class="rsvp-confirmation"
+          id="rsvp-confirmation"
+          style="display: none"
+        >
+          <div class="confirmation-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Thank You for Your Response! 🎉</h3>
+            <p class="confirmation-message" id="confirmation-message">
+              We're excited to celebrate with you!
+            </p>
+            <div class="confirmation-details" id="confirmation-details"></div>
+            <div class="confirmation-quote" id="confirmation-quote"></div>
+            <p class="email-notice">
+              <i class="fas fa-envelope"></i> A confirmation email has been sent
+              to you.
+            </p>
+            <button type="button" class="btn" id="back-to-form">
+              <i class="fas fa-edit"></i> Edit Response
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sister Modal -->
+    <div id="sisterModal" class="sister-modal">
+      <div class="sister-modal-content">
+        <button
+          class="close-sister"
+          onclick="closeSisterModal()"
+          aria-label="Close sister modal"
+        >
+          &times;
+        </button>
+        <div
+          class="sister-image-container"
+          onclick="
+            openFullscreenModal('images/Sisters.jpg', 'Weeeeeeeeeeeee 👭❤️')
+          "
+        >
+          <img src="images/Sisters.jpg" alt="Sister" id="sisterModalImage" />
+        </div>
+        <div class="sister-message">
+          <h3 id="sisterModalTitle">ನಮ್ಮ ಅಕ್ಕನ ಮದುವೆ❤️</h3>
+          <p id="sisterModalText">
+            With love in our hearts and joy in our souls, we invite you to our
+            sister's wedding 💍✨
+          </p>
+          <div class="heart-emoji">❤️❤️❤️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="event-modal">
+      <div class="event-modal-content">
+        <button
+          class="close-event"
+          onclick="closeEventModal()"
+          aria-label="Close event modal"
+        >
+          &times;
+        </button>
+        <div class="event-modal-image-container">
+          <img
+            src=""
+            alt="Event Image"
+            class="event-modal-image"
+            id="eventModalImage"
+          />
+        </div>
+        <div class="event-modal-info">
+          <h3 id="eventModalTitle"></h3>
+          <p id="eventModalDescription"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h1>Megha ♥ Amar</h1>
+          <p>Writing our own forever Love Prescription's❤️</p>
+          <p class="wedding-date">On April 29, 2026</p>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p>
+              <a href="tel:+918147191426" class="contact-link">
+                <i class="fas fa-phone"></i> +91 8147191426 (Amar)
+              </a>
+            </p>
+            <p>
+              <a href="tel:+919945315661" class="contact-link">
+                <i class="fas fa-phone"></i> +91 9945315661 (Megha)
+              </a>
+            </p>
+            <p>
+              <a
+                href="mailto:amarlakshmiwedding@gmail.com?subject=Wedding%20Greetings&body=Dear%20Amar%20%26%20Lakshmi%2C%0A%0A"
+                class="contact-link"
+              >
+                <i class="fas fa-envelope"></i> amarlakshmiwedding@gmail.com
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://wa.me/918147191426?text=Hello%20Amar%20%26%20Lakshmi%2C%20Congratulations%20on%20your%20wedding%21"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-whatsapp"></i> WhatsApp Amar
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://wa.me/919945315661?text=Hello%20Amar%20%26%20Lakshmi%2C%20Congratulations%20on%20your%20wedding%21"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-whatsapp"></i> WhatsApp Megha
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; Megha & Amar's — Forever Begins in 2026 💝✨</p>
+        <p class="creator">
+          Developed With❤️By
+          <button id="creatorLink" class="creator-button">Vasanthh</button>
+        </p>
+      </div>
+
+      <!-- CREATOR MODAL -->
+      <div class="creator-modal" id="creatorModal">
+        <div class="creator-modal-content">
+          <button
+            class="close-btn"
+            id="closeModal"
+            aria-label="Close creator modal"
+          >
+            &times;
+          </button>
+          <div class="creator-image-container" id="clickableImage">
+            <img
+              src="images/mevasanth.jpg"
+              alt="Vasanthh"
+              class="creator-image"
+            />
+          </div>
+          <div class="name-container">
+            <div class="animated-name" id="animatedName"></div>
+            <div class="name-underline" id="nameUnderline"></div>
+          </div>
+          <div class="creator-info">
+            <strong>
+              <p>
+                For Megha & Amar ❤️<br />May your love be divinely guided,
+                eternally blessed, and forever growing🤍
+              </p>
+            </strong>
+          </div>
+          <div class="creator-buttons">
+            <button
+              onclick="
+                openFullscreenModal('images/mevasanth.jpg', 'Vasanthh💙')
+              "
+              class="btn creator-btn"
+              aria-label="View Vasanth's photo in fullscreen"
+            >
+              <i class="fas fa-expand"></i> View
+            </button>
+            <button
+              onclick="closeCreatorModal()"
+              class="btn creator-btn"
+              aria-label="Close modal"
+            >
+              <i class="fas fa-times"></i> Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Fullscreen Modal (should be outside footer) -->
+    <div id="fullscreenModal" class="fullscreen-modal">
+      <div class="modal-overlay" onclick="closeFullscreenModal()"></div>
+      <div class="modal-content">
+        <button
+          class="close-modal"
+          onclick="closeFullscreenModal()"
+          aria-label="Close fullscreen modal"
+        >
+          &times;
+        </button>
+        <div class="modal-image-container">
+          <img src="" alt="" id="fullscreenModalImage" />
+        </div>
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
+
+    <!-- All scripts should be at the end of body -->
+    <script src="script.js"></script>
+    <script>
+      // Mobile menu toggle
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const navLinks = document.querySelector(".nav-links");
+        const navLinksItems = document.querySelectorAll(".nav-link");
+        const body = document.body;
+
+        if (!mobileMenuBtn || !navLinks) return;
+
+        // Toggle menu function
+        function toggleMenu() {
+          const isActive = navLinks.classList.toggle("active");
+          mobileMenuBtn.innerHTML = isActive ? "✕" : "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", isActive);
+          mobileMenuBtn.setAttribute(
+            "aria-label",
+            isActive ? "Close menu" : "Open menu",
+          );
+          body.style.overflow = isActive ? "hidden" : "";
+        }
+
+        // Close menu function
+        function closeMenu() {
+          navLinks.classList.remove("active");
+          mobileMenuBtn.innerHTML = "☰";
+          mobileMenuBtn.setAttribute("aria-expanded", "false");
+          mobileMenuBtn.setAttribute("aria-label", "Open menu");
+          body.style.overflow = "";
+        }
+
+        // Menu button click
+        mobileMenuBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu on link click
+        navLinksItems.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+
+        // Close menu on outside click
+        document.addEventListener("click", function (e) {
+          if (
+            !navLinks.contains(e.target) &&
+            !mobileMenuBtn.contains(e.target) &&
+            navLinks.classList.contains("active")
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && navLinks.classList.contains("active")) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on resize
+        window.addEventListener("resize", function () {
+          if (
+            window.innerWidth > 768 &&
+            navLinks.classList.contains("active")
+          ) {
+            closeMenu();
+          }
+        });
+      });
+    </script>
   </body>
 </html>

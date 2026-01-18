@@ -1992,7 +1992,7 @@ body.on-home-page .floating-groom {
 .creator-btn {
   background: linear-gradient(135deg, #8b4b6e, #b86b9a);
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 @keyframes fadeIn {
@@ -2004,7 +2004,7 @@ body.on-home-page .floating-groom {
 .creator-info p {
   color: #666;
   margin: 10px 0;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -2012,12 +2012,12 @@ body.on-home-page .floating-groom {
 .creator-button {
   background: none;
   border: none;
-  color: #ffd700;
+  color: #0b0901;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
   transition: var(--transition);
-  font-size: 14px;
+  font-size: 17px;
   padding: 0;
 }
 
@@ -2028,7 +2028,7 @@ body.on-home-page .floating-groom {
 
 /* ==================== FOOTER ==================== */
 footer {
-  background: linear-gradient(135deg, #8b4b6e, #b76e79);
+  background: linear-gradient(135deg, #b03d7c, #6bcd77);
   color: white;
   padding: 50px 0 20px;
   text-align: center;
@@ -2045,9 +2045,9 @@ footer {
 
 .footer-section h1 {
   font-family: "Great Vibes", cursive;
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 15px;
-  color: #ffd700;
+  color: #f1f102;
 }
 
 .footer-section p {
