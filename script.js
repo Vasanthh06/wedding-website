@@ -1000,3 +1000,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("All functions initialized successfully!");
 });
+// Mobile menu toggle
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const navLinks = document.querySelector(".nav-links");
+  const navLinksItems = document.querySelectorAll(".nav-link");
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", function () {
+      // Toggle mobile menu
+      navLinks.classList.toggle("active");
+
+      // Change menu icon
+      const isActive = navLinks.classList.contains("active");
+      mobileMenuBtn.innerHTML = isActive ? "✕" : "☰";
+      mobileMenuBtn.setAttribute(
+        "aria-label",
+        isActive ? "Close menu" : "Open menu",
+      );
+    });
+  }
+
+  // Close mobile menu when clicking a link
+  navLinksItems.forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      mobileMenuBtn.innerHTML = "☰";
+      mobileMenuBtn.setAttribute("aria-label", "Open menu");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", function (event) {
+    const isClickInsideMenu = navLinks.contains(event.target);
+    const isClickOnMenuButton = mobileMenuBtn.contains(event.target);
+
+    if (
+      !isClickInsideMenu &&
+      !isClickOnMenuButton &&
+      navLinks.classList.contains("active")
+    ) {
+      navLinks.classList.remove("active");
+      mobileMenuBtn.innerHTML = "☰";
+      mobileMenuBtn.setAttribute("aria-label", "Open menu");
+    }
+  });
+});
