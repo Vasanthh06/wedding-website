@@ -428,12 +428,31 @@ function initCreatorModal() {
 
   if (!creatorLink || !creatorModal) return;
 
-  // Open creator modal
+  // Open creator modal - Modified to open image directly
   creatorLink.addEventListener("click", function (e) {
     e.preventDefault();
-    openCreatorModal();
+
+    // DIRECTLY OPEN THE FULLSCREEN IMAGE WITH EFFECTS
+    openFullscreenModal(
+      "images/mevasanth.jpg",
+      "Vasanthh💙 — Developer of this Website\n\nFor Megha & Amar ❤️\nMay your love be divinely guided, eternally blessed, and forever growing🤍",
+    );
+
+    // If you still want the modal with animation, uncomment below and comment above
+    // openCreatorModal();
+  });
+  // Option 1: Click name = Direct image
+  creatorLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    openFullscreenModal(
+      "images/mevasanth.jpg",
+      "Vasanthh💙 — Developer of this Website\n\nFor Megha & Amar ❤️\nMay your love be divinely guided, eternally blessed, and forever growing🤍",
+    );
   });
 
+  // Option 2: If you want to keep the creator modal button working
+  // You need to check if there's another button that opens creatorModal
+  // and keep that functionality separate
   // Close modal
   closeModal.addEventListener("click", closeCreatorModal);
 
