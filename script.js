@@ -866,7 +866,7 @@ function initCreatorButtons() {
   if (viewFullImageBtn) {
     viewFullImageBtn.addEventListener("click", function (e) {
       e.stopPropagation();
-      openFullscreenModal("images/mevasanth.jpg", "Vasanthh - The Developer");
+      openFullscreenModal("images/mevasanth.jpg", "Vasanthh💙");
     });
   }
 
@@ -879,7 +879,7 @@ function initCreatorButtons() {
 }
 
 function openFullscreenCreatorImage() {
-  openFullscreenModal("images/mevasanth.jpg", "Vasanthh - The Developer");
+  openFullscreenModal("images/mevasanth.jpg", "Vasanthh💙");
 }
 
 function openCreatorModal() {
