@@ -139,6 +139,7 @@ nav {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .nav-links {
@@ -158,6 +159,7 @@ nav {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .nav-link:hover,
@@ -185,6 +187,7 @@ nav {
   padding: 10px;
   min-height: 44px;
   min-width: 44px;
+  z-index: 1001;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -672,7 +675,7 @@ nav {
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.5px;
   z-index: 2;
   box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
@@ -713,8 +716,8 @@ nav {
 }
 
 .event-icon {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1273,7 +1276,20 @@ nav {
   background: linear-gradient(135deg, #8b4b6e, #b86b9a);
 }
 
-/* ==================== FLOATING IMAGES ==================== */
+/* ==================== FLOATING IMAGES FIX ==================== */
+/* Hide floating images by default on all pages except home */
+body:not(.on-home-page) .floating-bride,
+body:not(.on-home-page) .floating-groom {
+  display: none !important;
+}
+
+/* Show floating images only on home page */
+body.on-home-page .floating-bride,
+body.on-home-page .floating-groom {
+  display: block;
+}
+
+/* Prevent overlapping - adjust positions */
 .floating-bride {
   position: fixed;
   right: 30px;
@@ -1281,7 +1297,6 @@ nav {
   transform: translateY(-50%);
   z-index: 999;
   cursor: pointer;
-  display: none;
   animation: gentleFloat 8s ease-in-out infinite;
 }
 
@@ -1292,110 +1307,49 @@ nav {
   transform: translateY(-50%);
   z-index: 999;
   cursor: pointer;
-  display: none;
   animation: gentleFloat 8s ease-in-out infinite 2s;
 }
 
-body.show-floating .floating-bride,
-body.show-floating .floating-groom {
-  display: block;
-}
-
-.bride-image-container,
-.groom-image-container {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  cursor: pointer;
-}
-
-.bride-image-container {
-  border: 4px solid #b76e79;
-}
-
-.groom-image-container {
-  border: 4px solid #8b4513;
-}
-
-.bride-image,
-.groom-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(1.05) contrast(1.1);
-  transition: transform 0.5s ease;
-}
-
-.image-frame {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.bride-image-container:hover,
-.groom-image-container:hover {
-  transform: rotate(5deg) scale(1.15);
-  box-shadow: 0 15px 40px rgba(201, 169, 110, 0.6);
-}
-
-.bride-image-container:hover .bride-image,
-.groom-image-container:hover .groom-image {
-  transform: scale(1.1);
-}
-
-.bride-text,
-.groom-text {
-  position: absolute;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  transition:
-    opacity 0.3s ease,
-    top 0.3s ease;
-  pointer-events: none;
-}
-
-.bride-text {
-  background: rgba(183, 110, 121, 0.9);
-  color: white;
-}
-
-.groom-text {
-  background: rgba(139, 69, 19, 0.9);
-  color: white;
-}
-
-.bride-image-container:hover .bride-text,
-.groom-image-container:hover .groom-text {
-  opacity: 1;
-  top: -45px;
-}
-
-@keyframes gentleFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
+/* Mobile adjustments to prevent overlap */
+@media (max-width: 768px) {
+  .floating-bride {
+    right: 10px;
+    bottom: 100px;
+    top: auto;
+    transform: none;
   }
-  50% {
-    transform: translateY(-15px) rotate(1deg);
+
+  .floating-groom {
+    left: 10px;
+    bottom: 100px;
+    top: auto;
+    transform: none;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 100px;
+    height: 100px;
   }
 }
 
+@media (max-width: 480px) {
+  .floating-bride {
+    right: 5px;
+    bottom: 80px;
+  }
+
+  .floating-groom {
+    left: 5px;
+    bottom: 80px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 80px;
+    height: 80px;
+  }
+}
 /* ==================== SISTER FLOATING IMAGE ==================== */
 .sister-floating-image {
   position: fixed;
@@ -1711,7 +1665,6 @@ body.show-floating .floating-groom {
 }
 
 /* ==================== EVENT MODAL ==================== */
-/* ==================== EVENT MODAL FIX ==================== */
 .event-modal {
   display: none;
   position: fixed;
@@ -1790,8 +1743,8 @@ body.show-floating .floating-groom {
 }
 
 .event-modal-image {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 80%;
+  max-height: 80%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1839,54 +1792,6 @@ body.show-floating .floating-groom {
   width: 20px;
 }
 
-/* Mobile responsiveness for event modal */
-@media (max-width: 768px) {
-  .event-modal-content {
-    width: 90%;
-    max-height: 85vh;
-  }
-
-  .event-modal-image-container {
-    height: 300px;
-    padding: 15px;
-  }
-
-  .event-modal-info {
-    padding: 20px;
-  }
-
-  .event-modal-info h3 {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .event-modal-content {
-    width: 95%;
-    max-height: 90vh;
-  }
-
-  .event-modal-image-container {
-    height: 250px;
-    padding: 10px;
-  }
-
-  .event-modal-info {
-    padding: 15px;
-  }
-
-  .event-modal-info h3 {
-    font-size: 22px;
-  }
-
-  .close-event {
-    top: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
-    font-size: 24px;
-  }
-}
 /* ==================== CONTACT LINKS ==================== */
 .contact-link {
   color: #ffffff;
@@ -2077,6 +1982,19 @@ body.show-floating .floating-groom {
   opacity: 0;
 }
 
+.creator-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.creator-btn {
+  background: linear-gradient(135deg, #8b4b6e, #b86b9a);
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -2088,6 +2006,24 @@ body.show-floating .floating-groom {
   margin: 10px 0;
   font-size: 16px;
   line-height: 1.5;
+}
+
+/* Creator button style */
+.creator-button {
+  background: none;
+  border: none;
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 14px;
+  padding: 0;
+}
+
+.creator-button:hover {
+  text-decoration: underline;
+  color: white;
 }
 
 /* ==================== FOOTER ==================== */
@@ -2143,19 +2079,6 @@ footer {
   font-size: 14px;
 }
 
-#creatorLink {
-  color: #ffd700;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-#creatorLink:hover {
-  text-decoration: underline;
-  color: white;
-}
-
 /* ==================== PROFILE IMAGES ==================== */
 .profile-header {
   display: flex;
@@ -2181,160 +2104,6 @@ footer {
   box-shadow: 0 6px 20px rgba(139, 75, 110, 0.4);
 }
 
-/* ==================== BROWSER COMPATIBILITY FIXES ==================== */
-/* Fix for Safari backdrop-filter */
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  .event-card,
-  .profile,
-  .section-box,
-  .modal-caption,
-  .hero-content,
-  header {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-}
-
-/* Fix for Safari gradient animations */
-@supports not (background: linear-gradient(0deg, red, blue)) {
-  .event-card.highlight {
-    background: #f8e1e7;
-    border: 3px solid #d89cb4;
-  }
-}
-
-/* Fix for iOS Safari 100vh issue */
-@supports (-webkit-touch-callout: none) {
-  .hero {
-    min-height: -webkit-fill-available;
-    height: 100vh;
-    height: -webkit-fill-available;
-  }
-}
-
-/* Fix for Chrome scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #fff9f0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-color) #fff9f0;
-}
-
-/* Fix for Safari input styling */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 10px;
-}
-
-/* Fix for Safari button styling */
-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* Fix for mobile tap highlights */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Fix for Safari image rendering */
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-
-/* Fix for Safari text rendering */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Fix for mobile viewport units */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    min-height: -moz-available;
-    min-height: stretch;
-  }
-}
-
-/* Fix for iPhone notch safe areas */
-@supports (padding: max(0px)) {
-  body,
-  header,
-  .hero-content,
-  .container {
-    padding-left: min(0vmin, env(safe-area-inset-left));
-    padding-right: min(0vmin, env(safe-area-inset-right));
-    padding-top: min(0vmin, env(safe-area-inset-top));
-    padding-bottom: min(0vmin, env(safe-area-inset-bottom));
-  }
-}
-
-/* Fix for Android Chrome address bar */
-@media (max-height: 700px) and (orientation: portrait) {
-  .hero {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-
-  .hero-content {
-    padding: 20px;
-    margin: 10px;
-  }
-}
-
-/* Fix for Internet Explorer (just in case) */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .events-grid {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .event-card {
-    flex: 1 0 300px;
-    margin: 15px;
-  }
-
-  .gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .gallery-item {
-    flex: 1 0 280px;
-    margin: 10px;
-  }
-}
-
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 1024px) {
   .about-content {
@@ -2358,6 +2127,20 @@ body {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+
+  .floating-bride,
+  .floating-groom {
+    width: 130px;
+    height: 130px;
+    right: 15px;
+    left: 15px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 130px;
+    height: 130px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2368,8 +2151,8 @@ body {
 
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 80px;
     left: 0;
     width: 100%;
     background: white;
@@ -2377,6 +2160,8 @@ body {
     padding: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
   }
 
   .nav-links.active {
@@ -2415,10 +2200,47 @@ body {
     font-size: 2rem;
   }
 
-  /* Floating Images */
+  /* Floating Images - Show on mobile but smaller */
   .floating-bride,
   .floating-groom {
-    display: none !important;
+    display: block !important;
+    width: 100px;
+    height: 100px;
+    right: 10px;
+    left: 10px;
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    animation: mobileFloat 3s ease-in-out infinite;
+  }
+
+  .floating-bride {
+    right: 10px;
+  }
+
+  .floating-groom {
+    left: 10px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bride-text,
+  .groom-text {
+    display: none;
+  }
+
+  @keyframes mobileFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   .sister-floating-image {
@@ -2558,56 +2380,18 @@ body {
   .animated-name {
     font-size: 28px;
   }
-}
 
-/* ==================== MOBILE OPTIMIZATIONS ==================== */
-/* Fix for mobile touch interactions */
-@media (max-width: 768px) {
-  /* Increase touch targets for mobile */
-  .nav-link,
-  .btn,
-  .filter-btn,
-  .event-icon-image,
-  .profile-small-img {
-    min-height: 48px;
-    min-width: 48px;
+  .floating-bride,
+  .floating-groom {
+    width: 80px;
+    height: 80px;
+    bottom: 15px;
   }
 
-  /* Prevent zoom on input focus in iOS */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  textarea,
-  select {
-    font-size: 16px !important; /* Prevents iOS zoom */
-  }
-
-  /* Improve scrolling on iOS */
-  .gallery-grid,
-  .events-grid,
-  .rsvp-container,
-  .event-modal-content {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Fix for mobile modals */
-  .modal-image-container img {
-    max-height: 60vh;
-  }
-
-  /* Adjust floating images for mobile */
-  .sister-floating-image {
-    width: 70px;
-    height: 70px;
-    top: 80px;
-    left: 15px;
-  }
-
-  .sister-float-badge {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
+  .bride-image-container,
+  .groom-image-container {
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -2646,84 +2430,446 @@ body {
   .footer-section h1 {
     font-size: 1.8rem;
   }
+
+  .floating-bride,
+  .floating-groom {
+    width: 70px;
+    height: 70px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 70px;
+    height: 70px;
+  }
 }
 
-/* Fix for tablet landscape */
-@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-  .hero {
-    min-height: 100vh;
-  }
-
-  .hero-content {
-    max-width: 90%;
-  }
-
-  .events-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
+/* iPhone X and newer safe areas */
+@supports (padding: max(0px)) {
+  body,
+  header,
+  .container {
+    padding-left: min(0vmin, env(safe-area-inset-left));
+    padding-right: min(0vmin, env(safe-area-inset-right));
   }
 
   .floating-bride,
   .floating-groom {
-    width: 120px;
-    height: 120px;
+    right: max(15px, env(safe-area-inset-right));
+    left: max(15px, env(safe-area-inset-left));
   }
 }
 
-/* Fix for foldable phones */
-@media (max-width: 280px) {
-  .logo {
-    font-size: 1.5rem;
-  }
-
-  .nav-link {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-    margin: 5px 0;
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
-  .countdown-item {
-    min-width: 50px;
-    padding: 8px;
-  }
-
-  .countdown-number {
-    font-size: 1.5rem;
-  }
-}
-
-/* Print styles */
-@media print {
-  .floating-bride,
-  .floating-groom,
-  .sister-floating-image,
-  .mobile-menu-btn {
-    display: none !important;
-  }
-
+/* Landscape mode adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
   .hero {
-    background: white !important;
+    min-height: auto;
+    padding: 80px 0;
   }
 
   .hero-content {
-    box-shadow: none !important;
-    background: white !important;
+    padding: 20px;
+    margin: 20px;
   }
 
-  .page {
-    padding: 50px 0;
+  .countdown {
+    margin: 20px 0;
+  }
+
+  .countdown-item {
+    min-width: 70px;
+    padding: 10px;
+  }
+
+  .countdown-number {
+    font-size: 2rem;
+  }
+}
+
+/* Fix for iOS input zoom */
+@media screen and (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+/* ==================== FLOATING IMAGES FIX ==================== */
+/* Hide floating images by default - they'll be shown via JavaScript */
+.floating-bride,
+.floating-groom {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Show only when on home page */
+body.show-floating .floating-bride,
+body.show-floating .floating-groom {
+  display: block;
+}
+
+/* Position bride on right */
+.floating-bride.right {
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+/* Position groom on left */
+.floating-groom.left {
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: gentleFloat 6s ease-in-out infinite 1s;
+}
+
+/* Floating animation */
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(-55%);
+  }
+}
+
+/* Image containers */
+.bride-image-container,
+.groom-image-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.bride-image-container {
+  border: 4px solid #b76e79;
+}
+
+.groom-image-container {
+  border: 4px solid #8b4513;
+}
+
+.bride-image,
+.groom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Hover effects */
+.bride-image-container:hover,
+.groom-image-container:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 15px 40px rgba(201, 169, 110, 0.6);
+}
+
+.bride-image-container:hover .bride-image,
+.groom-image-container:hover .groom-image {
+  transform: scale(1.1);
+}
+
+/* Text labels */
+.bride-text,
+.groom-text {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.bride-text {
+  background: rgba(183, 110, 121, 0.9);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.groom-text {
+  background: rgba(139, 69, 19, 0.9);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.bride-image-container:hover .bride-text,
+.groom-image-container:hover .groom-text {
+  opacity: 1;
+  top: -45px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 1024px) {
+  .floating-bride.right {
+    right: 20px;
+  }
+
+  .floating-groom.left {
+    left: 20px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On mobile, position at bottom to avoid overlapping with content */
+  .floating-bride.right {
+    right: 15px;
+    bottom: 100px;
+    top: auto;
+    transform: none;
+  }
+
+  .floating-groom.left {
+    left: 15px;
+    bottom: 100px;
+    top: auto;
+    transform: none;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .bride-text,
+  .groom-text {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  /* Adjust animation for mobile */
+  @keyframes gentleFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-bride.right {
+    right: 10px;
+    bottom: 90px;
+  }
+
+  .floating-groom.left {
+    left: 10px;
+    bottom: 90px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bride-text,
+  .groom-text {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .floating-bride.right {
+    right: 8px;
+    bottom: 80px;
+  }
+
+  .floating-groom.left {
+    left: 8px;
+    bottom: 80px;
+  }
+
+  .bride-image-container,
+  .groom-image-container {
+    width: 90px;
+    height: 90px;
+  }
+
+  .bride-text,
+  .groom-text {
+    display: none; /* Hide text on very small screens */
+  }
+}
+/* Gallery Section */
+.gallery-item {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 300px;
+  opacity: 1;
+  display: block;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 100%
+  );
+  color: white;
+  padding: 25px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: "Playfair Display", serif;
+}
+/* Creator Modal Buttons */
+.creator-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.creator-btn {
+  background: linear-gradient(135deg, #8b4b6e, #b86b9a);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.creator-btn:hover {
+  background: linear-gradient(135deg, #b86b9a, #8b4b6e);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(139, 75, 110, 0.3);
+}
+
+.creator-btn i {
+  font-size: 16px;
+}
+/* ==================== EVENT MODAL ==================== */
+/* Find this section and make these changes */
+
+.event-modal-image-container {
+  width: 100%;
+  height: 500px; /* Changed from 400px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px; /* Increased from 20px */
+  background: #f5f5f5;
+}
+
+.event-modal-image {
+  max-width: 85%; /* Changed from 80% */
+  max-height: 85%; /* Changed from 80% */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 15px; /* Increased from 10px */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* Increased shadow */
+  border: 3px solid #8b4b6e; /* Added border */
+}
+
+/* For even larger on desktop, you can use: */
+@media (min-width: 1024px) {
+  .event-modal-image-container {
+    height: 600px; /* Even taller on large screens */
+    padding: 40px;
+  }
+
+  .event-modal-image {
+    max-width: 90%;
+    max-height: 90%;
+  }
+}
+
+/* Adjust for mobile */
+@media (max-width: 768px) {
+  .event-modal-image-container {
+    height: 400px; /* Keep reasonable on mobile */
+    padding: 20px;
+  }
+
+  .event-modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    border: 2px solid #8b4b6e;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-modal-image-container {
+    height: 300px;
+    padding: 15px;
   }
 }
